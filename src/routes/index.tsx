@@ -841,7 +841,13 @@ function SectionHeader({
   subtitle?: string;
 }) {
   return (
-    <div className="mx-auto max-w-2xl text-center">
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="mx-auto max-w-2xl text-center"
+    >
       <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground shadow-soft">
         <CircuitBoard className="h-3.5 w-3.5 text-primary" />
         {eyebrow}
@@ -852,7 +858,7 @@ function SectionHeader({
           {subtitle}
         </p>
       )}
-    </div>
+    </motion.div>
   );
 }
 
