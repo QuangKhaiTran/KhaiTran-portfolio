@@ -533,20 +533,14 @@ function Projects() {
           title="Software that's already moving numbers"
           subtitle="A look at six recent engagements — the problem, the build, and the outcome."
         />
-        {/* Pinterest-style masonry via CSS columns */}
-        <div className="mt-14 columns-1 gap-6 sm:columns-2 lg:columns-3 [column-fill:_balance]">
-          {PROJECTS.map((project, i) => {
-            // Vary aspect ratios for natural masonry rhythm
-            const ratios = ["aspect-[4/5]", "aspect-[16/10]", "aspect-[4/3]", "aspect-[3/4]", "aspect-[16/11]", "aspect-[5/6]"];
-            return (
-              <div key={project.title} className="mb-6 break-inside-avoid">
-                <ProjectCard project={project} imageAspect={ratios[i % ratios.length]} featured={i === 0} />
-              </div>
-            );
-          })}
+
+        <div className="mt-16 flex flex-col gap-20 lg:gap-28">
+          {PROJECTS.map((project, i) => (
+            <ProjectRow key={project.title} project={project} index={i} reverse={i % 2 === 1} />
+          ))}
         </div>
 
-        <div className="mt-12 flex justify-center">
+        <div className="mt-20 flex justify-center">
           <a
             href="#case-studies"
             className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground shadow-soft transition hover:-translate-y-0.5 hover:border-primary/40"
@@ -559,69 +553,75 @@ function Projects() {
   );
 }
 
-function ProjectCard({
+function ProjectRow({
   project,
-  featured = false,
-  className = "",
-  imageAspect,
+  index,
+  reverse,
 }: {
   project: (typeof PROJECTS)[number];
-  featured?: boolean;
-  className?: string;
-  imageAspect?: string;
+  index: number;
+  reverse?: boolean;
 }) {
   return (
-    <article
-      className={`group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-card transition hover:-translate-y-1 hover:border-primary/30 hover:shadow-lift ${className}`}
+    <motion.article
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className={`group grid items-center gap-10 lg:grid-cols-12 lg:gap-16 ${
+        reverse ? "lg:[&>div:first-child]:order-2" : ""
+      }`}
     >
-      <div
-        className={`relative overflow-hidden border-b border-border bg-surface ${
-          imageAspect ?? (featured ? "aspect-[16/10]" : "aspect-[16/9]")
-        }`}
-      >
-        <img
-          src={project.image}
-          alt={project.title}
-          loading="lazy"
-          className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-        />
-        <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold text-foreground shadow-soft backdrop-blur">
-          {project.tag}
-        </span>
-        <div className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-[11px] font-semibold text-primary-foreground shadow-soft">
-          {project.result}
-        </div>
+      {/* Image side */}
+      <div className="lg:col-span-7">
+        <motion.div
+          whileHover={{ y: -6 }}
+          transition={{ type: "spring", stiffness: 220, damping: 22 }}
+          className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-card"
+        >
+          <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-accent/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          <img
+            src={project.image}
+            alt={project.title}
+            loading="lazy"
+            className="block h-auto w-full object-contain transition-transform duration-[1200ms] ease-out group-hover:scale-[1.02]"
+          />
+          <span className="absolute left-5 top-5 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-[11px] font-semibold text-foreground shadow-soft backdrop-blur">
+            {project.tag}
+          </span>
+        </motion.div>
       </div>
 
-      <div className={`flex flex-1 flex-col p-6 ${featured ? "lg:p-8" : ""}`}>
-        <h3
-          className={`font-semibold tracking-tight ${
-            featured ? "text-3xl" : "text-xl"
-          }`}
-        >
+      {/* Content side */}
+      <div className="lg:col-span-5">
+        <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+          {String(index + 1).padStart(2, "0")} — Case Study
+        </div>
+        <h3 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
           {project.title}
         </h3>
 
-        <div
-          className={`mt-5 grid gap-4 ${
-            featured ? "sm:grid-cols-2" : "grid-cols-1"
-          }`}
-        >
+        <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary ring-1 ring-primary/20">
+          <Sparkles className="h-3.5 w-3.5" />
+          {project.result}
+        </div>
+
+        <div className="mt-7 space-y-5">
           <MiniRow label="Problem" value={project.problem} />
           <MiniRow label="Solution" value={project.solution} />
         </div>
 
-        <div className="mt-auto flex items-center justify-between pt-6">
+        <div className="mt-8 flex items-center justify-between border-t border-border pt-6">
           <a
             href="#case-studies"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-all hover:gap-2.5"
           >
-            Read case study <ArrowRight className="h-4 w-4" />
+            Read full case study <ArrowRight className="h-4 w-4" />
           </a>
           <span className="text-xs text-muted-foreground">2024 — 2025</span>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
@@ -631,10 +631,11 @@ function MiniRow({ label, value }: { label: string; value: string }) {
       <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
         {label}
       </div>
-      <div className="mt-1.5 text-[14px] leading-relaxed text-foreground">{value}</div>
+      <div className="mt-1.5 text-[15px] leading-relaxed text-foreground">{value}</div>
     </div>
   );
 }
+
 
 
 /* ---------------- PROCESS ---------------- */
