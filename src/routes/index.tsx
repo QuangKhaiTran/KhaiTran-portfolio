@@ -27,6 +27,7 @@ import {
   SiMongodb,
   SiDocker,
 } from "@icons-pack/react-simple-icons";
+import { motion } from "framer-motion";
 import dashboardHero from "@/assets/dashboard-hero.jpg";
 import projectLoan from "@/assets/project-loan.jpg";
 import projectHotel from "@/assets/project-hotel.jpg";
