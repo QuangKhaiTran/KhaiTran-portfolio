@@ -6,6 +6,7 @@ import {
   Boxes,
   Check,
   CircuitBoard,
+  Cloud,
   Database,
   Gauge,
   Globe,
@@ -17,6 +18,15 @@ import {
   Star,
   Workflow,
 } from "lucide-react";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiNestjs,
+  SiPostgresql,
+  SiMongodb,
+  SiDocker,
+} from "@icons-pack/react-simple-icons";
 import dashboardHero from "@/assets/dashboard-hero.jpg";
 import projectLoan from "@/assets/project-loan.jpg";
 import projectHotel from "@/assets/project-hotel.jpg";
