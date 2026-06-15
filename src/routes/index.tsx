@@ -360,6 +360,67 @@ function FloatCard({
 }
 
 /* ---------------- TRUSTED TECH ---------------- */
+function TechLogo({ name }: { name: string }) {
+  const logos: Record<string, React.ReactNode> = {
+    React: (
+      <svg viewBox="0 0 32 32" className="h-7 w-auto" fill="currentColor">
+        <circle cx="16" cy="16" r="2.5" />
+        <ellipse cx="16" cy="16" rx="10" ry="4" fill="none" stroke="currentColor" strokeWidth="1.2" />
+        <ellipse cx="16" cy="16" rx="10" ry="4" fill="none" stroke="currentColor" strokeWidth="1.2" transform="rotate(60 16 16)" />
+        <ellipse cx="16" cy="16" rx="10" ry="4" fill="none" stroke="currentColor" strokeWidth="1.2" transform="rotate(120 16 16)" />
+      </svg>
+    ),
+    "Next.js": (
+      <svg viewBox="0 0 32 32" className="h-7 w-auto" fill="currentColor">
+        <path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2zm7.5 20h-2.4L13 12.4V22h-2V10h2.4l8.1 9.6V10h2v12z" />
+      </svg>
+    ),
+    "Node.js": (
+      <svg viewBox="0 0 32 32" className="h-7 w-auto" fill="currentColor">
+        <path d="M16 2l12.8 7.4v14.8L16 31.6 3.2 24.2V9.4L16 2zm0 3.6L6.4 11.4v9.2L16 26.4l9.6-5.8v-9.2L16 5.6z" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M16 16l6.4-3.7" stroke="currentColor" strokeWidth="1.2" />
+        <path d="M16 16V8.6" stroke="currentColor" strokeWidth="1.2" />
+        <path d="M16 16l-6.4-3.7" stroke="currentColor" strokeWidth="1.2" />
+      </svg>
+    ),
+    NestJS: (
+      <svg viewBox="0 0 32 32" className="h-7 w-auto" fill="currentColor">
+        <path d="M16 3L5 9.3v13.4L16 29l11-6.3V9.3L16 3zm0 4.5l7 4v8l-7 4-7-4v-8l7-4z" />
+      </svg>
+    ),
+    PostgreSQL: (
+      <svg viewBox="0 0 32 32" className="h-7 w-auto" fill="currentColor">
+        <path d="M24 10c-2-1-4.5-.5-6 1.5-1-1-3-1.5-4.5-1-2 .5-3.5 2.5-4 5-.5 2.5.5 5 2.5 6.5 1 .5 2 1 3 1 1.5.5 3 .5 4-.5 1.5 1 3.5 1.5 5 .5 2.5-1 4-3.5 4-6.5 0-3-2.5-5.5-4.5-6.5zM16 22c-1.5 0-3-.5-4.5-1.5-.5 1.5.5 3 2 4 1.5 1 3.5.5 4.5-1 1-1.5.5-3.5-1-4.5-.5.5-1 1.5-1 3z" fill="none" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    ),
+    MongoDB: (
+      <svg viewBox="0 0 32 32" className="h-7 w-auto" fill="currentColor">
+        <path d="M16 3c-1.5 4-2.5 8-2.5 12 0 4 1 7.5 2.5 10 1.5-2.5 2.5-6 2.5-10C18.5 11 17.5 7 16 3z" />
+        <path d="M16 25v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+    Docker: (
+      <svg viewBox="0 0 32 32" className="h-7 w-auto" fill="currentColor">
+        <path d="M5 20h22v3H5zM7 16h4v3H7zM13 16h4v3h-4zM19 16h4v3h-4zM10 12h4v3h-4zM16 12h4v3h-4z" />
+        <path d="M24 16c2 0 3.5-1.5 3.5-3.5S26 9 24 9h-1v7h1z" fill="none" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    ),
+    AWS: (
+      <svg viewBox="0 0 32 32" className="h-7 w-auto" fill="currentColor">
+        <path d="M9 18c1-1 2.5-1.5 4-1.5s3 .5 4 1.5c1 1 1 2.5 0 3.5l-8-4v-1.5z" />
+        <path d="M4 14c3-4 8-6 12-6s9 2 12 6" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M7 18c2.5-3 6.5-4.5 9-4.5s6.5 1.5 9 4.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    ),
+    OpenAI: (
+      <svg viewBox="0 0 32 32" className="h-7 w-auto" fill="currentColor">
+        <path d="M16 3l4 2.5v5L16 13l-4-2.5v-5L16 3zm-8 6l4-2.5v5L8 14l-4-2.5v-5L8 9zm0 7l4 2.5v5l-4 2.5-4-2.5v-5L8 16zm8 0l4-2.5v5l-4 2.5-4-2.5v-5l4 2.5zm8-7l4 2.5v5l-4 2.5-4-2.5v-5l4-2.5zm0 7l4 2.5v5l-4 2.5-4-2.5v-5l4-2.5z" />
+      </svg>
+    ),
+  };
+  return logos[name] ?? <span className="text-lg font-semibold">{name}</span>;
+}
+
 function TrustedTech() {
   return (
     <section className="border-y border-border bg-white">
@@ -367,14 +428,15 @@ function TrustedTech() {
         <p className="text-center text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
           Trusted Technologies
         </p>
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
           {TECHS.map((t) => (
-            <span
+            <div
               key={t}
-              className="text-lg font-semibold tracking-tight text-slate-400 transition-colors hover:text-slate-700"
+              className="flex flex-col items-center gap-2 text-slate-400 transition-colors hover:text-slate-700"
             >
-              {t}
-            </span>
+              <TechLogo name={t} />
+              <span className="text-[10px] font-medium uppercase tracking-wider">{t}</span>
+            </div>
           ))}
         </div>
       </div>
