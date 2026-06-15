@@ -31,6 +31,9 @@ import dashboardHero from "@/assets/dashboard-hero.jpg";
 import projectLoan from "@/assets/project-loan.jpg";
 import projectHotel from "@/assets/project-hotel.jpg";
 import projectVinfast from "@/assets/project-vinfast.jpg";
+import projectEcommerce from "@/assets/project-ecommerce.jpg";
+import projectAI from "@/assets/project-ai.jpg";
+import projectRealEstate from "@/assets/project-realestate.jpg";
 import avatar1 from "@/assets/avatar-1.jpg";
 import avatar2 from "@/assets/avatar-2.jpg";
 import avatar3 from "@/assets/avatar-3.jpg";
@@ -136,6 +139,30 @@ const PROJECTS = [
     problem: "No digital lead generation channel",
     solution: "Corporate website with headless CMS and lead routing",
     result: "3× More Leads",
+  },
+  {
+    image: projectEcommerce,
+    tag: "Retail · SaaS Platform",
+    title: "Omnichannel E-Commerce Platform",
+    problem: "Fragmented sales across web, app and physical stores",
+    solution: "Unified commerce engine with real-time inventory and analytics",
+    result: "2.5× Revenue Growth",
+  },
+  {
+    image: projectAI,
+    tag: "Legal Tech · AI Automation",
+    title: "AI Contract Review System",
+    problem: "Legal team buried in manual contract review",
+    solution: "NLP-powered extraction with risk scoring and redlining",
+    result: "85% Time Saved",
+  },
+  {
+    image: projectRealEstate,
+    tag: "PropTech · Portal",
+    title: "Luxury Property Portal",
+    problem: "Agents managing listings through spreadsheets",
+    solution: "MLS-integrated portal with virtual tours and CRM",
+    result: "60% Faster Closings",
   },
 ];
 
@@ -504,7 +531,7 @@ function Projects() {
         <SectionHeader
           eyebrow="Featured Projects"
           title="Software that's already moving numbers"
-          subtitle="A look at three recent engagements — the problem, the build, and the outcome."
+          subtitle="A look at six recent engagements — the problem, the build, and the outcome."
         />
         <div className="mt-14 grid gap-6 lg:grid-cols-12 lg:grid-rows-2">
           {/* Featured large card */}
@@ -512,6 +539,12 @@ function Projects() {
           {/* Two stacked compact cards */}
           <ProjectCard project={PROJECTS[1]} className="lg:col-span-5" />
           <ProjectCard project={PROJECTS[2]} className="lg:col-span-5" />
+        </div>
+
+        <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <ProjectCard project={PROJECTS[3]} />
+          <ProjectCard project={PROJECTS[4]} />
+          <ProjectCard project={PROJECTS[5]} />
         </div>
 
         <div className="mt-12 flex justify-center">
