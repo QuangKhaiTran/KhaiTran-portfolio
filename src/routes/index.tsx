@@ -563,10 +563,12 @@ function ProjectCard({
   project,
   featured = false,
   className = "",
+  imageAspect,
 }: {
   project: (typeof PROJECTS)[number];
   featured?: boolean;
   className?: string;
+  imageAspect?: string;
 }) {
   return (
     <article
@@ -574,7 +576,7 @@ function ProjectCard({
     >
       <div
         className={`relative overflow-hidden border-b border-border bg-surface ${
-          featured ? "aspect-[16/10]" : "aspect-[16/9]"
+          imageAspect ?? (featured ? "aspect-[16/10]" : "aspect-[16/9]")
         }`}
       >
         <img
