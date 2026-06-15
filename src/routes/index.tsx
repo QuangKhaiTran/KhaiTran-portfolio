@@ -469,77 +469,102 @@ function Projects() {
           title="Software that's already moving numbers"
           subtitle="A look at three recent engagements — the problem, the build, and the outcome."
         />
-        <div className="mt-14 space-y-8">
-          {PROJECTS.map((p, i) => (
-            <article
-              key={p.title}
-              className={`grid items-center gap-10 rounded-3xl border border-border bg-card p-6 shadow-card lg:grid-cols-2 lg:p-8 ${
-                i % 2 ? "lg:[&>*:first-child]:order-2" : ""
-              }`}
-            >
-              <div className="relative overflow-hidden rounded-2xl border border-border bg-surface">
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  loading="lazy"
-                  width={1280}
-                  height={800}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="px-2 lg:px-6">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground">
-                  {p.tag}
-                </span>
-                <h3 className="mt-4 text-3xl font-semibold tracking-tight">
-                  {p.title}
-                </h3>
-                <dl className="mt-6 space-y-4 text-sm">
-                  <Row label="Problem" value={p.problem} />
-                  <Row label="Solution" value={p.solution} />
-                  <Row label="Result" value={p.result} highlight />
-                </dl>
-                <a
-                  href="#case-studies"
-                  className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all"
-                >
-                  Read case study <ArrowRight className="h-4 w-4" />
-                </a>
-              </div>
-            </article>
-          ))}
+        <div className="mt-14 grid gap-6 lg:grid-cols-12 lg:grid-rows-2">
+          {/* Featured large card */}
+          <ProjectCard project={PROJECTS[0]} featured className="lg:col-span-7 lg:row-span-2" />
+          {/* Two stacked compact cards */}
+          <ProjectCard project={PROJECTS[1]} className="lg:col-span-5" />
+          <ProjectCard project={PROJECTS[2]} className="lg:col-span-5" />
+        </div>
+
+        <div className="mt-12 flex justify-center">
+          <a
+            href="#case-studies"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground shadow-soft transition hover:-translate-y-0.5 hover:border-primary/40"
+          >
+            View all case studies <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
       </div>
     </section>
   );
 }
 
-function Row({
-  label,
-  value,
-  highlight,
+function ProjectCard({
+  project,
+  featured = false,
+  className = "",
 }: {
-  label: string;
-  value: string;
-  highlight?: boolean;
+  project: (typeof PROJECTS)[number];
+  featured?: boolean;
+  className?: string;
 }) {
   return (
-    <div className="grid grid-cols-[110px_1fr] items-start gap-4 border-t border-border pt-4 first:border-t-0 first:pt-0">
-      <dt className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-        {label}
-      </dt>
-      <dd
-        className={
-          highlight
-            ? "text-lg font-semibold text-primary"
-            : "text-[15px] text-foreground"
-        }
+    <article
+      className={`group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-card transition hover:-translate-y-1 hover:border-primary/30 hover:shadow-lift ${className}`}
+    >
+      <div
+        className={`relative overflow-hidden border-b border-border bg-surface ${
+          featured ? "aspect-[16/10]" : "aspect-[16/9]"
+        }`}
       >
-        {value}
-      </dd>
+        <img
+          src={project.image}
+          alt={project.title}
+          loading="lazy"
+          className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+        />
+        <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold text-foreground shadow-soft backdrop-blur">
+          {project.tag}
+        </span>
+        <div className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-[11px] font-semibold text-primary-foreground shadow-soft">
+          {project.result}
+        </div>
+      </div>
+
+      <div className={`flex flex-1 flex-col p-6 ${featured ? "lg:p-8" : ""}`}>
+        <h3
+          className={`font-semibold tracking-tight ${
+            featured ? "text-3xl" : "text-xl"
+          }`}
+        >
+          {project.title}
+        </h3>
+
+        <div
+          className={`mt-5 grid gap-4 ${
+            featured ? "sm:grid-cols-2" : "grid-cols-1"
+          }`}
+        >
+          <MiniRow label="Problem" value={project.problem} />
+          <MiniRow label="Solution" value={project.solution} />
+        </div>
+
+        <div className="mt-auto flex items-center justify-between pt-6">
+          <a
+            href="#case-studies"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-all hover:gap-2.5"
+          >
+            Read case study <ArrowRight className="h-4 w-4" />
+          </a>
+          <span className="text-xs text-muted-foreground">2024 — 2025</span>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function MiniRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+        {label}
+      </div>
+      <div className="mt-1.5 text-[14px] leading-relaxed text-foreground">{value}</div>
     </div>
   );
 }
+
 
 /* ---------------- PROCESS ---------------- */
 function Process() {
