@@ -533,18 +533,17 @@ function Projects() {
           title="Software that's already moving numbers"
           subtitle="A look at six recent engagements — the problem, the build, and the outcome."
         />
-        <div className="mt-14 grid gap-6 lg:grid-cols-12 lg:grid-rows-2">
-          {/* Featured large card */}
-          <ProjectCard project={PROJECTS[0]} featured className="lg:col-span-7 lg:row-span-2" />
-          {/* Two stacked compact cards */}
-          <ProjectCard project={PROJECTS[1]} className="lg:col-span-5" />
-          <ProjectCard project={PROJECTS[2]} className="lg:col-span-5" />
-        </div>
-
-        <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <ProjectCard project={PROJECTS[3]} />
-          <ProjectCard project={PROJECTS[4]} />
-          <ProjectCard project={PROJECTS[5]} />
+        {/* Pinterest-style masonry via CSS columns */}
+        <div className="mt-14 columns-1 gap-6 sm:columns-2 lg:columns-3 [column-fill:_balance]">
+          {PROJECTS.map((project, i) => {
+            // Vary aspect ratios for natural masonry rhythm
+            const ratios = ["aspect-[4/5]", "aspect-[16/10]", "aspect-[4/3]", "aspect-[3/4]", "aspect-[16/11]", "aspect-[5/6]"];
+            return (
+              <div key={project.title} className="mb-6 break-inside-avoid">
+                <ProjectCard project={project} imageAspect={ratios[i % ratios.length]} featured={i === 0} />
+              </div>
+            );
+          })}
         </div>
 
         <div className="mt-12 flex justify-center">
@@ -564,10 +563,12 @@ function ProjectCard({
   project,
   featured = false,
   className = "",
+  imageAspect,
 }: {
   project: (typeof PROJECTS)[number];
   featured?: boolean;
   className?: string;
+  imageAspect?: string;
 }) {
   return (
     <article
@@ -575,7 +576,7 @@ function ProjectCard({
     >
       <div
         className={`relative overflow-hidden border-b border-border bg-surface ${
-          featured ? "aspect-[16/10]" : "aspect-[16/9]"
+          imageAspect ?? (featured ? "aspect-[16/10]" : "aspect-[16/9]")
         }`}
       >
         <img
