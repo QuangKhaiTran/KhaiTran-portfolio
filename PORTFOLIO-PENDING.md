@@ -2,28 +2,48 @@
 
 Checklist các mục cần thông tin từ anh trước khi publish / tối ưu trust trên site.
 
+## Cách nhanh nhất: dùng `.env.local`
+
+Copy `.env.example` → `.env.local` và điền URL. Build/deploy sẽ tự lấy giá trị.
+
+| Biến | Tác dụng |
+|------|----------|
+| `VITE_PORTFOLIO_EMAIL` | Email liên hệ (thay Gmail) |
+| `VITE_PORTFOLIO_CALENDLY` | Link book call — bật nút "Book a Free Call" |
+| `VITE_PORTFOLIO_LINKEDIN` | Hiện badge hero + footer |
+| `VITE_PORTFOLIO_GITHUB` | Hiện badge hero + footer |
+| `VITE_PORTFOLIO_UPWORK` | Badge + platform trust |
+| `VITE_PORTFOLIO_FIVERR` | Badge + platform trust |
+| `VITE_PORTFOLIO_CONTRA` | Badge + platform trust |
+
+Hoặc sửa trực tiếp `src/data/portfolio/site.ts` (hằng `SOCIAL`, `EMAIL`, `BOOKING_URL`).
+
 ## Contact & social
 
 | Việc | File / chỗ cần điền | Ghi chú |
 |------|---------------------|---------|
-| Link Upwork, Fiverr, LinkedIn, GitHub | `src/data/portfolio/site.ts` → `social` | Điền URL đầy đủ. Khi có link, hero/footer sẽ hiện badge tương ứng. |
-| Calendly URL thật (nếu có) | `src/data/portfolio/site.ts` → `contact.calendlyUrl` | Hiện đang dùng `mailto:`. Nếu có Calendly, thay URL và cập nhật copy FAQ/CTA nếu muốn nhắc “book call”. |
-| Email domain riêng | `src/data/portfolio/site.ts` → `contact.email` + hằng `EMAIL` ở đầu file | Ví dụ `hello@khai.dev`. Nhớ cập nhật `calendlyUrl` nếu vẫn dùng mailto. |
+| Link Upwork, Fiverr, LinkedIn, GitHub | `.env.local` hoặc `site.ts` → `SOCIAL` | Hero + footer tự hiện badge |
+| Calendly URL thật | `VITE_PORTFOLIO_CALENDLY` hoặc `BOOKING_URL` | Khi có URL, CTA đổi thành "Book a Free Call" |
+| Email domain riêng | `VITE_PORTFOLIO_EMAIL` hoặc `EMAIL` | Ví dụ `hello@khai.dev` |
 
 ## Ảnh & nội dung
 
 | Việc | File / chỗ cần điền | Ghi chú |
 |------|---------------------|---------|
-| Ảnh testimonial thật | `src/assets/avatar-1.jpg`, `avatar-2.jpg`, `avatar-3.jpg` hoặc thêm key mới trong `src/data/portfolio/assets.ts` + `types.ts` | Gắn với `src/data/portfolio/testimonials.ts` → `avatarKey`. |
-| Ảnh GCM Manager / Asia Night Life chính xác | Thêm file vào `src/assets/`, map trong `src/data/portfolio/assets.ts`, cập nhật `imageKey` trong `src/data/portfolio/case-studies.ts` | Hiện tạm dùng `projectEcommerce` (GCM) và `projectAI` (Asia Night Life). |
+| Ảnh testimonial thật | `src/assets/avatar-1.jpg`, `avatar-2.jpg`, `avatar-3.jpg` | Gắn với `testimonials.ts` → `avatarKey` |
+| LinkedIn reviewer (tùy chọn) | `testimonials.ts` → `linkedinUrl` | Tăng trust — link profile công khai |
+| Ảnh GCM / Asia Night Life chính xác | `assets.ts` + `case-studies.ts` → `imageKey` | GCM đã dùng `projectGcmManager` |
 
-## Platform badges
+## Đã làm sẵn trên site (không cần code thêm)
 
-| Việc | File / chỗ cần điền | Ghi chú |
-|------|---------------------|---------|
-| Bật lại badge platform | `src/data/portfolio/site.ts` → `freelancePlatforms` | Ví dụ: `["Upwork", "Fiverr", "Contra"]`. Chỉ bật khi đã điền link tương ứng trong `social`. |
+- **Client logos** — section "Trusted by" với link live site
+- **Trust guarantees** — milestone payments, NDA, 30-day warranty
+- **Business metrics** trên case study cards + trang chi tiết
+- **Verify project** trên testimonials — link tới site đã ship
+- **NDA note** trên dự án fintech (loan ERP)
+- **Dual CTA** — book call (khi có Calendly) + email luôn hiện ở footer CTA
 
 ## Sau khi điền xong (tùy chọn)
 
-- Cập nhật hero/SEO nếu muốn nhắc lại Upwork/Fiverr/Contra (`site.ts` → `hero.subheadline`, `seo.description`).
-- Bật hiển thị `via Upwork` / `via Fiverr` trên testimonials (tự bật khi có ít nhất một link trong `social.upwork`, `social.fiverr`, `social.linkedin`, hoặc `social.github`).
+- Thêm `linkedinUrl` cho từng testimonial nếu client đồng ý
+- Cập nhật hero/SEO nếu muốn nhắc Upwork/Fiverr trong copy

@@ -14,7 +14,7 @@ export const caseStudies: CaseStudy[] = [
     result: "End-to-End Lending Operations",
     year: "2025–2026",
     client: {
-      name: "Fintech lending platform",
+      name: "Vietnamese fintech lender (NDA)",
       industry: "Fintech",
       location: "Vietnam",
       size: "16 DDD modules · 200+ API endpoints",
@@ -61,6 +61,15 @@ export const caseStudies: CaseStudy[] = [
       "2,161 Vietnamese translation keys — ready for the domestic market",
       "Real-time dashboard KPIs: total loans, NPA, outstanding (VND), pending waivers, active foreclosures",
       "Production-ready ops: 5-step deploy script, Sentry monitoring, SendGrid email, security headers + CSRF",
+    ],
+    isConfidential: true,
+    confidentialNote:
+      "Private production platform — architecture walkthrough and scoped demo available under NDA during discovery.",
+    businessMetrics: [
+      { label: "Manual reporting", value: "Eliminated" },
+      { label: "Loan lifecycle", value: "End-to-end" },
+      { label: "Compliance reports", value: "Automated" },
+      { label: "Payment rails", value: "3 integrated" },
     ],
     metrics: [
       { label: "API endpoints", value: "200+" },
@@ -127,6 +136,12 @@ export const caseStudies: CaseStudy[] = [
       "Sepay and OnePay payments auto-reconciled via webhooks — no manual payment log stitching",
       "RevPAR, ADR, and occupancy reporting without exporting spreadsheets",
     ],
+    businessMetrics: [
+      { label: "Booking channels", value: "Unified" },
+      { label: "Self-service", value: "24/7" },
+      { label: "Double-booking risk", value: "Eliminated" },
+      { label: "Payment reconciliation", value: "Automated" },
+    ],
     metrics: [
       { label: "Next.js applications", value: "2" },
       { label: "Payment channels", value: "3" },
@@ -150,7 +165,7 @@ export const caseStudies: CaseStudy[] = [
     result: "Multi-country Nightlife Discovery",
     year: "2025–2026",
     client: {
-      name: "Asia Night Life (internal product)",
+      name: "Asia Night Life",
       industry: "Entertainment Platform",
       location: "Singapore · Vietnam · Thailand · Malaysia",
       size: "100+ venues",
@@ -192,6 +207,12 @@ export const caseStudies: CaseStudy[] = [
       "Operated user-facing app and admin dashboard together in one maintainable ecosystem",
       "Produced full technical documentation for architecture, API, deployment, and handover",
     ],
+    businessMetrics: [
+      { label: "Venues indexed", value: "100+" },
+      { label: "Manual browsing", value: "↓ AI assistant" },
+      { label: "Markets served", value: "4 countries" },
+      { label: "URL migration", value: "Zero downtime" },
+    ],
     metrics: [
       { label: "Venues with SEO slugs", value: "100+" },
       { label: "Supported languages", value: "8" },
@@ -204,7 +225,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "gcm-manager-dealer-operations",
     isSample: false,
-    imageKey: "projectEcommerce",
+    imageKey: "projectGcmManager",
     tag: "Automotive · Dealer Operations System",
     title: "GCM Manager - Showroom to Contract Operations",
     liveUrl: "https://greencm.vn/",
@@ -256,6 +277,12 @@ export const caseStudies: CaseStudy[] = [
       "Established scalable module architecture for adding new workflows without reworking the core dashboard shell",
       "Maintained a clear split between public customer experience (greencm.vn) and internal operational control (GCM Manager)",
     ],
+    businessMetrics: [
+      { label: "Ops domains", value: "Unified" },
+      { label: "Showroom → contract", value: "One system" },
+      { label: "Dashboard modules", value: "16+" },
+      { label: "Team visibility", value: "Shared" },
+    ],
     metrics: [
       { label: "Platform surfaces", value: "2" },
       { label: "Dashboard modules", value: "16+" },
@@ -269,17 +296,17 @@ export const caseStudies: CaseStudy[] = [
     isSample: false,
     imageKey: "projectVinfast",
     tag: "Automotive · Dealer Website",
-    title: "VF Ngọc Anh — VinFast Dealership Platform",
+    title: "VinFast Ngọc Anh — VinFast Dealership Platform",
     liveUrl: "https://vinfast3scamau.com/",
     liveUrlLabel: "View live site — vinfast3scamau.com",
     problem:
-      "VF Ngọc Anh, an authorized VinFast 3S dealer in Cà Mau, needed a modern digital showroom to replace fragmented product information across VinFast's national site, social channels, and manual sales follow-up. Customers could not browse the full car and scooter catalog locally, compare specs and pricing in VND, book test drives or deposits online, or discover after-sales, charging, and accessory services from one trusted dealer domain.",
+      "VinFast Ngọc Anh, an authorized VinFast 3S dealer in Cà Mau, needed a modern digital showroom to replace fragmented product information across VinFast's national site, social channels, and manual sales follow-up. Customers could not browse the full car and scooter catalog locally, compare specs and pricing in VND, book test drives or deposits online, or discover after-sales, charging, and accessory services from one trusted dealer domain.",
     solution:
       "A production Next.js 15 dealership website with 11 App Router pages — home, about, car catalog + PDP, electric scooter catalog + PDP, accessories, after-sales, charging stations, and energy storage. Built a VinFast CMS sync pipeline (69 scripts) to keep vehicle specs, galleries, banners, and accessories current from vinfastauto.com. Added showroom booking modals (deposit, test drive, quote, finance consult), Framer Motion catalog animations, JSON-LD AutoDealer schema, and full Open Graph / Twitter metadata for local SEO.",
     result: "Digital Showroom for Cà Mau",
     year: "2025–2026",
     client: {
-      name: "VF Ngọc Anh",
+      name: "VinFast Ngọc Anh",
       industry: "Automotive · VinFast Authorized Dealer",
       location: "Cà Mau, Vietnam",
       size: "3S dealership · 14 cars · 16 scooters · 80+ accessories",
@@ -297,7 +324,7 @@ export const caseStudies: CaseStudy[] = [
       "Vercel",
     ],
     overview:
-      "I built the official VF Ngọc Anh dealership website — a Vietnamese-first digital showroom for VinFast cars, electric scooters, accessories, and after-sales services in Cà Mau. The site mirrors VinFast's product depth while keeping lead capture and showroom contact local, with automated catalog sync so pricing and specs stay accurate without manual copy-paste.",
+      "I built the official VinFast Ngọc Anh dealership website — a Vietnamese-first digital showroom for VinFast cars, electric scooters, accessories, and after-sales services in Cà Mau. The site mirrors VinFast's product depth while keeping lead capture and showroom contact local, with automated catalog sync so pricing and specs stay accurate without manual copy-paste.",
     challenges: [
       "Keeping 14 car models, 16 scooters, and 80+ accessories in sync with VinFast's CMS without a custom backend",
       "Rich PDP experiences — galleries, color variants, financing sliders, and spec blocks — while staying performant on mobile",
@@ -319,6 +346,12 @@ export const caseStudies: CaseStudy[] = [
       "SEO-ready dealer presence with AutoDealer structured data and social preview cards",
       "Mobile-first UX with Framer Motion reveals, floating hotline/Zalo actions, and responsive catalog grids",
     ],
+    businessMetrics: [
+      { label: "Lead capture", value: "Online 24/7" },
+      { label: "Catalog updates", value: "Automated sync" },
+      { label: "Vehicle SKUs", value: "30+" },
+      { label: "Manual spec chasing", value: "Eliminated" },
+    ],
     metrics: [
       { label: "App Router pages", value: "11" },
       { label: "Vehicle SKUs", value: "30+" },
@@ -327,63 +360,6 @@ export const caseStudies: CaseStudy[] = [
       { label: "Booking service types", value: "4" },
     ],
     testimonialId: "t-thao-vo",
-  },
-  {
-    slug: "y99-hr-connect-pwa",
-    isSample: false,
-    imageKey: "projectEcommerce",
-    tag: "Hospitality · Internal HR Operations Platform",
-    title: "Y99 HR Connect PWA",
-    problem:
-      "HR operations were spread across fragmented manual flows (attendance, shift approvals, leave, payroll visibility), causing delays and inconsistent handling. Frontline teams needed a mobile-first experience with unreliable internet conditions for attendance capture, while management required role-based and auditable workflows without maintaining a custom backend stack.",
-    solution:
-      "A serverless HR operations platform built with React 19 + Vite 6 + TypeScript on Supabase (PostgreSQL/Auth/Storage/Realtime), deployed to Vercel. Delivered production modules for GPS + photo attendance, shift registration and approval, leave workflows, payroll visibility/management, notifications, departments, holidays, reports, and exports. Added two Supabase Edge Functions (Resend email) and three DB triggers for automated notification events, plus PWA offline-first attendance sync with duplicate prevention and auto-resync.",
-    result: "Production-ready HR workflow core",
-    year: "2026–2026",
-    client: {
-      name: "Y99 / Y Hotel",
-      industry: "Hospitality Operations",
-      location: "Vietnam",
-      size: "Multi-branch hospitality group",
-    },
-    duration: "Apr 2026–Jun 2026",
-    role: "Product + technical delivery across architecture, implementation, and deployment readiness",
-    stack: [
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "shadcn/ui",
-      "Radix UI",
-      "Supabase",
-      "PostgreSQL",
-      "Vercel",
-    ],
-    overview:
-      "Y99 HR Connect PWA is a mobile-first HR operations system for attendance, shift and leave workflows, payroll visibility, and admin management. Built as a React + Supabase Progressive Web App with offline handling for attendance and RBAC for Employee, Manager, HR, and Admin roles. Delivery focused on replacing fragmented HR execution with one production-grade system and deployable operations playbook.",
-    challenges: [
-      "Mobile-first attendance with GPS and photo capture on unreliable connections",
-      "Role-based workflows across Employee, Manager, HR, and Admin without a custom backend team",
-      "Offline sync for attendance with duplicate prevention and automatic resync",
-    ],
-    approach: [
-      "Defined architecture and role/workflow model, selecting a serverless PWA stack for speed and maintainability",
-      "Delivered core modules: attendance, shifts, leave, payroll, admin features, and Supabase sync patterns",
-      "Hardened payroll logic for part-time/holiday/cycle handling, attendance sessions, and branch-admin controls",
-      "Finalized Edge Functions, DB triggers, deployment docs, and production checklists",
-    ],
-    outcomes: [
-      "Delivered a unified HR operations platform with 15 functional areas connected to Supabase",
-      "Established backend operations with 30 SQL migrations, 2 Edge Functions, and 3 automation triggers",
-      "PWA offline-first attendance with GPS + photo capture for frontline staff",
-      "RBAC across Employee, Manager, HR, and Admin roles with auditable workflows",
-    ],
-    metrics: [
-      { label: "Functional modules delivered", value: "15" },
-      { label: "SQL migrations", value: "30" },
-      { label: "Active Edge Functions", value: "2" },
-      { label: "Automation triggers", value: "3" },
-      { label: "User roles (RBAC)", value: "4" },
-    ],
   },
 ];
 

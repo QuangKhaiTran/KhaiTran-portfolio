@@ -80,7 +80,7 @@ function TermsPage() {
         <p>
           These terms are governed by the laws of Vietnam, without regard to conflict-of-law
           principles. Disputes relating solely to use of this website shall be subject to the
-          competent courts in Ho Chi Minh City, Vietnam, unless mandatory consumer protection laws in
+          competent courts in Cần Thơ, Vietnam, unless mandatory consumer protection laws in
           your jurisdiction require otherwise.
         </p>
       </section>

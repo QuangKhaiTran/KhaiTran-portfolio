@@ -30,6 +30,10 @@ export {
   faqItems,
 } from "./faq";
 export {
+  clientLogos,
+  trustGuarantees,
+} from "./trust";
+export {
   portfolioImages,
   getPortfolioImage,
 } from "./assets";

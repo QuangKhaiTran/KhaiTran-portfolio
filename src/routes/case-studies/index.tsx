@@ -3,8 +3,13 @@ import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { caseStudies, getPortfolioImage, siteConfig } from "@/data/portfolio";
 import { CaseStudyLiveLink } from "@/components/CaseStudyLiveLink";
+import {
+  getPrimaryContactHref,
+  getPrimaryContactLabel,
+  hasBookingLink,
+} from "@/lib/portfolio-contact";
 
-const { brand, contact, sections } = siteConfig;
+const { brand, sections } = siteConfig;
 
 export const Route = createFileRoute("/case-studies/")({
   head: () => ({
@@ -33,7 +38,10 @@ function CaseStudiesIndexPage() {
             Back to portfolio
           </Link>
           <a
-            href={contact.calendlyUrl}
+            href={getPrimaryContactHref()}
+            {...(hasBookingLink()
+              ? { target: "_blank", rel: "noopener noreferrer" }
+              : {})}
             className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-[13px] font-semibold text-background shadow-soft transition-transform hover:-translate-y-0.5"
           >
             Get in Touch
@@ -130,10 +138,13 @@ function CaseStudiesIndexPage() {
             Tell me about your project — I'll reply with a scoped plan and quote within 48 hours.
           </p>
           <a
-            href={contact.calendlyUrl}
+            href={getPrimaryContactHref()}
+            {...(hasBookingLink()
+              ? { target: "_blank", rel: "noopener noreferrer" }
+              : {})}
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lift transition hover:-translate-y-0.5"
           >
-            Send an Email
+            {getPrimaryContactLabel()}
             <ArrowRight className="h-4 w-4" />
           </a>
         </div>

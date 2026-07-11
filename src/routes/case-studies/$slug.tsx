@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, ExternalLink, Sparkles, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, Lock, Sparkles, Star } from "lucide-react";
 import {
   getCaseStudyBySlug,
   getTestimonialById,
@@ -8,6 +8,11 @@ import {
 } from "@/data/portfolio";
 import { CaseStudyLiveLink } from "@/components/CaseStudyLiveLink";
 import { TechStackBadges } from "@/components/TechStackBadges";
+import {
+  getPrimaryContactHref,
+  getPrimaryContactLabel,
+  hasBookingLink,
+} from "@/lib/portfolio-contact";
 
 export const Route = createFileRoute("/case-studies/$slug")({
   head: ({ params }) => {
@@ -58,7 +63,10 @@ function CaseStudyPage() {
             Back to portfolio
           </Link>
           <a
-            href={siteConfig.contact.calendlyUrl}
+            href={getPrimaryContactHref()}
+            {...(hasBookingLink()
+              ? { target: "_blank", rel: "noopener noreferrer" }
+              : {})}
             className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-[13px] font-semibold text-background shadow-soft transition-transform hover:-translate-y-0.5"
           >
             Get in Touch
@@ -96,6 +104,13 @@ function CaseStudyPage() {
                   <ExternalLink className="h-4 w-4" />
                 </a>
               </div>
+            )}
+
+            {study.isConfidential && study.confidentialNote && (
+              <p className="mt-6 inline-flex max-w-2xl items-start gap-2 rounded-2xl border border-border bg-card px-4 py-3 text-sm text-muted-foreground">
+                <Lock className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                {study.confidentialNote}
+              </p>
             )}
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -139,8 +154,35 @@ function CaseStudyPage() {
         </section>
 
         <section className="border-y border-border bg-surface py-12">
-          <div className="container-page flex flex-nowrap items-start justify-between gap-2 sm:gap-4 lg:gap-6">
-            {study.metrics.map((m) => (
+          <div className="container-page">
+            {(study.businessMetrics?.length ?? 0) > 0 && (
+              <>
+                <p className="mb-6 text-center text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                  Business outcomes
+                </p>
+                <div className="flex flex-nowrap items-start justify-between gap-2 sm:gap-4 lg:gap-6">
+                  {study.businessMetrics!.map((m) => (
+                    <div key={m.label} className="min-w-0 flex-1 px-0.5 text-center">
+                      <div className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
+                        {m.value}
+                      </div>
+                      <div className="mt-1.5 text-xs leading-snug text-muted-foreground sm:text-sm">
+                        {m.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+            <p
+              className={`text-center text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground ${
+                study.businessMetrics?.length ? "mt-10" : ""
+              }`}
+            >
+              {study.businessMetrics?.length ? "Technical scale" : "Project metrics"}
+            </p>
+            <div className="mt-6 flex flex-nowrap items-start justify-between gap-2 sm:gap-4 lg:gap-6">
+              {study.metrics.map((m) => (
               <div key={m.label} className="min-w-0 flex-1 px-0.5 text-center">
                 <div className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
                   {m.value}
@@ -150,6 +192,7 @@ function CaseStudyPage() {
                 </div>
               </div>
             ))}
+            </div>
           </div>
         </section>
 
@@ -245,6 +288,16 @@ function CaseStudyPage() {
                     <div className="text-sm text-muted-foreground">
                       {testimonial.role}, {testimonial.company}
                     </div>
+                    {testimonial.companyUrl && (
+                      <a
+                        href={testimonial.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-1 inline-block text-xs text-primary hover:underline"
+                      >
+                        Verify live project
+                      </a>
+                    )}
                     {testimonial.platform && hasPublicProfiles && (
                       <div className="mt-1 text-xs text-primary">
                         via {testimonial.platform}
@@ -266,10 +319,13 @@ function CaseStudyPage() {
               Email me about your project — I'll reply with a scoped plan and fixed-price quote within 48 hours.
             </p>
             <a
-              href={siteConfig.contact.calendlyUrl}
+              href={getPrimaryContactHref()}
+              {...(hasBookingLink()
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-semibold text-primary shadow-lift transition hover:-translate-y-0.5"
             >
-              Send an Email
+              {getPrimaryContactLabel()}
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>

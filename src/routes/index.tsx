@@ -2,15 +2,20 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type ComponentType } from "react";
 import {
   ArrowRight,
+  Calendar,
   ChevronRight,
   CircuitBoard,
+  ExternalLink,
+  FileCheck,
   FolderKanban,
   Home,
   Layers,
+  Lock,
   Mail,
   MapPin,
   Quote,
   Rocket,
+  Shield,
   Sparkles,
   Star,
   User,
@@ -40,6 +45,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   aboutHighlights,
   caseStudies,
+  clientLogos,
   faqItems,
   getPortfolioImage,
   processSteps,
@@ -49,7 +55,16 @@ import {
   siteConfig,
   techStack,
   testimonials,
+  trustGuarantees,
 } from "@/data/portfolio";
+import {
+  getMailtoHref,
+  getPrimaryContactHref,
+  getPrimaryContactLabel,
+  getSecondaryContactHref,
+  getSecondaryContactLabel,
+  hasBookingLink,
+} from "@/lib/portfolio-contact";
 import type { CaseStudy, TechName } from "@/data/portfolio/types";
 import { serviceIconMap } from "@/lib/portfolio-icons";
 import { CaseStudyLiveLink } from "@/components/CaseStudyLiveLink";
@@ -91,12 +106,14 @@ function Landing() {
       <Navbar />
       <Hero />
       <TrustedTech />
+      <ClientLogos />
       <Results />
       <Services />
       <Projects />
       <Process />
       <About />
       <Testimonials />
+      <TrustGuarantees />
       <Faq />
       <FinalCTA />
       <Footer />
@@ -353,13 +370,15 @@ function Hero() {
             </a>
           </div>
 
-          {/* Freelance platform links — shown when profile URLs are configured */}
+          {/* Profile & contact links */}
           <div className="mt-8 flex flex-wrap items-center gap-3">
             {(
               [
                 ["Upwork", social.upwork, "hover:text-emerald-600 hover:border-emerald-500/30 hover:bg-emerald-50/20"],
                 ["Fiverr", social.fiverr, "hover:text-green-500 hover:border-green-500/30 hover:bg-green-50/20"],
                 ["Contra", social.contra, "hover:text-primary hover:border-primary/30 hover:bg-primary/5"],
+                ["LinkedIn", social.linkedin, "hover:text-blue-600 hover:border-blue-500/30 hover:bg-blue-50/20"],
+                ["GitHub", social.github, "hover:text-foreground hover:border-foreground/30 hover:bg-foreground/5"],
               ] as const
             )
               .filter(([, href]) => href)
@@ -374,9 +393,9 @@ function Hero() {
                 {label}
               </a>
             ))}
-            {![social.upwork, social.fiverr, social.contra].some(Boolean) && (
+            {![social.upwork, social.fiverr, social.contra, social.linkedin, social.github].some(Boolean) && (
               <a
-                href={`mailto:${contact.email}`}
+                href={getMailtoHref()}
                 className="rounded-full border border-border bg-white/50 px-3 py-1 text-xs font-semibold text-muted-foreground transition-all duration-300 hover:text-primary hover:border-primary/30 hover:bg-primary/5"
               >
                 {contact.email}
@@ -438,7 +457,7 @@ function Hero() {
               </div>
               <div className="mt-3.5 pt-3 border-t border-border/50 flex justify-between items-center text-[10px] text-muted-foreground font-semibold">
                 <span className="flex items-center gap-1">🗣️ English, VN</span>
-                <span className="flex items-center gap-1">📍 Ho Chi Minh</span>
+                <span className="flex items-center gap-1">📍 Cần Thơ</span>
               </div>
             </div>
           </div>
@@ -591,12 +610,56 @@ function TrustedTech() {
   );
 }
 
+/* ---------------- CLIENT LOGOS ---------------- */
+function ClientLogos() {
+  return (
+    <section className="border-b border-border/50 bg-surface/50 py-12">
+      <div className="container-page">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/80">
+          {sections.clients.eyebrow}
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          {clientLogos.map((client) => {
+            const inner = (
+              <>
+                <span className="text-sm font-semibold text-foreground">{client.name}</span>
+                <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                  {client.industry}
+                </span>
+              </>
+            );
+            return client.url ? (
+              <a
+                key={client.name}
+                href={client.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex flex-col items-center rounded-2xl border border-border/80 bg-card px-5 py-3 shadow-soft transition hover:-translate-y-0.5 hover:border-primary/30"
+              >
+                {inner}
+              </a>
+            ) : (
+              <div
+                key={client.name}
+                className="inline-flex flex-col items-center rounded-2xl border border-dashed border-border/80 bg-card/60 px-5 py-3"
+                title="Private client — demo available under NDA"
+              >
+                {inner}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ---------------- RESULTS ---------------- */
 function Results() {
   const metricDetails = [
     "Fintech, hospitality, automotive, and entertainment platforms shipped to production.",
-    "From discovery to production launch — agile sprints and proven boilerplates to ship fast.",
-    "Custom software, mobile apps, AI automation, and digital growth.",
+    "Clients report fewer manual steps — unified dashboards replace spreadsheets and phone-tag workflows.",
+    "From discovery to production launch — agile sprints with weekly demos you can test.",
     "Bug fixes, performance tuning, and handoff training included after every launch.",
   ];
 
@@ -879,6 +942,20 @@ function ProjectRow({
           {project.result}
         </div>
 
+        {(project.businessMetrics ?? project.metrics.slice(0, 3)).length > 0 && (
+          <div className="mt-5 flex flex-wrap gap-2">
+            {(project.businessMetrics ?? project.metrics.slice(0, 3)).map((m) => (
+              <span
+                key={m.label}
+                className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1 text-[11px] font-medium text-foreground/90"
+              >
+                <span className="font-bold text-primary">{m.value}</span>
+                <span className="text-muted-foreground">{m.label}</span>
+              </span>
+            ))}
+          </div>
+        )}
+
         <div className="mt-7 space-y-5">
           <MiniRow label="Problem" value={project.problem} />
           <MiniRow label="Solution" value={project.solution} />
@@ -898,6 +975,12 @@ function ProjectRow({
                 href={project.liveUrl}
                 label={project.liveUrlLabel ?? "View live site"}
               />
+            )}
+            {project.isConfidential && (
+              <span className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground">
+                <Lock className="h-3 w-3" />
+                NDA · demo on request
+              </span>
             )}
           </div>
           <span className="text-xs text-muted-foreground">{project.year}</span>
@@ -1011,7 +1094,9 @@ function About() {
 /* ---------------- TESTIMONIALS ---------------- */
 function Testimonials() {
   const featured = testimonials.slice(0, 3);
-  const hasPublicProfiles = Boolean(social.upwork || social.fiverr || social.linkedin || social.github);
+  const hasPublicProfiles = Boolean(
+    social.upwork || social.fiverr || social.linkedin || social.github
+  );
 
   return (
     <section id="testimonials" className="bg-background py-24">
@@ -1048,26 +1133,84 @@ function Testimonials() {
                   height={48}
                   className="h-11 w-11 rounded-full object-cover"
                 />
-                <div className="leading-tight">
+                <div className="min-w-0 flex-1 leading-tight">
                   <div className="text-sm font-semibold">{t.name}</div>
                   <div className="text-xs text-muted-foreground">
                     {t.role}, {t.company}
                   </div>
-                  {t.platform && hasPublicProfiles && (
-                    <div className="mt-0.5 text-[10px] font-medium text-primary">
-                      via {t.platform}
-                    </div>
-                  )}
+                  <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                    {t.companyUrl && (
+                      <a
+                        href={t.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-0.5 text-[10px] font-medium text-primary hover:underline"
+                      >
+                        Verify project <ExternalLink className="h-2.5 w-2.5" />
+                      </a>
+                    )}
+                    {t.linkedinUrl && (
+                      <a
+                        href={t.linkedinUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[10px] font-medium text-muted-foreground hover:text-primary"
+                      >
+                        LinkedIn
+                      </a>
+                    )}
+                    {t.platform && hasPublicProfiles && (
+                      <span className="text-[10px] font-medium text-muted-foreground">
+                        via {t.platform}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </figcaption>
             </figure>
           ))}
         </div>
-        {!hasPublicProfiles && (
-          <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-relaxed text-muted-foreground">
-            Each review is tied to a project in the portfolio above. Additional references available on request.
-          </p>
-        )}
+      </div>
+    </section>
+  );
+}
+
+const TRUST_ICON_MAP = {
+  shield: Shield,
+  lock: Lock,
+  file: FileCheck,
+  calendar: Calendar,
+} as const;
+
+/* ---------------- TRUST GUARANTEES ---------------- */
+function TrustGuarantees() {
+  return (
+    <section id="trust" className="border-y border-border/50 bg-surface py-24">
+      <div className="container-page">
+        <SectionHeader
+          eyebrow={sections.trust.eyebrow}
+          title={sections.trust.title}
+          subtitle={sections.trust.subtitle}
+        />
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {trustGuarantees.map((item) => {
+            const Icon = TRUST_ICON_MAP[item.icon];
+            return (
+              <div
+                key={item.title}
+                className="rounded-2xl border border-border bg-card p-6 shadow-card"
+              >
+                <div className="grid h-10 w-10 place-items-center rounded-xl bg-primary/10 text-primary">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-4 text-sm font-semibold">{item.title}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                  {item.desc}
+                </p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
@@ -1101,6 +1244,12 @@ function Faq() {
 
 /* ---------------- FINAL CTA ---------------- */
 function FinalCTA() {
+  const primaryHref = getPrimaryContactHref();
+  const primaryLabel = getPrimaryContactLabel();
+  const secondaryHref = getSecondaryContactHref();
+  const secondaryLabel = getSecondaryContactLabel();
+  const primaryExternal = hasBookingLink();
+
   return (
     <section id="contact" className="bg-background px-4 py-24">
       <div className="container-page">
@@ -1119,19 +1268,31 @@ function FinalCTA() {
             </p>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
               <a
-                href={contact.calendlyUrl}
+                href={primaryHref}
+                {...(primaryExternal
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
                 className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-semibold text-primary shadow-lift transition hover:-translate-y-0.5"
               >
-                {sections.cta.primaryCta}
+                {primaryLabel}
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
-                href="#projects"
+                href={secondaryHref}
                 className="inline-flex items-center gap-2 rounded-full border border-white/25 px-7 py-4 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10"
               >
-                {sections.cta.secondaryCta}
+                {secondaryLabel}
               </a>
             </div>
+            <p className="mx-auto mt-6 text-sm text-white/70">
+              Or email directly:{" "}
+              <a
+                href={getMailtoHref("Project Inquiry")}
+                className="font-semibold text-white underline-offset-2 hover:underline"
+              >
+                {contact.email}
+              </a>
+            </p>
           </div>
         </div>
       </div>

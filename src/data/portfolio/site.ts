@@ -1,13 +1,26 @@
 import type { SiteConfig } from "./types";
 
-// Pending owner inputs: see PORTFOLIO-PENDING.md in repo root.
+// ── Owner inputs (also overridable via VITE_* env vars at build time) ─────────
+// See PORTFOLIO-PENDING.md for the full checklist.
+
+const EMAIL =
+  import.meta.env.VITE_PORTFOLIO_EMAIL ?? "tranquangkhai562@gmail.com";
+
+const BOOKING_URL =
+  import.meta.env.VITE_PORTFOLIO_CALENDLY?.trim() ?? "";
+
+const SOCIAL = {
+  upwork: import.meta.env.VITE_PORTFOLIO_UPWORK?.trim() ?? "",
+  fiverr: import.meta.env.VITE_PORTFOLIO_FIVERR?.trim() ?? "",
+  contra: import.meta.env.VITE_PORTFOLIO_CONTRA?.trim() ?? "",
+  linkedin: import.meta.env.VITE_PORTFOLIO_LINKEDIN?.trim() ?? "",
+  github: import.meta.env.VITE_PORTFOLIO_GITHUB?.trim() ?? "",
+};
 
 export const portfolioMeta = {
   isSampleContent: false,
   sampleNotice: "",
 };
-
-const EMAIL = "tranquangkhai562@gmail.com";
 
 export const siteConfig: SiteConfig = {
   brand: {
@@ -25,20 +38,13 @@ export const siteConfig: SiteConfig = {
       "Custom web apps, SaaS MVPs, and AI automation for startups and growing businesses.",
   },
   contact: {
-    // → PORTFOLIO-PENDING.md: email domain, Calendly URL
     email: EMAIL,
     phone: "",
-    address: "Ho Chi Minh City, Vietnam",
-    calendlyUrl: `mailto:${EMAIL}?subject=${encodeURIComponent("Discovery Call Request")}`,
+    address: "Cần Thơ, Vietnam",
+    bookingUrl: BOOKING_URL,
+    calendlyUrl: BOOKING_URL || `mailto:${EMAIL}?subject=${encodeURIComponent("Discovery Call Request")}`,
   },
-  social: {
-    // → PORTFOLIO-PENDING.md: Upwork, Fiverr, LinkedIn, GitHub URLs
-    upwork: "",
-    fiverr: "",
-    contra: "",
-    linkedin: "",
-    github: "",
-  },
+  social: SOCIAL,
   nav: [
     { label: "Home", href: "#home" },
     { label: "Services", href: "#services" },
@@ -57,8 +63,8 @@ export const siteConfig: SiteConfig = {
     secondaryCta: "View Projects",
     trustBadges: [
       "React · Next.js · Node.js",
-      "Fixed-price packages",
-      "Weekly demos & clear scope",
+      "Fixed-price milestones",
+      "Weekly demos & written scope",
     ],
     floatCards: [
       {
@@ -92,13 +98,13 @@ export const siteConfig: SiteConfig = {
       eyebrow: "Impact",
       title: "Outcomes clients care about",
       subtitle:
-        "I focus on measurable results — less manual work, faster operations, and software your team actually adopts.",
+        "Less manual work, faster operations, and software your team actually adopts — not vanity metrics.",
     },
     services: {
       eyebrow: "Services",
       title: "What I can build for you",
       subtitle:
-        "Focused on software delivery and AI automation with clear scope, concrete deliverables, and transparent starting rates.",
+        "Focused on web apps and AI automation with clear scope, concrete deliverables, and transparent starting rates.",
     },
     projects: {
       eyebrow: "Case Studies",
@@ -116,30 +122,44 @@ export const siteConfig: SiteConfig = {
       eyebrow: "About",
       title: "Hi, I'm Trần Quang Khái",
       subtitle:
-        "Full-stack developer in Ho Chi Minh City. I ship production software for fintech, hospitality, retail, and legal tech clients worldwide.",
+        "Full-stack developer in Cần Thơ, Vietnam. I ship production software for fintech, hospitality, retail, and automotive clients worldwide.",
     },
     testimonials: {
       eyebrow: "Client Reviews",
       title: "What clients say after we ship",
       subtitle:
-        "Feedback from clients on projects shown above. Additional references available on request.",
+        "Feedback tied to projects above — each review links to a shipped product you can verify.",
+    },
+    clients: {
+      eyebrow: "Trusted by",
+      title: "Teams I've shipped for",
+    },
+    trust: {
+      eyebrow: "How we work together",
+      title: "Low risk from day one",
+      subtitle:
+        "Clear scope, milestone payments, and full ownership — so you can hire with confidence.",
     },
     cta: {
-      badge: "Free discovery call · reply within 48h",
+      badge: "Free discovery · reply within 48h",
       title: "Have a workflow that's slowing your team down?",
       subtitle:
-        "Email me about the problem. I'll reply with a scoped plan and fixed-price quote within 48 hours — no obligation.",
-      primaryCta: "Send an Email",
+        "Tell me about the problem. I'll reply with a scoped plan and fixed-price quote within 48 hours — no obligation.",
+      primaryCta: "Get in Touch",
       secondaryCta: "View projects",
     },
   },
   footer: {
     blurb:
-      "Full-stack developer building custom software for startups and SMBs. Based in Ho Chi Minh City, working with clients worldwide.",
+      "Full-stack developer building custom software for startups and SMBs. Based in Cần Thơ, Vietnam, working with clients worldwide.",
     legal: [
       { label: "Privacy", href: "/privacy" },
       { label: "Terms", href: "/terms" },
     ],
   },
-  freelancePlatforms: [], // → PORTFOLIO-PENDING.md: e.g. ["Upwork", "Fiverr", "Contra"]
+  freelancePlatforms: [
+    ...(SOCIAL.upwork ? (["Upwork"] as const) : []),
+    ...(SOCIAL.fiverr ? (["Fiverr"] as const) : []),
+    ...(SOCIAL.contra ? (["Contra"] as const) : []),
+  ],
 };

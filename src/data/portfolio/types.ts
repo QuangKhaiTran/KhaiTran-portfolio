@@ -60,6 +60,9 @@ export interface SiteConfig {
     email: string;
     phone?: string;
     address: string;
+    /** Calendly or similar booking URL. Leave empty to fall back to mailto. */
+    bookingUrl: string;
+    /** @deprecated Use bookingUrl — kept for backward compatibility */
     calendlyUrl: string;
   };
   social: {
@@ -92,6 +95,8 @@ export interface SiteConfig {
     process: { eyebrow: string; title: string; subtitle: string };
     about: { eyebrow: string; title: string; subtitle: string };
     testimonials: { eyebrow: string; title: string; subtitle?: string };
+    clients: { eyebrow: string; title: string };
+    trust: { eyebrow: string; title: string; subtitle: string };
     cta: {
       badge: string;
       title: string;
@@ -155,9 +160,14 @@ export interface CaseStudy {
   approach: string[];
   outcomes: string[];
   metrics: CaseStudyMetric[];
+  /** Business outcomes shown prominently on cards and case study pages */
+  businessMetrics?: CaseStudyMetric[];
   testimonialId?: string;
   liveUrl?: string;
   liveUrlLabel?: string;
+  /** Shown when the product is private / NDA — no public live URL */
+  isConfidential?: boolean;
+  confidentialNote?: string;
 }
 
 export interface ProcessStep {
@@ -185,6 +195,10 @@ export interface Testimonial {
   quote: string;
   platform?: "Upwork" | "Fiverr" | "Direct" | "Referral" | "Contra";
   projectSlug?: string;
+  /** Public profile URL for verification (LinkedIn recommended) */
+  linkedinUrl?: string;
+  /** Link to the shipped product when publicly verifiable */
+  companyUrl?: string;
   rating: number;
   isSample: boolean;
 }
