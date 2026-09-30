@@ -27,7 +27,7 @@ export const caseStudies: CaseStudy[] = [
       size: "Đội tín dụng, kế toán & chi nhánh",
     },
     duration: "Đang triển khai (2025–2026)",
-    role: "Thiết kế hệ thống · Phát triển full-stack · Thiết kế dữ liệu · Triển khai",
+    role: "Thiết kế hệ thống & phát triển full-stack",
     stack: [
       "Next.js",
       "React",
@@ -112,7 +112,7 @@ export const caseStudies: CaseStudy[] = [
       size: "5 ứng dụng kết nối · đang hoàn thiện",
     },
     duration: "Đang hoàn thiện (từ 08/2026–nay)",
-    role: "Founder · Định hướng sản phẩm · Thiết kế & phát triển full-stack · Vận hành",
+    role: "Founder · Tự xây toàn bộ sản phẩm",
     stack: [
       "React Native",
       "Expo",
@@ -192,7 +192,7 @@ export const caseStudies: CaseStudy[] = [
       size: "Cửa hàng online + hệ thống quản lý",
     },
     duration: "~2 tháng xây dựng · tiếp tục nâng cấp",
-    role: "Phát triển full-stack · Hệ thống bán hàng & nội dung · Triển khai",
+    role: "Phát triển full-stack & triển khai",
     stack: [
       "Next.js",
       "React",
@@ -268,7 +268,7 @@ export const caseStudies: CaseStudy[] = [
       size: "Website công khai + hệ thống quản lý",
     },
     duration: "05–08/2026 · tiếp tục cập nhật nội dung",
-    role: "Phát triển full-stack · Hệ thống nội dung · Luồng khách hàng · SEO",
+    role: "Phát triển full-stack & SEO",
     stack: [
       "Next.js",
       "React",
@@ -344,7 +344,7 @@ export const caseStudies: CaseStudy[] = [
       size: "2 chi nhánh · 20+ phòng",
     },
     duration: "12 tuần",
-    role: "Phân tích sản phẩm · Thiết kế UI/UX · Phát triển full-stack · Triển khai",
+    role: "Phân tích, thiết kế & phát triển full-stack",
     stack: [
       "Next.js",
       "Supabase",
@@ -394,6 +394,7 @@ export const caseStudies: CaseStudy[] = [
       { label: "Module admin (RBAC)", value: "15" },
       { label: "Migration cơ sở dữ liệu", value: "70" },
     ],
+    testimonialId: "t-minh-tran",
   },
   {
     slug: "asia-night-life-platform",
@@ -422,7 +423,7 @@ export const caseStudies: CaseStudy[] = [
       size: "100+ địa điểm",
     },
     duration: "~9 tháng (09/2025–06/2026)",
-    role: "Phát triển full-stack · Dựng giao diện · SEO · Triển khai",
+    role: "Phát triển full-stack & SEO",
     stack: [
       "Next.js",
       "React",
@@ -472,13 +473,14 @@ export const caseStudies: CaseStudy[] = [
       { label: "Hoàn tất migrate slug", value: "100%" },
       { label: "Cửa sổ cache API", value: "1 hr" },
     ],
+    testimonialId: "t-huy-nguyen",
   },
   {
     slug: "gcm-manager-dealer-operations",
     isSample: false,
     headline: "Nối liền vận hành showroom, chăm sóc khách hàng và hợp đồng về một nơi.",
     projectType: "client",
-    statusLabel: "Dự án khách · Đang chạy",
+    statusLabel: "Dự án khách · Đang dùng nội bộ",
     featured: false,
     capabilities: ["Quản lý kho xe","Quản lý khách hàng","Hợp đồng","Tài chính & công nợ","Phân quyền nhân viên","Báo cáo"],
     closing: "Phần mềm quản lý nội bộ cho đại lý — từ showroom đến hợp đồng.",
@@ -486,7 +488,7 @@ export const caseStudies: CaseStudy[] = [
     tag: "Ô tô · Hệ thống vận hành đại lý",
     title: "GCM Manager - Từ showroom đến hợp đồng",
     liveUrl: "https://greencm.vn/",
-    liveUrlLabel: "Xem website - greencm.vn",
+    liveUrlLabel: "Website công khai - greencm.vn",
     problem:
       "Green CM cần một hệ thống nội bộ để vận hành đại lý — từ kho xe ở showroom, quản lý khách hàng đến tài chính, công nợ, hồ sơ đăng ký xe, phân quyền nhân sự và hợp đồng. Trước đó, mỗi việc chạy một kiểu rời rạc, nên việc bàn giao giữa các bộ phận và làm báo cáo đều chậm.",
     solution:
@@ -499,8 +501,8 @@ export const caseStudies: CaseStudy[] = [
       location: "Cần Thơ, Việt Nam",
       size: "Đội bán hàng, tài chính, pháp lý & vận hành",
     },
-    duration: "2026",
-    role: "Phát triển full-stack · Thiết kế hệ thống · Xây quy trình vận hành",
+    duration: "2026 · tiếp tục mở rộng",
+    role: "Thiết kế hệ thống & phát triển full-stack",
     stack: [
       "Next.js",
       "React",
@@ -526,7 +528,7 @@ export const caseStudies: CaseStudy[] = [
       "Triển khai module riêng cho dashboard, tồn kho, nhà cung cấp, CRM, nhân sự, công nợ, tài chính, hợp đồng, đăng ký, báo cáo, khuyến mãi, thông báo và settings",
       "Nối lớp dữ liệu và service cho workflow nội bộ, gồm công cụ xuất/tài liệu (XLSX, jsPDF/html2canvas)",
       "Thêm analytics và tầm nhìn vận hành bằng Recharts cùng insight hỗ trợ AI qua tích hợp Gemini",
-      "Chuẩn bị đường tích hợp dữ liệu/backend với Supabase cho vận hành nghiệp vụ bền vững",
+      "Tổ chức lớp dữ liệu trên Supabase để lưu trữ dữ liệu nghiệp vụ hằng ngày",
     ],
     outcomes: [
       "Một hệ thống nội bộ bao trọn việc vận hành đại lý, từ showroom đến lúc ký hợp đồng",
@@ -543,7 +545,6 @@ export const caseStudies: CaseStudy[] = [
     metrics: [
       { label: "Bề mặt nền tảng", value: "2" },
       { label: "Module dashboard", value: "16+" },
-      { label: "Commit repo nội bộ", value: "19" },
       { label: "Stack lõi", value: "Next.js 16 + Supabase" },
       { label: "Mô hình dự án", value: "Site công khai + quản trị nội bộ" },
     ],
@@ -575,7 +576,7 @@ export const caseStudies: CaseStudy[] = [
       size: "Đại lý 3S · 14 ô tô · 16 xe máy điện · 80+ phụ kiện",
     },
     duration: "~3 tháng",
-    role: "Phát triển full-stack · UI/UX · Đồng bộ dữ liệu sản phẩm · SEO",
+    role: "Thiết kế & phát triển full-stack",
     stack: [
       "Next.js",
       "React",

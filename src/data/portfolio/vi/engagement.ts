@@ -7,7 +7,7 @@ export const engagement: EngagementInfo = {
     {
       id: "business-software",
       title: "Phần mềm nghiệp vụ",
-      from: "Từ $3,000",
+      from: "Từ 75 triệu đồng",
       desc: "Cho hệ thống nội bộ, trang quản trị, quản lý khách hàng (CRM), quy trình và công cụ vận hành.",
       items: [
         "Tìm hiểu quy trình & yêu cầu",
@@ -22,7 +22,7 @@ export const engagement: EngagementInfo = {
     {
       id: "web-saas",
       title: "Web & SaaS",
-      from: "Từ $2,000",
+      from: "Từ 50 triệu đồng",
       desc: "Cho website doanh nghiệp, cổng khách hàng, cửa hàng online và phiên bản đầu của phần mềm thuê bao.",
       items: [
         "Website hiển thị tốt trên điện thoại & máy tính",
@@ -36,7 +36,7 @@ export const engagement: EngagementInfo = {
     {
       id: "ai-automation",
       title: "AI & Tự động hóa",
-      from: "Từ $1,500",
+      from: "Từ 40 triệu đồng",
       desc: "Cho tính năng AI tập trung và tự động hóa quy trình.",
       items: [
         "Đưa AI vào quy trình đang có",
@@ -50,7 +50,7 @@ export const engagement: EngagementInfo = {
     {
       id: "maintenance",
       title: "Bảo trì",
-      from: "Từ $300/tháng",
+      from: "Từ 8 triệu đồng/tháng",
       desc: "Hỗ trợ liên tục sau khi ra mắt.",
       items: [
         "Sửa lỗi",

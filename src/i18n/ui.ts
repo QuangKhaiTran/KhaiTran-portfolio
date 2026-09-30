@@ -29,6 +29,19 @@ export type UiCopy = {
   selectedWorkBoardLabel: string;
   projectsNdaDemo: string;
   aboutWorkingLanguages: string;
+  aboutLocation: string;
+  aboutAvailability: string;
+  aboutCoreStack: string;
+  contactName: string;
+  contactEmail: string;
+  contactCompany: string;
+  contactProject: string;
+  contactBudget: string;
+  contactTimeline: string;
+  budgetOptions: string[];
+  timelineOptions: string[];
+  footerRemote: string;
+  heroViewProject: string;
   testimonialsVerify: string;
   testimonialsLinkedIn: string;
   faqEyebrow: string;
@@ -109,6 +122,19 @@ export const uiCopy: Record<Locale, UiCopy> = {
     selectedWorkBoardLabel: "Projects & products",
     projectsNdaDemo: "NDA · demo on request",
     aboutWorkingLanguages: "Working Languages",
+    aboutLocation: "Location",
+    aboutAvailability: "Availability",
+    aboutCoreStack: "Core stack",
+    contactName: "Name",
+    contactEmail: "Email",
+    contactCompany: "Company / Website",
+    contactProject: "What are you trying to build?",
+    contactBudget: "Approximate budget",
+    contactTimeline: "Timeline",
+    budgetOptions: ["Under $1,000", "$1,000–$3,000", "$3,000–$5,000", "$5,000–$10,000", "$10,000+"],
+    timelineOptions: ["ASAP", "1–2 months", "3–6 months", "Flexible"],
+    footerRemote: "Remote worldwide",
+    heroViewProject: "View",
     testimonialsVerify: "Verify project",
     testimonialsLinkedIn: "LinkedIn",
     faqEyebrow: "FAQ",
@@ -123,7 +149,7 @@ export const uiCopy: Record<Locale, UiCopy> = {
     caseStudiesCount: "projects",
     caseStudiesHaveChallenge: "Have a similar challenge?",
     caseStudiesHaveChallengeDesc:
-      "Tell me about your project — I'll reply with a scoped plan and quote within 48 hours.",
+      "Tell me about your project — I'll reply within 48 hours with a suggested approach and next steps.",
     caseStudyClient: "Client",
     caseStudyDuration: "Duration",
     caseStudyYear: "Year",
@@ -138,10 +164,10 @@ export const uiCopy: Record<Locale, UiCopy> = {
     caseStudyOutcomes: "Outcomes",
     caseStudyTechStack: "Tech stack",
     caseStudyCapabilities: "Key capabilities",
-    caseStudyTechnicalDetails: "Technical details (for developers)",
+    caseStudyTechnicalDetails: "Technical details",
     caseStudyWantSimilar: "Want similar results for your business?",
     caseStudyWantSimilarDesc:
-      "Email me about your project — I'll reply with a scoped plan and fixed-price quote within 48 hours.",
+      "Tell me about your project — I'll reply within 48 hours with a suggested approach. Once we agree on the scope, you get a clear, milestone-based quote.",
     caseStudyVerifyLive: "Verify live project",
     caseStudyLiveWebsite: "Live website:",
     contactBookCall: "Book a Free Call",
@@ -190,6 +216,19 @@ export const uiCopy: Record<Locale, UiCopy> = {
     selectedWorkBoardLabel: "Dự án & sản phẩm",
     projectsNdaDemo: "NDA · demo khi yêu cầu",
     aboutWorkingLanguages: "Ngôn ngữ làm việc",
+    aboutLocation: "Địa điểm",
+    aboutAvailability: "Nhận dự án",
+    aboutCoreStack: "Công nghệ chính",
+    contactName: "Họ tên",
+    contactEmail: "Email",
+    contactCompany: "Công ty / Website",
+    contactProject: "Bạn đang muốn làm gì?",
+    contactBudget: "Ngân sách dự kiến",
+    contactTimeline: "Thời gian mong muốn",
+    budgetOptions: ["Dưới 25 triệu", "25–75 triệu", "75–125 triệu", "125–250 triệu", "Trên 250 triệu"],
+    timelineOptions: ["Càng sớm càng tốt", "1–2 tháng", "3–6 tháng", "Linh hoạt"],
+    footerRemote: "Làm việc từ xa toàn cầu",
+    heroViewProject: "Xem",
     testimonialsVerify: "Xác minh dự án",
     testimonialsLinkedIn: "LinkedIn",
     faqEyebrow: "FAQ",
@@ -204,7 +243,7 @@ export const uiCopy: Record<Locale, UiCopy> = {
     caseStudiesCount: "dự án",
     caseStudiesHaveChallenge: "Bạn đang có bài toán tương tự?",
     caseStudiesHaveChallengeDesc:
-      "Kể mình nghe về dự án — mình sẽ trả lời kèm phạm vi và báo giá trong 48 giờ.",
+      "Kể mình nghe về dự án — mình sẽ phản hồi trong 48 giờ với hướng làm gợi ý và các bước tiếp theo.",
     caseStudyClient: "Khách hàng",
     caseStudyDuration: "Thời gian",
     caseStudyYear: "Năm",
@@ -219,10 +258,10 @@ export const uiCopy: Record<Locale, UiCopy> = {
     caseStudyOutcomes: "Kết quả đạt được",
     caseStudyTechStack: "Công nghệ",
     caseStudyCapabilities: "Tính năng chính",
-    caseStudyTechnicalDetails: "Chi tiết kỹ thuật (dành cho dân kỹ thuật)",
+    caseStudyTechnicalDetails: "Chi tiết kỹ thuật",
     caseStudyWantSimilar: "Muốn kết quả tương tự cho doanh nghiệp của bạn?",
     caseStudyWantSimilarDesc:
-      "Gửi email mô tả dự án — mình sẽ trả lời kèm phạm vi và báo giá cố định trong 48 giờ.",
+      "Kể mình nghe về dự án — mình sẽ phản hồi trong 48 giờ với hướng làm gợi ý. Khi đã thống nhất phạm vi, bạn nhận báo giá rõ ràng theo từng giai đoạn.",
     caseStudyVerifyLive: "Xem dự án đang chạy",
     caseStudyLiveWebsite: "Website live:",
     contactBookCall: "Đặt lịch gọi miễn phí",

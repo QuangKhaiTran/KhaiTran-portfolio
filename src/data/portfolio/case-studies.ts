@@ -27,7 +27,7 @@ export const caseStudies: CaseStudy[] = [
       size: "Credit, accounting & branch teams",
     },
     duration: "Ongoing (2025–2026)",
-    role: "System design · Full-stack development · Database design · Deployment",
+    role: "System design & full-stack development",
     stack: [
       "Next.js",
       "React",
@@ -112,7 +112,7 @@ export const caseStudies: CaseStudy[] = [
       size: "5 connected apps · being completed",
     },
     duration: "In progress (Aug 2026–present)",
-    role: "Founder · Product strategy · Design & full-stack development · Operations",
+    role: "Founder · Built the whole product",
     stack: [
       "React Native",
       "Expo",
@@ -192,7 +192,7 @@ export const caseStudies: CaseStudy[] = [
       size: "Online store + management system",
     },
     duration: "~2 months build · ongoing improvements",
-    role: "Full-stack development · Store & content system · Deployment",
+    role: "Full-stack development & deployment",
     stack: [
       "Next.js",
       "React",
@@ -269,7 +269,7 @@ export const caseStudies: CaseStudy[] = [
       size: "Public website + management system",
     },
     duration: "May–Aug 2026 · ongoing content updates",
-    role: "Full-stack development · Content system · Inquiry flow · SEO",
+    role: "Full-stack development & SEO",
     stack: [
       "Next.js",
       "React",
@@ -345,7 +345,7 @@ export const caseStudies: CaseStudy[] = [
       size: "2 branches · 20+ rooms",
     },
     duration: "12 weeks",
-    role: "Product analysis · UI/UX design · Full-stack development · Deployment",
+    role: "Analysis, design & full-stack development",
     stack: [
       "Next.js",
       "Supabase",
@@ -395,6 +395,7 @@ export const caseStudies: CaseStudy[] = [
       { label: "Admin modules (RBAC)", value: "15" },
       { label: "Database migrations", value: "70" },
     ],
+    testimonialId: "t-minh-tran",
   },
   {
     slug: "asia-night-life-platform",
@@ -424,7 +425,7 @@ export const caseStudies: CaseStudy[] = [
       size: "100+ venues",
     },
     duration: "~9 months (09/2025–06/2026)",
-    role: "Full-stack development · UI implementation · SEO · Deployment",
+    role: "Full-stack development & SEO",
     stack: [
       "Next.js",
       "React",
@@ -474,13 +475,14 @@ export const caseStudies: CaseStudy[] = [
       { label: "Slug migration completion", value: "100%" },
       { label: "API cache window", value: "1 hr" },
     ],
+    testimonialId: "t-huy-nguyen",
   },
   {
     slug: "gcm-manager-dealer-operations",
     isSample: false,
     headline: "Connecting showroom operations, customer follow-up, and contracts in one place.",
     projectType: "client",
-    statusLabel: "Client Project · Live",
+    statusLabel: "Client Project · In internal use",
     featured: false,
     
     capabilities: ["Inventory","Customer management","Contracts","Finance & debt","Staff permissions","Reporting"],
@@ -489,7 +491,7 @@ export const caseStudies: CaseStudy[] = [
     tag: "Automotive · Dealer Operations System",
     title: "GCM Manager - Showroom to Contract Operations",
     liveUrl: "https://greencm.vn/",
-    liveUrlLabel: "View live site - greencm.vn",
+    liveUrlLabel: "Public website - greencm.vn",
     problem:
       "Green CM needed one internal system to run its dealership — from showroom inventory and customer management to finance, debt tracking, vehicle registration paperwork, staff permissions, and contracts. Before, this work was spread across disconnected processes, so handoffs between teams and reporting were slow.",
     solution:
@@ -502,8 +504,8 @@ export const caseStudies: CaseStudy[] = [
       location: "Can Tho, Vietnam",
       size: "Sales, finance, legal & operations teams",
     },
-    duration: "2026",
-    role: "Full-stack development · System design · Workflow setup",
+    duration: "2026 · ongoing improvements",
+    role: "System design & full-stack development",
     stack: [
       "Next.js",
       "React",
@@ -529,7 +531,7 @@ export const caseStudies: CaseStudy[] = [
       "Implemented dedicated modules for dashboard, inventory, suppliers, CRM, staff, debt, finance, contracts, registration, reports, promotions, notifications, and settings",
       "Connected data and service layers for internal workflows, including export/document tooling (XLSX, jsPDF/html2canvas)",
       "Added analytics and operational visibility using Recharts and AI-assisted insights powered by Gemini integration",
-      "Prepared backend/data integration path with Supabase for persistent business operations",
+      "Organized the data layer on Supabase to store day-to-day business records",
     ],
     outcomes: [
       "One internal system covering the dealership from showroom to signed contract",
@@ -546,7 +548,6 @@ export const caseStudies: CaseStudy[] = [
     metrics: [
       { label: "Platform surfaces", value: "2" },
       { label: "Dashboard modules", value: "16+" },
-      { label: "Internal repo commits", value: "19" },
       { label: "Core stack", value: "Next.js 16 + Supabase" },
       { label: "Project model", value: "Public site + Internal manager" },
     ],
@@ -579,7 +580,7 @@ export const caseStudies: CaseStudy[] = [
       size: "3S dealership · 14 cars · 16 e-scooters · 80+ accessories",
     },
     duration: "~3 months",
-    role: "Full-stack development · UI/UX · Product data sync · SEO",
+    role: "Design & full-stack development",
     stack: [
       "Next.js",
       "React",

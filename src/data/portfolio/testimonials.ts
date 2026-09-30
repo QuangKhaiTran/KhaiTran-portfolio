@@ -4,7 +4,7 @@ export const testimonials: Testimonial[] = [
   {
     id: "t-minh-tran",
     avatarKey: "avatar1",
-    name: "Minh Tran",
+    name: "Minh Trần",
     role: "Hotel Operations Manager",
     company: "Y Hotel",
     quote:
@@ -18,7 +18,7 @@ export const testimonials: Testimonial[] = [
   {
     id: "t-huy-nguyen",
     avatarKey: "avatar2",
-    name: "Huy Nguyen",
+    name: "Huy Nguyễn",
     role: "Product Lead",
     company: "Asia Night Life",
     quote:
@@ -32,7 +32,7 @@ export const testimonials: Testimonial[] = [
   {
     id: "t-thao-vo",
     avatarKey: "avatar3",
-    name: "Thao Vo",
+    name: "Thảo Võ",
     role: "Marketing Director",
     company: "VinFast Ngọc Anh",
     quote:

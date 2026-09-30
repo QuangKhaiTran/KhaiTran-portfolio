@@ -60,7 +60,7 @@ export const profile: Profile = {
 };
 
 export const aboutHighlights = [
-  { label: "Đã hoàn thành", value: "9+ dự án" },
+  { label: "Đã hoàn thành", value: "8+ dự án" },
   { label: "Tập trung", value: "Website · Phần mềm quản lý · Công cụ nội bộ" },
   { label: "Múi giờ", value: "UTC+7 · Làm việc từ xa toàn cầu" },
   { label: "Hợp tác", value: "Theo giai đoạn · Phạm vi rõ" },

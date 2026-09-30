@@ -60,7 +60,7 @@ export const profile: Profile = {
 };
 
 export const aboutHighlights = [
-  { label: "Shipped", value: "9+ projects" },
+  { label: "Shipped", value: "8+ projects" },
   { label: "Focus", value: "Web · SaaS · Internal Tools" },
   { label: "Timezone", value: "UTC+7 · Remote worldwide" },
   { label: "Engagement", value: "Milestones · Clear scope" },

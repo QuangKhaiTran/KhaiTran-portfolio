@@ -50,15 +50,15 @@ export const siteConfig: SiteConfig = {
       "Từ website doanh nghiệp đến nền tảng vận hành đầy đủ, mình bắt đầu từ bài toán thật — rồi mới thiết kế và viết phần mềm bám theo cách team đang làm việc.",
     primaryCta: "Kể mình nghe về dự án →",
     secondaryCta: "Xem dự án tiêu biểu ↓",
-    proofLine: "9+ dự án đang chạy thực tế · Website · Phần mềm quản lý · Ứng dụng · AI",
-    locationLine: "Việt Nam · UTC+7 · Remote toàn cầu",
+    proofLine: "8+ dự án đang chạy thực tế · Website · Phần mềm quản lý · Ứng dụng · AI",
+    locationLine: "Việt Nam · UTC+7 · Làm việc từ xa toàn cầu",
   },
   sections: {
     selectedWork: {
       eyebrow: "Minh chứng",
-      title: "Dự án tiêu biểu",
+      title: "Khách hàng & sản phẩm",
       subtitle:
-        "Một số hệ thống nghiệp vụ, sản phẩm và nền tảng số mình đã tham gia xây.",
+        "Những doanh nghiệp và sản phẩm mình đã cùng xây phần mềm.",
     },
     services: {
       eyebrow: "Dịch vụ",
@@ -73,8 +73,8 @@ export const siteConfig: SiteConfig = {
         "Bốn hệ thống cho thấy cách mình biến quy trình kinh doanh thành phần mềm chạy thật.",
     },
     moreWork: {
-      eyebrow: "Thêm",
-      title: "Thêm dự án",
+      eyebrow: "Dự án khác",
+      title: "Các dự án khác",
       subtitle: "Vài hệ thống và sản phẩm số khác mình đã làm.",
     },
     process: {
@@ -129,7 +129,7 @@ export const siteConfig: SiteConfig = {
       { label: "Bảo mật", href: "/privacy" },
       { label: "Điều khoản", href: "/terms" },
     ],
-    copyright: "© 2026 Trần Quang Khái. Built with Next.js.",
+    copyright: "© 2026 Trần Quang Khái.",
   },
   freelancePlatforms: enSite.freelancePlatforms,
 };

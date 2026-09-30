@@ -65,15 +65,15 @@ export const siteConfig: SiteConfig = {
       "From a simple business website to a full operational platform, I work from the problem first — then design and build the software around the workflow.",
     primaryCta: "Tell Me About Your Project →",
     secondaryCta: "View Selected Work ↓",
-    proofLine: "9+ projects in real-world use · Websites · Business tools · Apps · AI",
+    proofLine: "8+ projects in real-world use · Websites · Business tools · Apps · AI",
     locationLine: "Based in Vietnam · UTC+7 · Remote worldwide",
   },
   sections: {
     selectedWork: {
       eyebrow: "Proof",
-      title: "Selected Work",
+      title: "Clients & products",
       subtitle:
-        "A selection of business systems, products, and digital platforms I've worked on.",
+        "Businesses and products I've built software for.",
     },
     services: {
       eyebrow: "Services",
@@ -88,8 +88,8 @@ export const siteConfig: SiteConfig = {
         "Four systems that show how I turn business workflows into production software.",
     },
     moreWork: {
-      eyebrow: "More",
-      title: "More Projects",
+      eyebrow: "Other work",
+      title: "Other projects",
       subtitle: "A few more systems and digital products I've worked on.",
     },
     process: {
@@ -145,7 +145,7 @@ export const siteConfig: SiteConfig = {
       { label: "Privacy", href: "/privacy" },
       { label: "Terms", href: "/terms" },
     ],
-    copyright: "© 2026 Trần Quang Khái. Built with Next.js.",
+    copyright: "© 2026 Trần Quang Khái.",
   },
   freelancePlatforms: [
     ...(SOCIAL.upwork ? (["Upwork"] as const) : []),

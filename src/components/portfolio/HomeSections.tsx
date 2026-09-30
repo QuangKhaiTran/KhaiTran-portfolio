@@ -19,11 +19,7 @@ import { getClientLogoImage, getPortfolioImage } from "@/data/portfolio";
 import type { CaseStudy, Service } from "@/data/portfolio/types";
 import type { ClientLogoKey } from "@/data/portfolio/trust";
 import { serviceIconMap } from "@/lib/portfolio-icons";
-import {
-  BUDGET_OPTIONS,
-  TIMELINE_OPTIONS,
-  getProjectBriefMailto,
-} from "@/lib/portfolio-contact";
+import { getProjectBriefMailto } from "@/lib/portfolio-contact";
 import { useLocale } from "@/i18n/locale";
 import { SectionHeader } from "./SectionHeader";
 
@@ -424,11 +420,11 @@ export function AboutSection() {
           </div>
           <dl className="mt-6 space-y-3 text-sm">
             <div>
-              <dt className="text-muted-foreground">Location</dt>
+              <dt className="text-muted-foreground">{t.aboutLocation}</dt>
               <dd className="font-medium">{profile.location}</dd>
             </div>
             <div>
-              <dt className="text-muted-foreground">Availability</dt>
+              <dt className="text-muted-foreground">{t.aboutAvailability}</dt>
               <dd className="font-medium">{profile.availability}</dd>
             </div>
             <div>
@@ -458,7 +454,7 @@ export function AboutSection() {
 
           <div className="mt-10">
             <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-              Core stack
+              {t.aboutCoreStack}
             </h3>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               {profile.stackGroups.map((group) => (
@@ -694,7 +690,7 @@ export function FinalCta() {
 }
 
 export function ContactSection() {
-  const { content } = useLocale();
+  const { content, t } = useLocale();
   const { contact: copy } = content.siteConfig.sections;
   const email = content.siteConfig.contact.email;
   const [form, setForm] = useState<{
@@ -702,20 +698,27 @@ export function ContactSection() {
     email: string;
     company: string;
     project: string;
-    budget: string;
-    timeline: string;
+    budgetIndex: number;
+    timelineIndex: number;
   }>({
     name: "",
     email: "",
     company: "",
     project: "",
-    budget: BUDGET_OPTIONS[1],
-    timeline: TIMELINE_OPTIONS[3],
+    budgetIndex: 1,
+    timelineIndex: 3,
   });
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const href = getProjectBriefMailto(form);
+    const href = getProjectBriefMailto({
+      name: form.name,
+      email: form.email,
+      company: form.company,
+      project: form.project,
+      budget: t.budgetOptions[form.budgetIndex] ?? "",
+      timeline: t.timelineOptions[form.timelineIndex] ?? "",
+    });
     window.location.href = href;
   };
 
@@ -729,14 +732,14 @@ export function ContactSection() {
         />
         <form onSubmit={onSubmit} className="space-y-5">
           <Field
-            label="Name"
+            label={t.contactName}
             id="contact-name"
             required
             value={form.name}
             onChange={(v) => setForm((s) => ({ ...s, name: v }))}
           />
           <Field
-            label="Email"
+            label={t.contactEmail}
             id="contact-email"
             type="email"
             required
@@ -744,14 +747,14 @@ export function ContactSection() {
             onChange={(v) => setForm((s) => ({ ...s, email: v }))}
           />
           <Field
-            label="Company / Website"
+            label={t.contactCompany}
             id="contact-company"
             value={form.company}
             onChange={(v) => setForm((s) => ({ ...s, company: v }))}
           />
           <div>
             <label htmlFor="contact-project" className="text-sm font-medium">
-              What are you trying to build?
+              {t.contactProject}
             </label>
             <textarea
               id="contact-project"
@@ -765,16 +768,16 @@ export function ContactSection() {
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
               <label htmlFor="contact-budget" className="text-sm font-medium">
-                Approximate budget
+                {t.contactBudget}
               </label>
               <select
                 id="contact-budget"
-                value={form.budget}
-                onChange={(e) => setForm((s) => ({ ...s, budget: e.target.value }))}
+                value={form.budgetIndex}
+                onChange={(e) => setForm((s) => ({ ...s, budgetIndex: Number(e.target.value) }))}
                 className="mt-2 min-h-11 w-full rounded-md border border-input bg-background px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                {BUDGET_OPTIONS.map((opt) => (
-                  <option key={opt} value={opt}>
+                {t.budgetOptions.map((opt, i) => (
+                  <option key={opt} value={i}>
                     {opt}
                   </option>
                 ))}
@@ -782,16 +785,16 @@ export function ContactSection() {
             </div>
             <div>
               <label htmlFor="contact-timeline" className="text-sm font-medium">
-                Timeline
+                {t.contactTimeline}
               </label>
               <select
                 id="contact-timeline"
-                value={form.timeline}
-                onChange={(e) => setForm((s) => ({ ...s, timeline: e.target.value }))}
+                value={form.timelineIndex}
+                onChange={(e) => setForm((s) => ({ ...s, timelineIndex: Number(e.target.value) }))}
                 className="mt-2 min-h-11 w-full rounded-md border border-input bg-background px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                {TIMELINE_OPTIONS.map((opt) => (
-                  <option key={opt} value={opt}>
+                {t.timelineOptions.map((opt, i) => (
+                  <option key={opt} value={i}>
                     {opt}
                   </option>
                 ))}
@@ -807,7 +810,7 @@ export function ContactSection() {
           </button>
           <p className="text-sm text-muted-foreground">{copy.supporting}</p>
           <p className="text-sm text-muted-foreground">
-            Or email directly:{" "}
+            {t.contactOrEmail}{" "}
             <a
               href={`mailto:${email}`}
               className="font-medium text-foreground underline-offset-4 hover:underline"
@@ -870,7 +873,7 @@ export function Footer() {
           <p className="mt-4 text-sm text-background/65">
             {contact.address} · UTC+7
             <br />
-            Remote worldwide
+            {t.footerRemote}
           </p>
         </div>
         <div>
@@ -878,7 +881,7 @@ export function Footer() {
             {t.footerLinks}
           </div>
           <ul className="mt-4 space-y-2">
-            {[...nav, { label: "Contact", href: "#contact" }].map((item) => (
+            {[...nav, { label: t.footerContact, href: "#contact" }].map((item) => (
               <li key={item.href}>
                 <a
                   href={item.href}

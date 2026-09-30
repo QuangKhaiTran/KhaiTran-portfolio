@@ -60,18 +60,3 @@ export function getProjectBriefMailto(brief: ProjectBrief): string {
 
   return `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
-
-export const BUDGET_OPTIONS = [
-  "Under $1,000",
-  "$1,000–$3,000",
-  "$3,000–$5,000",
-  "$5,000–$10,000",
-  "$10,000+",
-] as const;
-
-export const TIMELINE_OPTIONS = [
-  "ASAP",
-  "1–2 months",
-  "3–6 months",
-  "Flexible",
-] as const;

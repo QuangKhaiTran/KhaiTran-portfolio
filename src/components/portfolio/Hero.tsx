@@ -4,16 +4,21 @@ import { useEffect, useState } from "react";
 import { getPortfolioImage } from "@/data/portfolio";
 import type { ImageKey } from "@/data/portfolio/types";
 import { useLocale } from "@/i18n/locale";
+import type { Locale } from "@/i18n/types";
 
-const HERO_SHOTS: Array<{ key: ImageKey; label: string; category: string }> = [
-  { key: "projectLoan", label: "ERP & Loan", category: "Internal · Fintech" },
-  { key: "projectHotel", label: "Y Hotel", category: "Hospitality" },
-  { key: "projectCafinex", label: "Cafinex", category: "E-commerce · CMS" },
-  { key: "projectPetId", label: "PETID", category: "Own Product · Building" },
-  { key: "projectY99", label: "Y99 Finance", category: "Finance · CMS" },
-  { key: "projectAI", label: "Asia Night Life", category: "Content Platform" },
-  { key: "projectGcmManager", label: "GCM Manager", category: "Automotive · Internal" },
-  { key: "projectVinfast", label: "VinFast Ngọc Anh", category: "Automotive · Showroom" },
+const HERO_SHOTS: Array<{
+  key: ImageKey;
+  label: string;
+  category: Record<Locale, string>;
+}> = [
+  { key: "projectLoan", label: "ERP & Loan", category: { en: "Internal · Fintech", vi: "Nội bộ · Tài chính" } },
+  { key: "projectHotel", label: "Y Hotel", category: { en: "Hospitality", vi: "Khách sạn" } },
+  { key: "projectCafinex", label: "Cafinex", category: { en: "E-commerce · CMS", vi: "Bán hàng online" } },
+  { key: "projectPetId", label: "PETID", category: { en: "Own Product · Building", vi: "Sản phẩm riêng · Đang xây" } },
+  { key: "projectY99", label: "Y99 Finance", category: { en: "Finance · CMS", vi: "Tài chính · Website" } },
+  { key: "projectAI", label: "Asia Night Life", category: { en: "Content Platform", vi: "Nền tảng giải trí" } },
+  { key: "projectGcmManager", label: "GCM Manager", category: { en: "Automotive · Internal", vi: "Ô tô · Nội bộ" } },
+  { key: "projectVinfast", label: "VinFast Ngọc Anh", category: { en: "Automotive · Showroom", vi: "Ô tô · Showroom online" } },
 ];
 
 const CYCLE_MS = 3400;
@@ -86,7 +91,7 @@ export function Hero() {
 }
 
 function HeroCardStack() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const reduceMotion = useReducedMotion();
   const [order, setOrder] = useState(() => HERO_SHOTS.map((_, i) => i));
   const [paused, setPaused] = useState(false);
@@ -120,7 +125,7 @@ function HeroCardStack() {
 
   return (
     <div
-      className="relative z-0 isolate w-full overflow-hidden"
+      className="relative z-0 isolate w-full"
       aria-label={t.selectedWorkBoardLabel}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -152,7 +157,7 @@ function HeroCardStack() {
             >
               {front.label}
               <span className="ml-2 font-normal text-muted-foreground">
-                · {front.category}
+                · {front.category[locale]}
               </span>
             </motion.p>
           </AnimatePresence>
@@ -174,7 +179,7 @@ function HeroCardStack() {
         </div>
       </div>
 
-      <div className="relative mx-auto h-[300px] w-full max-w-[620px] overflow-hidden pt-1 sm:h-[460px] sm:pt-2 lg:h-[500px] lg:max-w-[660px]">
+      <div className="relative mx-auto h-[300px] w-full max-w-[620px] pt-1 sm:h-[460px] sm:pt-2 lg:h-[500px] lg:max-w-[660px]">
         {order.map((shotIndex, depth) => {
           const shot = HERO_SHOTS[shotIndex]!;
           const inStack = depth < STACK.length;
@@ -185,7 +190,7 @@ function HeroCardStack() {
             <motion.button
               key={shot.key}
               type="button"
-              aria-label={`View ${shot.label}`}
+              aria-label={`${t.heroViewProject} ${shot.label}`}
               aria-current={isFront ? "true" : undefined}
               tabIndex={inStack ? 0 : -1}
               onClick={() => bringToFront(shotIndex)}
@@ -226,7 +231,7 @@ function HeroCardStack() {
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-foreground/70 to-transparent px-3 pb-2.5 pt-8 sm:px-4 sm:pb-3 sm:pt-10">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-white/70">
-                  {shot.category}
+                  {shot.category[locale]}
                 </div>
                 <div className="text-sm font-semibold text-white">{shot.label}</div>
               </div>
