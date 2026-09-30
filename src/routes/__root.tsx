@@ -52,6 +52,14 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
   const { t } = useLocale();
   useEffect(() => {
+    if (/dynamically imported module|Importing a module script failed/i.test(error.message)) {
+      const last = Number(sessionStorage.getItem(CHUNK_RELOAD_KEY) ?? 0);
+      if (Date.now() - last > 10_000) {
+        sessionStorage.setItem(CHUNK_RELOAD_KEY, String(Date.now()));
+        window.location.reload();
+        return;
+      }
+    }
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
 
@@ -122,8 +130,25 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+const CHUNK_RELOAD_KEY = "chunk-reload-at";
+
+function useReloadOnStaleChunks() {
+  useEffect(() => {
+    const onPreloadError = (event: Event) => {
+      const last = Number(sessionStorage.getItem(CHUNK_RELOAD_KEY) ?? 0);
+      if (Date.now() - last < 10_000) return;
+      event.preventDefault();
+      sessionStorage.setItem(CHUNK_RELOAD_KEY, String(Date.now()));
+      window.location.reload();
+    };
+    window.addEventListener("vite:preloadError", onPreloadError);
+    return () => window.removeEventListener("vite:preloadError", onPreloadError);
+  }, []);
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useReloadOnStaleChunks();
 
   return (
     <QueryClientProvider client={queryClient}>
