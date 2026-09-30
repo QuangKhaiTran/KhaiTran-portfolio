@@ -7,7 +7,7 @@ export const engagement: EngagementInfo = {
     {
       id: "business-website",
       title: "Business Website",
-      from: "From $1,500",
+      from: "From $600",
       desc: "For company, service and product websites your team can update themselves.",
       items: [
         "Design matched to your brand",
@@ -19,7 +19,7 @@ export const engagement: EngagementInfo = {
     {
       id: "web-saas",
       title: "Web App & SaaS",
-      from: "From $5,000",
+      from: "From $2,400",
       desc: "For customer portals, online stores and first versions of subscription products.",
       items: [
         "User accounts & permissions",
@@ -31,7 +31,7 @@ export const engagement: EngagementInfo = {
     {
       id: "business-software",
       title: "Business Software",
-      from: "From $6,000",
+      from: "From $3,200",
       desc: "For internal systems, dashboards, CRM, workflow platforms and operational tools.",
       items: [
         "Workflow & requirements mapping",
@@ -43,7 +43,7 @@ export const engagement: EngagementInfo = {
     {
       id: "mobile-apps",
       title: "Mobile App",
-      from: "From $6,000",
+      from: "From $3,200",
       desc: "For customer apps, internal staff apps and field team apps.",
       items: [
         "One app for iOS & Android",
@@ -55,7 +55,7 @@ export const engagement: EngagementInfo = {
     {
       id: "ai-automation",
       title: "AI & Automation",
-      from: "From $2,000",
+      from: "From $800",
       desc: "For focused AI features and workflow automation.",
       items: [
         "Adding AI to your existing workflow",
@@ -67,7 +67,7 @@ export const engagement: EngagementInfo = {
     {
       id: "maintenance",
       title: "Maintenance",
-      from: "From $400/month",
+      from: "From $120/month",
       desc: "For ongoing support after launch.",
       items: [
         "Bug fixes",

@@ -134,7 +134,7 @@ export const uiCopy: Record<Locale, UiCopy> = {
     contactProject: "What are you trying to build?",
     contactBudget: "Approximate budget",
     contactTimeline: "Timeline",
-    budgetOptions: ["Under $2,000", "$2,000–$5,000", "$5,000–$10,000", "$10,000–$25,000", "$25,000+"],
+    budgetOptions: ["Under $800", "$800–$2,000", "$2,000–$4,000", "$4,000–$8,000", "$8,000+"],
     timelineOptions: ["ASAP", "1–2 months", "3–6 months", "Flexible"],
     footerRemote: "Remote worldwide",
     heroViewProject: "View",

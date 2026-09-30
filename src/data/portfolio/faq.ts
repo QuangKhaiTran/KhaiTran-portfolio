@@ -4,7 +4,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "How much does a project cost?",
     answer:
-      "Business websites start from around $1,500 and focused automations from $2,000. Web apps, internal software and mobile apps usually start from $5,000–$6,000. Larger platforms are scoped based on workflow complexity, integrations, user roles, and required infrastructure.\n\nI provide a fixed scope and milestone-based quote before development begins.",
+      "Business websites start from around $600 and focused automations from $800. Web apps, internal software and mobile apps usually start from $2,400–$3,200. Larger platforms are scoped based on workflow complexity, integrations, user roles, and required infrastructure.\n\nI provide a fixed scope and milestone-based quote before development begins.",
   },
   {
     question: "How long does a project take?",
