@@ -12,7 +12,7 @@ export const caseStudies: CaseStudy[] = [
     capabilities: ["Quản lý khách hàng & khoản vay","Tiếp nhận hồ sơ vay","Các bước duyệt hồ sơ","Giải ngân","Theo dõi trả nợ","Nhắc & thu hồi nợ","Kế toán","Báo cáo & dashboard","Phân quyền theo vai trò","Lưu lịch sử thao tác đầy đủ"],
     closing: "Mục tiêu không phải làm thêm một phần mềm nhập liệu — mà là đưa đúng cách doanh nghiệp đang vận hành vào hệ thống, để mọi phòng ban cùng nhìn chung một nguồn dữ liệu.",
     imageKey: "projectLoan",
-    tag: "Fintech · Phần mềm nội bộ",
+    tag: "Fintech · Quản lý khoản vay",
     title: "Hệ thống ERP & Quản lý khoản vay",
     problem:
       "Nhiều đơn vị cho vay vẫn chạy bằng Excel ở từng chi nhánh, duyệt hồ sơ qua email, hợp đồng giấy và báo cáo làm tay. Không ai theo dõi được một khoản vay từ đầu đến cuối ở cùng một chỗ, việc duyệt khó truy lại, và số liệu lãi giữa các bộ phận dễ bị lệch nhau.",
@@ -95,7 +95,7 @@ export const caseStudies: CaseStudy[] = [
     capabilities: ["Hồ sơ thú cưng online","Định danh thú cưng bằng QR","Quản lý chủ nuôi","Chuyển nhượng thú cưng","Sổ sức khỏe & tiêm phòng","Liên hệ khi thú lạc","Thông tin thú y","Hệ sinh thái chăm sóc thú cưng","Thẻ & tag QR in sẵn"],
     closing: "PETID chưa phải câu chuyện khách hàng đã hoàn tất — đây là sản phẩm mình tự xây, và cũng là ví dụ thực tế cho cách mình nghĩ về sản phẩm và xây nền tảng lâu dài.",
     imageKey: "projectPetId",
-    tag: "Pet-tech · Đang hoàn thiện",
+    tag: "Pet-tech · Hồ sơ thú cưng số",
     title: "PetID Vietnam — Nền tảng định danh thú cưng số",
     liveUrl: "https://petid.vn/",
     liveUrlLabel: "Xem bản preview — petid.vn",
@@ -280,7 +280,7 @@ export const caseStudies: CaseStudy[] = [
       "Vercel",
     ],
     overview:
-      "Mình xây website đang chạy của Y99 Finance tại vayicloudcantho.com, cùng hệ thống mà đội marketing dùng để quản lý nó. Yêu cầu vay từ website có thể chuyển thẳng vào phần mềm cho vay của công ty. Case study này nói về website và hệ thống nội dung — không bao gồm phần mềm cho vay nội bộ.",
+      "Mình xây website đang chạy của Y99 Finance tại vayicloudcantho.com, cùng hệ thống mà đội marketing dùng để quản lý nó. Yêu cầu vay từ website có thể chuyển thẳng vào phần mềm cho vay của công ty. Dự án này nói về website và hệ thống nội dung — không bao gồm phần mềm cho vay nội bộ.",
     challenges: [
       "Một schema CMS phục vụ cả đọc RLS công khai và ghi đặc quyền phía admin",
       "Độ tin cậy lead: vẫn lưu CMS dù sync LMS lỗi (cảnh báo, không fail cứng)",

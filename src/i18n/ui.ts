@@ -47,6 +47,9 @@ export type UiCopy = {
   faqEyebrow: string;
   faqTitle: string;
   contactOrEmail: string;
+  contactNextSteps: string;
+  contactSteps: string[];
+  testimonialsViewProject: string;
   footerServices: string;
   footerLinks: string;
   footerContact: string;
@@ -131,7 +134,7 @@ export const uiCopy: Record<Locale, UiCopy> = {
     contactProject: "What are you trying to build?",
     contactBudget: "Approximate budget",
     contactTimeline: "Timeline",
-    budgetOptions: ["Under $1,000", "$1,000–$3,000", "$3,000–$5,000", "$5,000–$10,000", "$10,000+"],
+    budgetOptions: ["Under $2,000", "$2,000–$5,000", "$5,000–$10,000", "$10,000–$25,000", "$25,000+"],
     timelineOptions: ["ASAP", "1–2 months", "3–6 months", "Flexible"],
     footerRemote: "Remote worldwide",
     heroViewProject: "View",
@@ -140,6 +143,13 @@ export const uiCopy: Record<Locale, UiCopy> = {
     faqEyebrow: "FAQ",
     faqTitle: "Common questions from new clients",
     contactOrEmail: "Or email directly:",
+    contactNextSteps: "What happens next",
+    contactSteps: [
+      "I read your brief and reply within 48 hours.",
+      "We have a short 15–30 minute call to understand your workflow.",
+      "You get a suggested approach, a clear scope and a milestone-based quote.",
+    ],
+    testimonialsViewProject: "View project",
     footerServices: "Services",
     footerLinks: "Links",
     footerContact: "Contact",
@@ -206,11 +216,11 @@ export const uiCopy: Record<Locale, UiCopy> = {
     resultsDiscussLink: "Cùng trao đổi mục tiêu dự án",
     servicesCustomPackage: "Cần gói tuỳ chỉnh hoặc retainer?",
     servicesCustomPackageLink: "Nhắn email để tư vấn miễn phí",
-    projectsCaseStudy: "Case study",
+    projectsCaseStudy: "Xem chi tiết",
     projectsProblem: "Vấn đề",
     projectsSolution: "Giải pháp",
-    projectsReadFull: "Xem case study đầy đủ",
-    projectsViewAll: "Xem tất cả case study",
+    projectsReadFull: "Xem chi tiết dự án",
+    projectsViewAll: "Xem tất cả dự án",
     selectedWorkVisit: "Xem site",
     selectedWorkConfidential: "Bảo mật",
     selectedWorkBoardLabel: "Dự án & sản phẩm",
@@ -225,7 +235,7 @@ export const uiCopy: Record<Locale, UiCopy> = {
     contactProject: "Bạn đang muốn làm gì?",
     contactBudget: "Ngân sách dự kiến",
     contactTimeline: "Thời gian mong muốn",
-    budgetOptions: ["Dưới 25 triệu", "25–75 triệu", "75–125 triệu", "125–250 triệu", "Trên 250 triệu"],
+    budgetOptions: ["Dưới 20 triệu", "20–50 triệu", "50–100 triệu", "100–200 triệu", "Trên 200 triệu"],
     timelineOptions: ["Càng sớm càng tốt", "1–2 tháng", "3–6 tháng", "Linh hoạt"],
     footerRemote: "Làm việc từ xa toàn cầu",
     heroViewProject: "Xem",
@@ -234,6 +244,13 @@ export const uiCopy: Record<Locale, UiCopy> = {
     faqEyebrow: "FAQ",
     faqTitle: "Câu hỏi thường gặp từ khách mới",
     contactOrEmail: "Hoặc gửi email trực tiếp:",
+    contactNextSteps: "Sau khi bạn gửi",
+    contactSteps: [
+      "Mình đọc kỹ và phản hồi trong vòng 48 giờ.",
+      "Hẹn một cuộc gọi ngắn 15–30 phút để hiểu rõ quy trình của bạn.",
+      "Bạn nhận hướng làm gợi ý, phạm vi rõ ràng và báo giá theo từng giai đoạn.",
+    ],
+    testimonialsViewProject: "Xem dự án",
     footerServices: "Dịch vụ",
     footerLinks: "Liên kết",
     footerContact: "Liên hệ",

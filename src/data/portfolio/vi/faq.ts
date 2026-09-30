@@ -4,7 +4,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Chi phí một dự án khoảng bao nhiêu?",
     answer:
-      "Website nhỏ hoặc công cụ gọn có thể bắt đầu khoảng 40–75 triệu đồng. Hệ thống lớn hơn thì mình chốt phạm vi dựa trên độ phức tạp của quy trình, số phần mềm cần kết nối, số vai trò người dùng và nhu cầu vận hành.\n\nMình gửi phạm vi cố định và báo giá theo từng giai đoạn trước khi bắt tay vào làm.",
+      "Website doanh nghiệp bắt đầu từ khoảng 15 triệu đồng, tự động hóa gọn từ 20 triệu. Web app, phần mềm nội bộ và ứng dụng di động thường từ 60–80 triệu. Hệ thống lớn hơn thì mình chốt phạm vi dựa trên độ phức tạp của quy trình, số phần mềm cần kết nối, số vai trò người dùng và nhu cầu vận hành.\n\nMình gửi phạm vi cố định và báo giá theo từng giai đoạn trước khi bắt tay vào làm.",
   },
   {
     question: "Một dự án thường mất bao lâu?",

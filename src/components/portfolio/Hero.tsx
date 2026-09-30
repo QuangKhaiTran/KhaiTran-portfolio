@@ -1,6 +1,15 @@
 import { ArrowDown, ArrowRight } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useEffect, useState } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import { useEffect, useRef, useState, type PointerEvent } from "react";
+import { riseDelay } from "@/components/motion";
 import { getPortfolioImage } from "@/data/portfolio";
 import type { ImageKey } from "@/data/portfolio/types";
 import { useLocale } from "@/i18n/locale";
@@ -35,39 +44,50 @@ const STACK = [
 export function Hero() {
   const { content } = useLocale();
   const { hero } = content.siteConfig;
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const textY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.2]);
+  const stackY = useTransform(scrollYProgress, [0, 1], [0, 110]);
 
   return (
     <section
+      ref={sectionRef}
       id="home"
       className="relative overflow-hidden border-b border-border gradient-hero"
       aria-labelledby="hero-heading"
     >
       <div className="pointer-events-none absolute inset-0 grid-bg opacity-40" aria-hidden />
       <div className="container-page relative grid items-center gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-24">
-        <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+        <motion.div style={reduceMotion ? undefined : { y: textY, opacity: textOpacity }}>
+          <p className="rise-in text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
             {hero.eyebrow}
           </p>
           <h1
             id="hero-heading"
-            className="mt-4 max-w-xl text-[2rem] font-semibold leading-[1.12] tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]"
+            style={riseDelay(90)}
+            className="rise-in mt-4 max-w-xl text-[2rem] font-semibold leading-[1.12] tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]"
           >
             {hero.headline}
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p style={riseDelay(200)} className="rise-in mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             {hero.subheadline}
           </p>
-          <p className="mt-4 hidden max-w-xl text-sm leading-relaxed text-muted-foreground sm:block">
+          <p style={riseDelay(290)} className="rise-in mt-4 hidden max-w-xl text-sm leading-relaxed text-muted-foreground sm:block">
             {hero.supportingText}
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div style={riseDelay(380)} className="rise-in mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <a
               href="#contact"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-foreground px-5 text-sm font-semibold text-background transition-colors hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-foreground px-5 text-sm font-semibold text-background transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               {hero.primaryCta.replace(" →", "")}
-              <ArrowRight className="h-4 w-4" aria-hidden />
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
             </a>
             <a
               href="#work"
@@ -78,13 +98,17 @@ export function Hero() {
             </a>
           </div>
 
-          <div className="mt-8 space-y-2 text-sm text-muted-foreground">
+          <div style={riseDelay(470)} className="rise-in mt-8 space-y-2 text-sm text-muted-foreground">
             <p className="font-medium text-foreground/80">{hero.proofLine}</p>
             <p>{hero.locationLine}</p>
           </div>
-        </div>
+        </motion.div>
 
-        <HeroCardStack />
+        <motion.div style={reduceMotion ? undefined : { y: stackY }}>
+          <div className="rise-in" style={riseDelay(250)}>
+            <HeroCardStack />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -122,6 +146,25 @@ function HeroCardStack() {
 
   const front = HERO_SHOTS[order[0]!]!;
   const depthScale = compact ? 0.62 : 1;
+  const tiltEnabled = !reduceMotion && !compact;
+
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const springConfig = { stiffness: 150, damping: 18, mass: 0.6 };
+  const rotateX = useSpring(useTransform(pointerY, [-0.5, 0.5], [7, -7]), springConfig);
+  const rotateY = useSpring(useTransform(pointerX, [-0.5, 0.5], [-9, 9]), springConfig);
+
+  const onPointerMove = (e: PointerEvent<HTMLDivElement>) => {
+    if (!tiltEnabled || e.pointerType !== "mouse") return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    pointerX.set((e.clientX - rect.left) / rect.width - 0.5);
+    pointerY.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  const resetTilt = () => {
+    pointerX.set(0);
+    pointerY.set(0);
+  };
 
   return (
     <div
@@ -179,7 +222,16 @@ function HeroCardStack() {
         </div>
       </div>
 
-      <div className="relative mx-auto h-[300px] w-full max-w-[620px] pt-1 sm:h-[460px] sm:pt-2 lg:h-[500px] lg:max-w-[660px]">
+      <motion.div
+        onPointerMove={onPointerMove}
+        onPointerLeave={resetTilt}
+        style={
+          tiltEnabled
+            ? { rotateX, rotateY, transformPerspective: 1200, transformStyle: "preserve-3d" }
+            : undefined
+        }
+        className="relative mx-auto h-[300px] w-full max-w-[620px] pt-1 sm:h-[460px] sm:pt-2 lg:h-[500px] lg:max-w-[660px]"
+      >
         {order.map((shotIndex, depth) => {
           const shot = HERO_SHOTS[shotIndex]!;
           const inStack = depth < STACK.length;
@@ -241,7 +293,7 @@ function HeroCardStack() {
             </motion.button>
           );
         })}
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { getPortfolioImage } from "@/data/portfolio";
 import { getPortfolioContent } from "@/data/portfolio/content";
 import { CaseStudyLiveLink } from "@/components/CaseStudyLiveLink";
 import { useLocale } from "@/i18n/locale";
+import { riseDelay, Stagger, StaggerItem } from "@/components/motion";
 
 const enContent = getPortfolioContent("en");
 
@@ -50,32 +51,31 @@ function CaseStudiesIndexPage() {
 
       <section className="gradient-hero border-b border-border">
         <div className="container-page py-16 lg:py-20">
-          <div className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-white px-3 py-1 text-xs font-medium text-muted-foreground shadow-soft">
+          <div className="rise-in inline-flex w-fit items-center gap-2 rounded-full border border-border bg-white px-3 py-1 text-xs font-medium text-muted-foreground shadow-soft">
             {sections.projects.eyebrow}
           </div>
-          <h1 className="mt-5 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
+          <h1
+            className="rise-in mt-5 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl"
+            style={riseDelay(90)}
+          >
             {sections.projects.title}
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
+          <p
+            className="rise-in mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground"
+            style={riseDelay(180)}
+          >
             {sections.projects.subtitle}
           </p>
-          <p className="mt-4 text-sm font-medium text-muted-foreground">
+          <p className="rise-in mt-4 text-sm font-medium text-muted-foreground" style={riseDelay(260)}>
             {caseStudies.length} {t.caseStudiesCount}
           </p>
         </div>
       </section>
 
       <section className="container-page py-16 lg:py-20">
-        <div className="grid gap-8 sm:grid-cols-2 lg:gap-10">
-          {caseStudies.map((study, idx) => (
-            <motion.article
-              key={study.slug}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.45, delay: idx * 0.05 }}
-              className="group"
-            >
+        <Stagger stagger={0.12} className="grid gap-8 sm:grid-cols-2 lg:gap-10">
+          {caseStudies.map((study) => (
+            <StaggerItem as="article" key={study.slug} className="group">
               <Link
                 to="/case-studies/$slug"
                 params={{ slug: study.slug }}
@@ -121,9 +121,9 @@ function CaseStudiesIndexPage() {
                   />
                 </div>
               )}
-            </motion.article>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </section>
 
       <section className="border-t border-border bg-surface py-16">
@@ -134,13 +134,15 @@ function CaseStudiesIndexPage() {
           <p className="mx-auto mt-3 max-w-lg text-sm text-muted-foreground">
             {t.caseStudiesHaveChallengeDesc}
           </p>
-          <a
+          <motion.a
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             href="/#contact"
             className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-md bg-foreground px-6 text-sm font-semibold text-background"
           >
             {content.siteConfig.hero.primaryCta.replace(" →", "")}
             <ArrowRight className="h-4 w-4" />
-          </a>
+          </motion.a>
         </div>
       </section>
     </div>

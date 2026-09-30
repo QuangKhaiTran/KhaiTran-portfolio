@@ -12,7 +12,7 @@ export const caseStudies: CaseStudy[] = [
     capabilities: ["Customer & loan management","Loan applications","Approval steps","Loan payouts","Repayment tracking","Late-payment follow-up","Accounting","Reports & dashboards","Role-based permissions","Full activity history"],
     closing: "The goal was never just another data-entry app — it was mapping how the business really works, so every team shares the same up-to-date information.",
     imageKey: "projectLoan",
-    tag: "Internal Business Software · Fintech",
+    tag: "Fintech · Loan Management",
     title: "ERP & Loan Management Platform",
     problem:
       "Running a lending business usually means spreadsheets at every branch, approvals over email, paper contracts, and reports put together by hand. Nobody could follow a loan from start to finish in one place, approvals were hard to trace, and interest figures could differ between teams.",
@@ -95,7 +95,7 @@ export const caseStudies: CaseStudy[] = [
     capabilities: ["Digital pet profiles","QR pet identity","Owner management","Pet transfers","Health & vaccination records","Lost-pet contact","Veterinary information","Pet-care ecosystem","Physical QR cards & tags"],
     closing: "PETID is not presented as a completed client success story. It is my own product — and a practical example of how I think about product design and long-term platform building.",
     imageKey: "projectPetId",
-    tag: "Own Product · Pet Technology · In Progress",
+    tag: "Pet Technology · Digital Pet ID",
     title: "PETID Vietnam",
     liveUrl: "https://petid.vn/",
     liveUrlLabel: "Preview live site — petid.vn",

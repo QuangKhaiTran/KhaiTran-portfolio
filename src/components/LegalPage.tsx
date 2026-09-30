@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { useLocale } from "@/i18n/locale";
+import { riseDelay } from "@/components/motion";
 
 export function LegalPage({
   title,
@@ -35,14 +36,19 @@ export function LegalPage({
       </header>
 
       <main className="container-page max-w-3xl py-16 lg:py-20">
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{title}</h1>
-        <p className="mt-3 text-sm text-muted-foreground">
+        <h1 className="rise-in text-3xl font-bold tracking-tight sm:text-4xl">{title}</h1>
+        <p className="rise-in mt-3 text-sm text-muted-foreground" style={riseDelay(90)}>
           {t.legalLastUpdated} {lastUpdated}
         </p>
-        <div className="prose-legal mt-10 space-y-6 text-[15px] leading-relaxed text-foreground/90">
+        <div
+          style={riseDelay(180)}
+          className="rise-in prose-legal mt-10 space-y-6 text-[15px] leading-relaxed text-foreground/90">
           {children}
         </div>
-        <p className="mt-12 border-t border-border pt-8 text-sm text-muted-foreground">
+        <p
+          className="rise-in mt-12 border-t border-border pt-8 text-sm text-muted-foreground"
+          style={riseDelay(260)}
+        >
           {t.legalQuestions}{" "}
           <a href={`mailto:${contact.email}`} className="font-medium text-primary hover:underline">
             {contact.email}

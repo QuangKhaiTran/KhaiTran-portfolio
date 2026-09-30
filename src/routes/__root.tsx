@@ -13,16 +13,28 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SmoothScroll } from "../components/SmoothScroll";
 import { LocaleProvider, useLocale } from "@/i18n/locale";
+import { MotionProvider, riseDelay } from "@/components/motion";
+import { PageTransition } from "@/components/motion/PageTransition";
 
 function NotFoundComponent() {
   const { t } = useLocale();
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">{t.pageNotFound}</h2>
-        <p className="mt-2 text-sm text-muted-foreground">{t.pageNotFoundDesc}</p>
-        <div className="mt-6">
+        <h1 className="rise-in text-7xl font-bold text-foreground">404</h1>
+        <h2
+          className="rise-in mt-4 text-xl font-semibold text-foreground"
+          style={riseDelay(100)}
+        >
+          {t.pageNotFound}
+        </h2>
+        <p
+          className="rise-in mt-2 text-sm text-muted-foreground"
+          style={riseDelay(180)}
+        >
+          {t.pageNotFoundDesc}
+        </p>
+        <div className="rise-in mt-6" style={riseDelay(260)}>
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
@@ -101,7 +113,9 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {children}
+        <LocaleProvider>
+          <MotionProvider>{children}</MotionProvider>
+        </LocaleProvider>
         <Scripts />
       </body>
     </html>
@@ -113,10 +127,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <LocaleProvider>
-        <SmoothScroll />
+      <SmoothScroll />
+      <PageTransition>
         <Outlet />
-      </LocaleProvider>
+      </PageTransition>
     </QueryClientProvider>
   );
 }

@@ -153,6 +153,40 @@
       transparent 52px
     );
     mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3));
+    animation: cta-drift 18s linear infinite;
+  }
+}
+
+@keyframes cta-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-52px, 0, 0);
+  }
+}
+
+/* Above-the-fold entrance runs in CSS so SSR content animates before hydration. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility rise-in {
+  animation: rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--rise-delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in,
+  .gradient-cta::before {
+    animation: none !important;
   }
 }
 
@@ -168,4 +202,8 @@
     linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
   background-size: 56px 56px;
+}
+
+section[id] {
+  scroll-margin-top: 4.5rem;
 }

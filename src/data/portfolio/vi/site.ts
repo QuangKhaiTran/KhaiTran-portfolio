@@ -11,7 +11,7 @@ const SITE_URL = enSite.seo.canonicalUrl;
 export const siteConfig: SiteConfig = {
   brand: {
     name: "Trần Quang Khái",
-    tagline: "Business Software Developer",
+    tagline: "Lập trình viên phần mềm doanh nghiệp",
     description: "Phần mềm tuỳ chỉnh · Web · SaaS · Công cụ nội bộ · Tự động hóa AI",
   },
   seo: {
@@ -67,7 +67,7 @@ export const siteConfig: SiteConfig = {
         "Mình không bắt đầu từ việc chọn công nghệ. Mình bắt đầu từ cách team đang làm việc, chỗ nào đang mất thời gian, và phần mềm thật sự cần giải quyết gì.",
     },
     projects: {
-      eyebrow: "Case study",
+      eyebrow: "Câu chuyện dự án",
       title: "Dự án nổi bật",
       subtitle:
         "Bốn hệ thống cho thấy cách mình biến quy trình kinh doanh thành phần mềm chạy thật.",
