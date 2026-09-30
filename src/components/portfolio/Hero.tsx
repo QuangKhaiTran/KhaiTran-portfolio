@@ -94,14 +94,23 @@ function HeroCardStack() {
   const reduceMotion = useReducedMotion();
   const [order, setOrder] = useState(() => HERO_SHOTS.map((_, i) => i));
   const [paused, setPaused] = useState(false);
+  const [compact, setCompact] = useState(false);
 
   useEffect(() => {
-    if (reduceMotion || paused) return;
+    const mq = window.matchMedia("(max-width: 639px)");
+    const sync = () => setCompact(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    if (paused) return;
     const id = window.setInterval(() => {
       setOrder((prev) => [...prev.slice(1), prev[0]!]);
     }, CYCLE_MS);
     return () => window.clearInterval(id);
-  }, [reduceMotion, paused]);
+  }, [paused]);
 
   const bringToFront = (shotIndex: number) => {
     setOrder((prev) => {
@@ -111,10 +120,11 @@ function HeroCardStack() {
   };
 
   const front = HERO_SHOTS[order[0]!]!;
+  const depthScale = compact ? 0.62 : 1;
 
   return (
     <div
-      className="relative z-0 isolate hidden overflow-hidden sm:block"
+      className="relative z-0 isolate w-full overflow-hidden"
       aria-label="Selected production work"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -130,7 +140,7 @@ function HeroCardStack() {
         aria-hidden
       />
 
-      <div className="mb-4 flex items-end justify-between gap-3 px-1">
+      <div className="mb-3 flex items-end justify-between gap-3 px-1 sm:mb-4">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
             Selected production work
@@ -168,7 +178,7 @@ function HeroCardStack() {
         </div>
       </div>
 
-      <div className="relative mx-auto h-[460px] w-full max-w-[620px] overflow-hidden pt-2 lg:h-[500px] lg:max-w-[660px]">
+      <div className="relative mx-auto h-[300px] w-full max-w-[620px] overflow-hidden pt-1 sm:h-[460px] sm:pt-2 lg:h-[500px] lg:max-w-[660px]">
         {order.map((shotIndex, depth) => {
           const shot = HERO_SHOTS[shotIndex]!;
           const inStack = depth < STACK.length;
@@ -183,26 +193,30 @@ function HeroCardStack() {
               aria-current={isFront ? "true" : undefined}
               tabIndex={inStack ? 0 : -1}
               onClick={() => bringToFront(shotIndex)}
-              className="absolute inset-x-[4%] top-0 aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-card text-left shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="absolute inset-x-[3%] top-0 aspect-[16/10] overflow-hidden rounded-xl border border-border bg-card text-left shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:inset-x-[4%] sm:rounded-2xl"
               style={{ transformOrigin: "center center", pointerEvents: inStack ? "auto" : "none" }}
               initial={false}
               animate={{
-                x: reduceMotion ? 0 : pose.x,
-                y: reduceMotion ? 12 + depth * 10 : pose.y,
-                rotate: reduceMotion ? 0 : pose.rotate,
-                scale: reduceMotion ? 1 - depth * 0.03 : pose.scale,
+                x: pose.x * depthScale,
+                y: pose.y * depthScale,
+                rotate: pose.rotate,
+                scale: pose.scale,
                 zIndex: inStack ? pose.z : 0,
                 opacity: inStack ? pose.opacity : 0,
               }}
-              transition={{
-                type: "spring",
-                stiffness: 260,
-                damping: 28,
-                mass: 0.9,
-              }}
+              transition={
+                reduceMotion
+                  ? { duration: 0 }
+                  : {
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 28,
+                      mass: 0.9,
+                    }
+              }
               whileHover={
                 isFront && !reduceMotion
-                  ? { y: pose.y + 4, transition: { duration: 0.25 } }
+                  ? { y: pose.y * depthScale + 4, transition: { duration: 0.25 } }
                   : undefined
               }
             >
@@ -214,7 +228,7 @@ function HeroCardStack() {
                 decoding="async"
                 draggable={false}
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-foreground/70 to-transparent px-4 pb-3 pt-10">
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-foreground/70 to-transparent px-3 pb-2.5 pt-8 sm:px-4 sm:pb-3 sm:pt-10">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-white/70">
                   {shot.category}
                 </div>
