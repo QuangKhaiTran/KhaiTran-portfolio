@@ -59,6 +59,7 @@ export const siteConfig: SiteConfig = {
   hero: {
     eyebrow: "BUSINESS SOFTWARE · WEB · AUTOMATION",
     headline: "I turn messy business workflows into reliable software.",
+    headlineAccent: "reliable software",
     subheadline:
       "I build websites, internal management tools, online products, and AI helpers tailored to your business — replacing spreadsheets, cutting repetitive work, and helping your team run more smoothly.",
     supportingText:

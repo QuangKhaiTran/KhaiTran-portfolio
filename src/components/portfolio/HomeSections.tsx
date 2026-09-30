@@ -1,7 +1,20 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Check, Lock, Quote } from "lucide-react";
-import { useEffect, useState, type FormEvent } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type FormEvent,
+  type PointerEvent,
+} from "react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useSpring,
+} from "framer-motion";
 import {
   Accordion,
   AccordionContent,
@@ -16,7 +29,16 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { CaseStudyLiveLink } from "@/components/CaseStudyLiveLink";
-import { CountUp, Reveal, Stagger, StaggerItem, variants } from "@/components/motion";
+import {
+  CountUp,
+  Magnetic,
+  Reveal,
+  Stagger,
+  StaggerItem,
+  trackSpotlight,
+  variants,
+} from "@/components/motion";
+import { cn } from "@/lib/utils";
 import { getClientLogoImage, getPortfolioImage } from "@/data/portfolio";
 import type { CaseStudy, Service } from "@/data/portfolio/types";
 import type { ClientLogoKey } from "@/data/portfolio/trust";
@@ -42,11 +64,14 @@ export function SelectedWork() {
             <StaggerItem as="p" variant="fadeIn" className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
               {selectedWork.eyebrow}
             </StaggerItem>
-            <StaggerItem>
-              <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+            <div className="-my-[0.15em] overflow-hidden py-[0.15em]">
+              <motion.h2
+                variants={variants.maskUp}
+                className="mt-2 font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
+              >
                 {selectedWork.title}
-              </h2>
-            </StaggerItem>
+              </motion.h2>
+            </div>
             <StaggerItem as="p" className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
               {selectedWork.subtitle}
             </StaggerItem>
@@ -60,22 +85,30 @@ export function SelectedWork() {
           </a>
         </div>
 
-        <Stagger
-          as="ul"
-          stagger={0.07}
-          className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4 sm:gap-x-8 sm:gap-y-10"
-        >
-          {items.map((item) => (
-            <StaggerItem
-              as="li"
-              key={item.name}
-              variant="scaleIn"
-              whileHover={{ y: -5, transition: { duration: 0.25 } }}
-            >
-              <WorkProofItem item={item} />
-            </StaggerItem>
-          ))}
-        </Stagger>
+        <Reveal variant="fadeIn" className="group/marquee marquee-mask mt-10 overflow-hidden">
+          <div
+            className="marquee-track flex w-max group-hover/marquee:[animation-play-state:paused]"
+            style={{ "--marquee-duration": "36s" } as CSSProperties}
+          >
+            {[0, 1].map((copy) => (
+              <ul
+                key={copy}
+                className={cn("flex shrink-0 items-start", copy === 1 && "marquee-dup")}
+                aria-hidden={copy === 1 || undefined}
+                inert={copy === 1 || undefined}
+              >
+                {items.map((item) => (
+                  <li
+                    key={item.name}
+                    className="w-40 shrink-0 px-4 transition-transform duration-300 hover:-translate-y-1 sm:w-52 sm:px-6"
+                  >
+                    <WorkProofItem item={item} />
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -216,7 +249,8 @@ export function ServicesSection() {
                 as="article"
                 key={service.id}
                 whileHover={{ y: -4, transition: { duration: 0.25 } }}
-                className="group flex flex-col rounded-2xl border border-border bg-card p-7 transition-[border-color,box-shadow] duration-300 hover:border-foreground/15 hover:shadow-lift"
+                onPointerMove={trackSpotlight}
+                className="spotlight group flex flex-col rounded-2xl border border-border bg-card p-7 transition-[border-color,box-shadow] duration-300 hover:border-foreground/15 hover:shadow-lift"
               >
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
@@ -351,6 +385,24 @@ export function FlagshipProjects() {
 export function MoreWork() {
   const { content, t } = useLocale();
   const { moreWork } = content.siteConfig.sections;
+  const [previewSlug, setPreviewSlug] = useState<string | null>(null);
+  const previewX = useSpring(0, { stiffness: 320, damping: 30, mass: 0.4 });
+  const previewY = useSpring(0, { stiffness: 320, damping: 30, mass: 0.4 });
+  const previewStudy = previewSlug ? content.getCaseStudyBySlug(previewSlug) : undefined;
+  const previewImage = previewStudy ? getPortfolioImage(previewStudy.imageKey) : null;
+
+  const onPreviewMove = (e: PointerEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    if (previewSlug) {
+      previewX.set(x);
+      previewY.set(y);
+    } else {
+      previewX.jump(x);
+      previewY.jump(y);
+    }
+  };
 
   return (
     <section id="more-work" className="border-b border-border bg-surface py-16 lg:py-20">
@@ -360,12 +412,39 @@ export function MoreWork() {
           title={moreWork.title}
           subtitle={moreWork.subtitle}
         />
+        <div className="relative" onPointerMove={onPreviewMove}>
+        <AnimatePresence>
+          {previewImage ? (
+            <motion.div
+              key="preview"
+              className="pointer-events-none absolute left-0 top-0 z-20 hidden md:block"
+              style={{ x: previewX, y: previewY }}
+              aria-hidden
+            >
+              <div className="-translate-x-1/2 -translate-y-[112%]">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8, rotate: -4 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, rotate: 4 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-72 overflow-hidden rounded-xl border border-border bg-card shadow-lift"
+                >
+                  <img src={previewImage} alt="" className="aspect-[16/10] w-full object-cover" />
+                </motion.div>
+              </div>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
         <Stagger stagger={0.1} className="mt-10 divide-y divide-border border-y border-border">
           {content.moreProjects.map((project) => (
             <StaggerItem
               key={project.title}
               variant="slideLeft"
-              className="grid gap-3 py-6 md:grid-cols-[0.9fr_1.4fr_0.7fr] md:items-start md:gap-8"
+              onPointerEnter={(e: PointerEvent<HTMLDivElement>) => {
+                if (e.pointerType === "mouse") setPreviewSlug(project.slug ?? null);
+              }}
+              onPointerLeave={() => setPreviewSlug(null)}
+              className="grid gap-3 py-6 transition-colors duration-300 hover:bg-background/60 md:grid-cols-[0.9fr_1.4fr_0.7fr] md:items-start md:gap-8"
             >
               <div>
                 <h3 className="text-lg font-semibold tracking-tight">{project.title}</h3>
@@ -391,6 +470,7 @@ export function MoreWork() {
             </StaggerItem>
           ))}
         </Stagger>
+        </div>
       </div>
     </section>
   );
@@ -399,6 +479,17 @@ export function MoreWork() {
 export function ProcessSection() {
   const { content } = useLocale();
   const { process } = content.siteConfig.sections;
+  const steps = content.processSteps;
+  const trackRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: trackRef,
+    offset: ["start 85%", "end 55%"],
+  });
+  const fill = useSpring(scrollYProgress, { stiffness: 120, damping: 28, mass: 0.3 });
+  const [activeCount, setActiveCount] = useState(0);
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    setActiveCount(Math.min(steps.length, Math.floor(v * steps.length + 0.4)));
+  });
 
   return (
     <section id="process" className="border-b border-border bg-background py-16 lg:py-24">
@@ -408,20 +499,40 @@ export function ProcessSection() {
           title={process.title}
           subtitle={process.subtitle}
         />
-        <Stagger as="ol" stagger={0.1} className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {content.processSteps.map((step) => (
+        <div ref={trackRef}>
+        <div className="relative mt-12 h-1 overflow-hidden rounded-full bg-border" aria-hidden>
+          <motion.div
+            className="absolute inset-0 origin-left rounded-full bg-gradient-to-r from-primary to-brand-soft"
+            style={{ scaleX: fill }}
+          />
+        </div>
+        <Stagger as="ol" stagger={0.1} className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {steps.map((step, i) => {
+            const active = i < activeCount;
+            return (
             <StaggerItem
               as="li"
               key={step.n}
-              className="group relative overflow-hidden rounded-2xl bg-surface p-6"
+              className={cn(
+                "group relative overflow-hidden rounded-2xl p-6 ring-1 transition-[background-color,box-shadow] duration-500",
+                active ? "bg-card shadow-soft ring-primary/25" : "bg-surface ring-transparent"
+              )}
             >
               <span
-                className="pointer-events-none absolute -right-1 -top-3 font-display text-7xl font-semibold tracking-tighter text-foreground/[0.06] transition-colors duration-300 group-hover:text-primary/15"
+                className={cn(
+                  "pointer-events-none absolute -right-1 -top-3 font-display text-7xl font-semibold tracking-tighter transition-colors duration-500",
+                  active ? "text-primary/15" : "text-foreground/[0.06]"
+                )}
                 aria-hidden
               >
                 {step.n}
               </span>
-              <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-primary">
+              <div
+                className={cn(
+                  "text-[11px] font-semibold uppercase tracking-[0.16em] transition-colors duration-500",
+                  active ? "text-primary" : "text-muted-foreground"
+                )}
+              >
                 {step.n}
               </div>
               <h3 className="mt-2 text-lg font-semibold tracking-tight">
@@ -430,8 +541,10 @@ export function ProcessSection() {
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.desc}</p>
             </StaggerItem>
-          ))}
+            );
+          })}
         </Stagger>
+        </div>
       </div>
     </section>
   );
@@ -566,7 +679,10 @@ function TestimonialCard({
   );
 
   return (
-    <figure className="flex h-full flex-col rounded-2xl border border-border bg-card p-7 shadow-soft">
+    <figure
+      onPointerMove={trackSpotlight}
+      className="spotlight flex h-full flex-col rounded-2xl border border-border bg-card p-7 shadow-soft"
+    >
       <div className="flex items-center justify-between gap-4">
         {logo?.logoKey ? (
           <img
@@ -652,7 +768,8 @@ export function EngagementSection() {
               as="article"
               key={pkg.id}
               whileHover={{ y: -4, transition: { duration: 0.25 } }}
-              className="flex flex-col rounded-2xl border border-border bg-card p-6 transition-shadow duration-300 hover:shadow-lift"
+              onPointerMove={trackSpotlight}
+              className="spotlight flex flex-col rounded-2xl border border-border bg-card p-6 transition-shadow duration-300 hover:shadow-lift"
             >
               <h3 className="text-lg font-semibold tracking-tight">{pkg.title}</h3>
               <div className="mt-3 font-display text-2xl font-semibold tracking-tight text-foreground">
@@ -743,6 +860,17 @@ export function FinalCta() {
 
   return (
     <section className="border-b border-border gradient-cta text-primary-foreground">
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <span className="orb-float absolute -left-24 -top-1/3 h-80 w-80 rounded-full bg-white/15 blur-3xl" />
+        <span
+          className="orb-float absolute -right-16 top-1/4 h-96 w-96 rounded-full bg-sky-300/30 blur-3xl"
+          style={{ "--orb-duration": "20s", "--orb-delay": "-6s" } as CSSProperties}
+        />
+        <span
+          className="orb-float absolute -bottom-1/2 left-1/3 h-72 w-72 rounded-full bg-indigo-300/30 blur-3xl"
+          style={{ "--orb-duration": "24s", "--orb-delay": "-12s" } as CSSProperties}
+        />
+      </div>
       <Stagger stagger={0.1} className="container-page py-16 lg:py-20">
         <StaggerItem as="p" variant="fadeIn" className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground/70">
           {cta.badge}
@@ -756,15 +884,17 @@ export function FinalCta() {
           {cta.subtitle}
         </StaggerItem>
         <StaggerItem className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <Magnetic className="flex">
           <motion.a
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             href="#contact"
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-background px-5 text-sm font-semibold text-foreground transition-colors hover:bg-background/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-md bg-background px-5 text-sm font-semibold text-foreground transition-colors hover:bg-background/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             {cta.primaryCta.replace(" →", "")}
             <ArrowRight className="h-4 w-4" aria-hidden />
           </motion.a>
+          </Magnetic>
           <motion.a
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}

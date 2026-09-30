@@ -1,4 +1,5 @@
-import { Stagger, StaggerItem } from "@/components/motion";
+import { motion } from "framer-motion";
+import { Stagger, StaggerItem, variants } from "@/components/motion";
 import { cn } from "@/lib/utils";
 
 export function SectionHeader({
@@ -25,11 +26,14 @@ export function SectionHeader({
           {eyebrow}
         </StaggerItem>
       ) : null}
-      <StaggerItem>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+      <div className="-my-[0.15em] overflow-hidden py-[0.15em]">
+        <motion.h2
+          variants={variants.maskUp}
+          className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
+        >
           {title}
-        </h2>
-      </StaggerItem>
+        </motion.h2>
+      </div>
       {subtitle ? (
         <StaggerItem
           as="p"

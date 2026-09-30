@@ -9,7 +9,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
-import { riseDelay } from "@/components/motion";
+import { Magnetic, riseDelay } from "@/components/motion";
 import { getPortfolioImage } from "@/data/portfolio";
 import type { ImageKey } from "@/data/portfolio/types";
 import { useLocale } from "@/i18n/locale";
@@ -69,10 +69,9 @@ export function Hero() {
           </p>
           <h1
             id="hero-heading"
-            style={riseDelay(90)}
-            className="rise-in mt-4 max-w-xl text-[2rem] font-semibold leading-[1.12] tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]"
+            className="mt-4 max-w-xl text-[2rem] font-semibold leading-[1.12] tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]"
           >
-            {hero.headline}
+            <HeroHeadline text={hero.headline} accent={hero.headlineAccent} />
           </h1>
           <p style={riseDelay(200)} className="rise-in mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             {hero.subheadline}
@@ -82,13 +81,15 @@ export function Hero() {
           </p>
 
           <div style={riseDelay(380)} className="rise-in mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <Magnetic className="flex">
             <a
               href="#contact"
-              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-foreground px-5 text-sm font-semibold text-background transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="group inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-md bg-foreground px-5 text-sm font-semibold text-background transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               {hero.primaryCta.replace(" →", "")}
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
             </a>
+            </Magnetic>
             <a
               href="#work"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-border bg-background/80 px-5 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
@@ -111,6 +112,67 @@ export function Hero() {
         </motion.div>
       </div>
     </section>
+  );
+}
+
+const WORD_START_MS = 90;
+const WORD_STEP_MS = 55;
+
+function HeroHeadline({ text, accent }: { text: string; accent?: string }) {
+  const at = accent ? text.indexOf(accent) : -1;
+  const parts =
+    at >= 0 && accent
+      ? [
+          { text: text.slice(0, at), accent: false },
+          { text: accent, accent: true },
+          { text: text.slice(at + accent.length), accent: false },
+        ]
+      : [{ text, accent: false }];
+
+  let index = 0;
+  const renderWords = (segment: string) =>
+    segment
+      .split(/(\s+)/)
+      .filter(Boolean)
+      .map((token, i) => {
+        if (/^\s+$/.test(token)) return token;
+        const delay = WORD_START_MS + index++ * WORD_STEP_MS;
+        return (
+          <span key={`${i}-${token}`} className="rise-in inline-block" style={riseDelay(delay)}>
+            {token}
+          </span>
+        );
+      });
+
+  return (
+    <>
+      {parts.map((part, i) => {
+        if (!part.accent) return <span key={i}>{renderWords(part.text)}</span>;
+        const words = renderWords(part.text);
+        return (
+          <span key={i} className="relative inline-block sm:whitespace-nowrap">
+            {words}
+            <svg
+              className="pointer-events-none absolute -bottom-[0.12em] left-0 h-[0.32em] w-full overflow-visible text-primary"
+              viewBox="0 0 300 12"
+              preserveAspectRatio="none"
+              aria-hidden
+            >
+              <path
+                d="M3 9 C 70 3, 160 2, 297 6"
+                pathLength={1}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={3.5}
+                strokeLinecap="round"
+                className="draw-line"
+                style={riseDelay(WORD_START_MS + index * WORD_STEP_MS + 250)}
+              />
+            </svg>
+          </span>
+        );
+      })}
+    </>
   );
 }
 

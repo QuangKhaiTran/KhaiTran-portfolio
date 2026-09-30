@@ -44,6 +44,7 @@ export const siteConfig: SiteConfig = {
   hero: {
     eyebrow: "PHẦN MỀM NGHIỆP VỤ · WEB · TỰ ĐỘNG HÓA",
     headline: "Mình biến quy trình kinh doanh rối rắm thành phần mềm đáng tin cậy.",
+    headlineAccent: "phần mềm đáng tin cậy",
     subheadline:
       "Mình làm website, phần mềm quản lý nội bộ, sản phẩm online và công cụ AI theo đúng nhu cầu doanh nghiệp — thay cho file Excel, bớt việc lặp đi lặp lại, giúp đội ngũ làm việc gọn gàng hơn.",
     supportingText:

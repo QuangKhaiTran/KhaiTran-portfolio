@@ -8,7 +8,14 @@ import {
   useSpring,
   type HTMLMotionProps,
 } from "framer-motion";
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type PointerEvent,
+  type ReactNode,
+} from "react";
 import { cn } from "@/lib/utils";
 import { EASE_OUT, VIEWPORT, staggerContainer, variants, type VariantName } from "./presets";
 
@@ -108,6 +115,52 @@ export function ScrollProgress({ className }: { className?: string }) {
       )}
       style={{ scaleX }}
     />
+  );
+}
+
+/** Feeds the pointer position to `.spotlight` cards as CSS variables. */
+export function trackSpotlight(e: PointerEvent<HTMLElement>) {
+  const el = e.currentTarget;
+  const rect = el.getBoundingClientRect();
+  el.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+  el.style.setProperty("--my", `${e.clientY - rect.top}px`);
+}
+
+/** Pulls its child slightly toward the mouse pointer. */
+export function Magnetic({
+  children,
+  strength = 0.3,
+  className,
+}: {
+  children: ReactNode;
+  strength?: number;
+  className?: string;
+}) {
+  const reduceMotion = useReducedMotion();
+  const x = useSpring(0, { stiffness: 220, damping: 16, mass: 0.4 });
+  const y = useSpring(0, { stiffness: 220, damping: 16, mass: 0.4 });
+
+  const onPointerMove = (e: PointerEvent<HTMLDivElement>) => {
+    if (reduceMotion || e.pointerType !== "mouse") return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    x.set((e.clientX - rect.left - rect.width / 2) * strength);
+    y.set((e.clientY - rect.top - rect.height / 2) * strength);
+  };
+
+  const reset = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      className={cn("inline-flex", className)}
+      style={{ x, y }}
+      onPointerMove={onPointerMove}
+      onPointerLeave={reset}
+    >
+      {children}
+    </motion.div>
   );
 }
 

@@ -64,6 +64,13 @@ export const variants = {
       transition: { duration: 1.1, ease: EASE_OUT, ...withDelay(d) },
     }),
   },
+  maskUp: {
+    hidden: { y: "110%" },
+    visible: (d: Delay) => ({
+      y: "0%",
+      transition: { duration: 0.9, ease: EASE_OUT, ...withDelay(d) },
+    }),
+  },
   lineDraw: {
     hidden: { scaleX: 0 },
     visible: (d: Delay) => ({
