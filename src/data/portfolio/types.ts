@@ -1,6 +1,18 @@
-export type ServiceIcon = "workflow" | "smartphone" | "bot" | "megaphone";
+export type ServiceIcon =
+  | "workflow"
+  | "smartphone"
+  | "bot"
+  | "globe"
+  | "wrench"
+  | "megaphone";
 
 export type FloatCardIcon = "gauge" | "boxes" | "bot" | "workflow";
+
+export type ProjectType =
+  | "client"
+  | "internal"
+  | "own-product"
+  | "in-progress";
 
 export type ImageKey =
   | "dashboardHero"
@@ -58,6 +70,7 @@ export interface SiteConfig {
     description: string;
     ogTitle: string;
     ogDescription: string;
+    canonicalUrl?: string;
   };
   contact: {
     email: string;
@@ -77,14 +90,19 @@ export interface SiteConfig {
   };
   nav: NavItem[];
   hero: {
-    badge: string;
+    eyebrow: string;
     headline: string;
-    headlineAccent: string;
+    headlineAccent?: string;
     subheadline: string;
+    supportingText: string;
     primaryCta: string;
     secondaryCta: string;
-    trustBadges: string[];
-    floatCards: Array<{
+    proofLine: string;
+    locationLine: string;
+    /** @deprecated V1 float cards — optional for compat */
+    badge?: string;
+    trustBadges?: string[];
+    floatCards?: Array<{
       icon: FloatCardIcon;
       title: string;
       sub: string;
@@ -92,27 +110,43 @@ export interface SiteConfig {
     }>;
   };
   sections: {
-    results: { eyebrow: string; title: string; subtitle: string };
+    selectedWork: { eyebrow: string; title: string; subtitle: string };
     services: { eyebrow: string; title: string; subtitle: string };
     projects: { eyebrow: string; title: string; subtitle: string };
+    moreWork: { eyebrow: string; title: string; subtitle: string };
     process: { eyebrow: string; title: string; subtitle: string };
     about: { eyebrow: string; title: string; subtitle: string };
     testimonials: { eyebrow: string; title: string; subtitle?: string };
-    clients: { eyebrow: string; title: string };
-    trust: { eyebrow: string; title: string; subtitle: string };
+    engagement: { eyebrow: string; title: string; subtitle: string };
+    faq: { eyebrow: string; title: string; subtitle?: string };
+    contact: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      submitCta: string;
+      supporting: string;
+    };
     cta: {
       badge: string;
       title: string;
       subtitle: string;
       primaryCta: string;
       secondaryCta: string;
+      supporting?: string;
     };
+    /** @deprecated V1 */
+    results?: { eyebrow: string; title: string; subtitle: string };
+    clients?: { eyebrow: string; title: string };
+    trust?: { eyebrow: string; title: string; subtitle: string };
   };
   footer: {
     blurb: string;
     legal: Array<{ label: string; href: string }>;
+    copyright: string;
   };
   freelancePlatforms: string[];
+  navCta: string;
+  mobileStickyCta: string;
 }
 
 export interface ResultMetric {
@@ -123,7 +157,9 @@ export interface ResultMetric {
 export interface Service {
   id: string;
   icon: ServiceIcon;
+  number: string;
   title: string;
+  subtitle: string;
   gigTitle: string;
   desc: string;
   items: string[];
@@ -132,6 +168,8 @@ export interface Service {
   from: string;
   timeline: string;
   span: string;
+  cta: string;
+  ctaHref: string;
 }
 
 export interface CaseStudyMetric {
@@ -145,6 +183,8 @@ export interface CaseStudy {
   imageKey: ImageKey;
   tag: string;
   title: string;
+  /** One-line problem → solution for cards */
+  headline: string;
   problem: string;
   solution: string;
   result: string;
@@ -165,6 +205,12 @@ export interface CaseStudy {
   metrics: CaseStudyMetric[];
   /** Business outcomes shown prominently on cards and case study pages */
   businessMetrics?: CaseStudyMetric[];
+  capabilities?: string[];
+  projectType: ProjectType;
+  statusLabel: string;
+  featured: boolean;
+  featuredOrder?: number;
+  closing?: string;
   testimonialId?: string;
   liveUrl?: string;
   liveUrlLabel?: string;
@@ -176,7 +222,18 @@ export interface CaseStudy {
 export interface ProcessStep {
   n: string;
   title: string;
+  shortTitle: string;
   desc: string;
+}
+
+export interface AboutValue {
+  title: string;
+  desc: string;
+}
+
+export interface StackGroup {
+  label: string;
+  items: string;
 }
 
 export interface Profile {
@@ -187,6 +244,10 @@ export interface Profile {
   longBio: string;
   skills: string[];
   languages: string[];
+  values: AboutValue[];
+  stackGroups: StackGroup[];
+  location: string;
+  availability: string;
 }
 
 export interface Testimonial {
@@ -209,4 +270,32 @@ export interface Testimonial {
 export interface FaqItem {
   question: string;
   answer: string;
+}
+
+export interface PricingPackage {
+  id: string;
+  title: string;
+  from: string;
+  desc: string;
+  items: string[];
+  note?: string;
+}
+
+export interface EngagementInfo {
+  packages: PricingPackage[];
+  payment: { title: string; desc: string };
+  ownership: { title: string; desc: string };
+  scope: { title: string; desc: string };
+  warranty: { title: string; desc: string };
+  startingLabel: string;
+  quoteLabel: string;
+}
+
+export interface MoreProject {
+  slug?: string;
+  title: string;
+  tag: string;
+  desc: string;
+  role: string;
+  liveUrl?: string;
 }

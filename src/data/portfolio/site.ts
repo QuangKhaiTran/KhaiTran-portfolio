@@ -1,8 +1,5 @@
 import type { SiteConfig } from "./types";
 
-// ── Owner inputs (also overridable via VITE_* env vars at build time) ─────────
-// See PORTFOLIO-PENDING.md for the full checklist.
-
 const EMAIL =
   import.meta.env.VITE_PORTFOLIO_EMAIL ?? "tranquangkhai562@gmail.com";
 
@@ -17,6 +14,9 @@ const SOCIAL = {
   github: import.meta.env.VITE_PORTFOLIO_GITHUB?.trim() ?? "",
 };
 
+const SITE_URL =
+  import.meta.env.VITE_PORTFOLIO_SITE_URL?.trim() ?? "https://tranquangkhai.dev";
+
 export const portfolioMeta = {
   isSampleContent: false,
   sampleNotice: "",
@@ -25,137 +25,127 @@ export const portfolioMeta = {
 export const siteConfig: SiteConfig = {
   brand: {
     name: "Trần Quang Khái",
-    tagline: "Full-Stack Developer · Custom Web Apps & AI Automation",
+    tagline: "Business Software Developer",
     description:
-      "I build custom web apps, internal tools, and AI-powered automation for startups and SMBs — scoped clearly, shipped on time, and built to solve real business problems.",
+      "Custom software · Web · SaaS · Internal Tools · AI Automation",
   },
   seo: {
-    title: "Trần Quang Khái — Full-Stack Developer | React, Next.js, AI Automation",
+    title:
+      "Trần Quang Khái — Business Software Developer | Web, SaaS & Automation",
     description:
-      "Freelance full-stack developer based in Vietnam. I build custom web applications, SaaS MVPs, and AI workflow automation for startups and SMBs worldwide.",
-    ogTitle: "Trần Quang Khái — Full-Stack Developer & Software Consultant",
-    ogDescription:
-      "Custom web apps, SaaS MVPs, and AI automation for startups and growing businesses.",
+      "Trần Quang Khái builds custom business software, internal tools, SaaS products and AI automation for startups and growing businesses.",
+    ogTitle: "Trần Quang Khái — Business Software Developer",
+    ogDescription: "I turn messy business workflows into reliable software.",
+    canonicalUrl: SITE_URL,
   },
   contact: {
     email: EMAIL,
     phone: "",
     address: "Cần Thơ, Vietnam",
     bookingUrl: BOOKING_URL,
-    calendlyUrl: BOOKING_URL || `mailto:${EMAIL}?subject=${encodeURIComponent("Discovery Call Request")}`,
+    calendlyUrl:
+      BOOKING_URL ||
+      `mailto:${EMAIL}?subject=${encodeURIComponent("Discovery Call Request")}`,
   },
   social: SOCIAL,
   nav: [
-    { label: "Home", href: "#home" },
+    { label: "Work", href: "#work" },
     { label: "Services", href: "#services" },
-    { label: "Projects", href: "#projects" },
-    { label: "Reviews", href: "#testimonials" },
     { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
+    { label: "FAQ", href: "#faq" },
   ],
+  navCta: "Start a Project",
+  mobileStickyCta: "Start a Project →",
   hero: {
-    badge: "Available for freelance · UTC+7 · overlap US/EU",
-    headline: "I build software that solves real",
-    headlineAccent: "business problems",
+    eyebrow: "BUSINESS SOFTWARE · WEB · AUTOMATION",
+    headline: "I turn messy business workflows into reliable software.",
     subheadline:
-      "I'm a full-stack developer helping companies replace spreadsheets, launch SaaS products, and automate workflows with custom web apps and AI.",
-    primaryCta: "Get in Touch",
-    secondaryCta: "View Projects",
-    trustBadges: [
-      "React · Next.js · Node.js",
-      "Fixed-price milestones",
-      "Weekly demos & written scope",
-    ],
-    floatCards: [
-      {
-        icon: "gauge",
-        title: "9+ Projects",
-        sub: "Shipped to production",
-        className: "absolute -left-6 top-10 lg:-left-12",
-      },
-      {
-        icon: "boxes",
-        title: "6+ Industries",
-        sub: "Fintech · Pet · Retail",
-        className: "absolute -right-4 top-24 lg:-right-10",
-      },
-      {
-        icon: "bot",
-        title: "AI Automation",
-        sub: "GPT-4o · RAG · Agents",
-        className: "absolute -left-2 bottom-10 lg:-left-8",
-      },
-      {
-        icon: "workflow",
-        title: "Business Systems",
-        sub: "CRM · ERP · PMS",
-        className: "absolute -right-2 bottom-2 lg:-right-8",
-      },
-    ],
+      "I build custom web applications, internal tools, SaaS products, and AI-powered workflows that replace spreadsheets, reduce repetitive work, and help teams operate more efficiently.",
+    supportingText:
+      "From a simple business website to a full operational platform, I work from the problem first — then design and build the software around the workflow.",
+    primaryCta: "Tell Me About Your Project →",
+    secondaryCta: "View Selected Work ↓",
+    proofLine: "9+ production projects · Web · SaaS · Internal Tools · AI",
+    locationLine: "Based in Vietnam · UTC+7 · Remote worldwide",
   },
   sections: {
-    results: {
-      eyebrow: "Impact",
-      title: "Outcomes clients care about",
+    selectedWork: {
+      eyebrow: "Proof",
+      title: "Selected Work",
       subtitle:
-        "Less manual work, faster operations, and software your team actually adopts — not vanity metrics.",
+        "A selection of business systems, products, and digital platforms I've worked on.",
     },
     services: {
       eyebrow: "Services",
-      title: "What I can build for you",
+      title: "Software built around your business.",
       subtitle:
-        "Focused on web apps and AI automation with clear scope, concrete deliverables, and transparent starting rates.",
+        "I don't start with a technology stack. I start by understanding how your team works, where time is being lost, and what the software actually needs to accomplish.",
     },
     projects: {
       eyebrow: "Case Studies",
-      title: "Selected project work",
+      title: "Flagship projects",
       subtitle:
-        "Real engagements across fintech, pet-tech, e-commerce, hospitality, retail, and automotive — scoped clearly and shipped on time.",
+        "Four systems that show how I turn business workflows into production software.",
+    },
+    moreWork: {
+      eyebrow: "More",
+      title: "More Projects",
+      subtitle: "A few more systems and digital products I've worked on.",
     },
     process: {
       eyebrow: "Process",
-      title: "How I work from idea to launch",
+      title: "From business problem to production software.",
       subtitle:
-        "A clear six-step process so you always know what's next — no black box development.",
+        "Good software starts with understanding the workflow — not choosing a framework.",
     },
     about: {
       eyebrow: "About",
-      title: "Hi, I'm Trần Quang Khái",
+      title: "I build software for the way businesses actually work.",
       subtitle:
-        "Full-stack developer in Cần Thơ, Vietnam. I ship production software for fintech, hospitality, retail, and automotive clients worldwide.",
+        "I'm Trần Quang Khái, a full-stack software developer based in Vietnam.",
     },
     testimonials: {
-      eyebrow: "Client Reviews",
-      title: "What clients say after we ship",
-      subtitle:
-        "Feedback tied to projects above — each review links to a shipped product you can verify.",
+      eyebrow: "Testimonials",
+      title: "What clients say",
+      subtitle: "Feedback from teams I've shipped software with.",
     },
-    clients: {
-      eyebrow: "Trusted by",
-      title: "Teams I've shipped for",
-    },
-    trust: {
-      eyebrow: "How we work together",
-      title: "Low risk from day one",
+    engagement: {
+      eyebrow: "Engagement",
+      title: "Simple engagement. Clear scope.",
       subtitle:
-        "Clear scope, milestone payments, and full ownership — so you can hire with confidence.",
+        "Every project is different, so I use the scope and complexity of the workflow to determine the final price.",
+    },
+    faq: {
+      eyebrow: "FAQ",
+      title: "Common questions",
+      subtitle: "Practical answers before we start.",
+    },
+    contact: {
+      eyebrow: "Contact",
+      title: "Tell me about your project",
+      subtitle:
+        "Share a few details and I'll review the problem, suggest a practical approach, and provide a scoped proposal.",
+      submitCta: "Send Project Brief →",
+      supporting: "No commitment. I'll review the details and get back to you.",
     },
     cta: {
-      badge: "Free discovery · reply within 48h",
+      badge: "Next step",
       title: "Have a workflow that's slowing your team down?",
       subtitle:
-        "Tell me about the problem. I'll reply with a scoped plan and fixed-price quote within 48 hours — no obligation.",
-      primaryCta: "Get in Touch",
-      secondaryCta: "View projects",
+        "Maybe it's a spreadsheet your team has outgrown. Maybe your customers need a better portal. Maybe your business has grown to the point where manual processes are becoming expensive.\n\nTell me what you're trying to fix.",
+      primaryCta: "Tell Me About Your Project →",
+      secondaryCta: "View Selected Work",
+      supporting:
+        "I'll review the problem, suggest a practical approach, and provide a scoped proposal.",
     },
   },
   footer: {
-    blurb:
-      "Full-stack developer building custom software for startups and SMBs. Based in Cần Thơ, Vietnam, working with clients worldwide.",
+    blurb: "Custom software · Web · SaaS · AI Automation",
     legal: [
       { label: "Privacy", href: "/privacy" },
       { label: "Terms", href: "/terms" },
     ],
+    copyright: "© 2026 Trần Quang Khái. Built with Next.js.",
   },
   freelancePlatforms: [
     ...(SOCIAL.upwork ? (["Upwork"] as const) : []),

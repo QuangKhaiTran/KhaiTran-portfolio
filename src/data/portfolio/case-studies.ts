@@ -4,13 +4,20 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "loan-management-platform",
     isSample: false,
+    headline: "Turning fragmented lending operations into one connected system.",
+    projectType: "internal",
+    statusLabel: "Internal · Confidential",
+    featured: true,
+    featuredOrder: 1,
+    capabilities: ["Customer & loan management","Application workflows","Approval processes","Disbursement tracking","Repayment management","Collections","Accounting workflows","Reporting & dashboards","Role-based access","Audit-oriented data handling"],
+    closing: "The focus was not simply building another CRUD application — it was modeling the business workflow so different teams could work from the same source of truth.",
     imageKey: "projectLoan",
-    tag: "Fintech · Internal Tool",
-    title: "ERP & Loan Management System",
+    tag: "Internal Business Software · Fintech",
+    title: "ERP & Loan Management Platform",
     problem:
-      "Credit institutions and lenders in Vietnam often run on disconnected tools — branch-level Excel, email approvals, paper contracts, and manual reporting. There is no single source of truth for loan lifecycles, approval chains are hard to audit for State Bank (NHNN) requirements, interest calculations and NPA/IRAC classification are error-prone, domestic payment rails (VietQR, VNPay, Momo) are not integrated, and most software is not built for Vietnamese language and workflows.",
+      "Loan operations often involve multiple teams, spreadsheets, documents, approvals, repayment schedules, accounting workflows, and reporting requirements. The goal was to bring these workflows into a single operational platform.",
     solution:
-      "A full-stack ERP and loan management platform on Next.js 15 + Supabase — Modular Monolith with DDD, CQRS, and event-driven architecture covering the entire loan lifecycle: origination (lead → application → underwriting), servicing (disbursement, repayment, schedule, restructure, write-off, foreclosure), collateral, collections (overdue + promise-to-pay), contracts with token-based e-signature, accounting (GL entries, payment entries, invoices), compliance reports (NPA, ALM, ICP), and 14 batch automation jobs (accrual, demand, classification, reminders).",
+      "A modular lending platform covering the loan lifecycle from customer and application management through approval, disbursement, repayment, collections, accounting, and reporting — built as a modular monolith on Next.js, TypeScript, Node.js, PostgreSQL, Supabase, and Redis.",
     result: "End-to-End Lending Operations",
     year: "2025–2026",
     client: {
@@ -20,7 +27,7 @@ export const caseStudies: CaseStudy[] = [
       size: "16 DDD modules · 200+ API endpoints",
     },
     duration: "Ongoing (Modular Monolith build-out)",
-    role: "Full-stack development, system architecture, UI/UX, DevOps",
+    role: "Architecture · Full-stack development · Database design · DevOps",
     stack: [
       "Next.js",
       "React",
@@ -39,7 +46,7 @@ export const caseStudies: CaseStudy[] = [
       "next-intl",
     ],
     overview:
-      "I built an ERP and loan management platform that replaces fragmented Excel, email, and paper-contract workflows with one unified system — from application intake and underwriting through disbursement, collections, NPA classification, and compliance reporting.",
+      "Turning fragmented lending operations into one connected system — a modular platform for the loan lifecycle so different teams can work from the same source of truth.",
     challenges: [
       "Designing 16 independent bounded contexts that still communicate via domain events (e.g. LoanDisbursed → GL entries)",
       "Accurate financial calculations with decimal.js — EMI, moratorium, reducing balance; no floating-point math",
@@ -55,7 +62,7 @@ export const caseStudies: CaseStudy[] = [
       "Deployed to production on Vercel + Supabase Cloud with Upstash Redis, Bull background jobs, and SSE real-time notifications",
     ],
     outcomes: [
-      "200+ API endpoints and 62 repositories — enterprise-grade architecture, not a simple CRUD app",
+      "200+ API endpoints and 62 repositories — modular architecture designed around the product's workflows — not a simple CRUD app",
       "16/16 modules complete per internal architecture review",
       "~90 test files (Vitest + fast-check property-based testing) including end-to-end loan lifecycle flows",
       "2,161 Vietnamese translation keys — ready for the domestic market",
@@ -66,10 +73,9 @@ export const caseStudies: CaseStudy[] = [
     confidentialNote:
       "Private production platform — architecture walkthrough and scoped demo available under NDA during discovery.",
     businessMetrics: [
-      { label: "Manual reporting", value: "Eliminated" },
-      { label: "Loan lifecycle", value: "End-to-end" },
-      { label: "Compliance reports", value: "Automated" },
-      { label: "Payment rails", value: "3 integrated" },
+      { label: "Business modules", value: "16+" },
+      { label: "API endpoints", value: "200+" },
+      { label: "Database tables", value: "60+" },
     ],
     metrics: [
       { label: "API endpoints", value: "200+" },
@@ -81,9 +87,16 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "petid-vietnam-platform",
     isSample: false,
+    headline: "A digital identity platform for pets.",
+    projectType: "own-product",
+    statusLabel: "Own Product · Building",
+    featured: true,
+    featuredOrder: 4,
+    capabilities: ["Digital pet profiles","QR pet identity","Owner management","Pet transfers","Health & vaccination records","Lost-pet contact","Veterinary information","Pet-care ecosystem","Physical QR cards & tags"],
+    closing: "PETID is not presented as a completed client success story. It is my own product — and a practical example of how I approach product design, architecture, and long-term platform thinking.",
     imageKey: "projectPetId",
-    tag: "Pet-tech · In Progress",
-    title: "PetID Vietnam — Digital Pet Identity Platform",
+    tag: "Own Product · Pet Technology · In Progress",
+    title: "PETID Vietnam",
     liveUrl: "https://petid.vn/",
     liveUrlLabel: "Preview live site — petid.vn",
     problem:
@@ -99,7 +112,7 @@ export const caseStudies: CaseStudy[] = [
       size: "5 apps · dual Supabase · actively completing",
     },
     duration: "In progress (Aug 2026–present)",
-    role: "Founder / full-stack product delivery — architecture, mobile, web, Supabase, deploy",
+    role: "Founder · Product strategy · System architecture · Full-stack development · Operations",
     stack: [
       "React Native",
       "Expo",
@@ -153,9 +166,16 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "cafinex-ecommerce-cms",
     isSample: false,
+    headline: "A coffee business website that also works as an operational sales tool.",
+    projectType: "client",
+    statusLabel: "Client Project · Live",
+    featured: true,
+    featuredOrder: 3,
+    capabilities: ["Product catalog","Product management","Self-service CMS","Online ordering","COD checkout","B2B inquiry flow","Lead management","SEO-friendly pages","Role-based administration"],
+    closing: "The goal was to turn a company website into a practical business tool — not just another landing page.",
     imageKey: "projectCafinex",
-    tag: "E-commerce · Coffee Equipment",
-    title: "Cafinex — Coffee Equipment Store & CMS",
+    tag: "E-commerce · B2B · CMS",
+    title: "Cafinex E-commerce & CMS",
     liveUrl: "https://cafinex.vn/",
     liveUrlLabel: "View live site — cafinex.vn",
     problem:
@@ -171,7 +191,7 @@ export const caseStudies: CaseStudy[] = [
       size: "Storefront + Admin CMS · VPS production",
     },
     duration: "~2 months build · ongoing enhancements",
-    role: "Full-stack development, CMS architecture, commerce flows, DevOps",
+    role: "Full-stack development · CMS architecture · E-commerce workflow · Deployment",
     stack: [
       "Next.js",
       "React",
@@ -223,6 +243,13 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "y99-finance-hub",
     isSample: false,
+    headline: "A finance company website and CMS for content operations and lead capture.",
+    projectType: "client",
+    statusLabel: "Client Project · Live",
+    featured: false,
+    
+    capabilities: ["Marketing website","Self-serve CMS","Lead capture","SEO pages","Store locator"],
+    closing: "Built to support digital presence and content operations for a finance business.",
     imageKey: "projectY99",
     tag: "Fintech · Marketing + CMS",
     title: "Y99 Finance — vayicloudcantho.com",
@@ -292,9 +319,16 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "y-hotel-booking-platform",
     isSample: false,
+    headline: "Replacing phone calls, chat messages, and spreadsheets with one booking workflow.",
+    projectType: "client",
+    statusLabel: "Client Project · Live",
+    featured: true,
+    featuredOrder: 2,
+    capabilities: ["Booking management","Room availability","Customer records","Operational dashboard","Booking status","Payment tracking","Staff workflows","Reporting"],
+    closing: "Built for real-world daily operations — not just a marketing website.",
     imageKey: "projectHotel",
-    tag: "Hospitality · Full-Stack SaaS",
-    title: "Y Hotel — Booking & Operations Platform",
+    tag: "Hospitality · Internal Software",
+    title: "Y Hotel Booking & Operations Platform",
     liveUrl: "https://yhotel.vn/",
     liveUrlLabel: "View live site — yhotel.vn",
     problem:
@@ -310,7 +344,7 @@ export const caseStudies: CaseStudy[] = [
       size: "2 branches · 20+ rooms",
     },
     duration: "12 weeks",
-    role: "Full-stack development, UI/UX, database design",
+    role: "Product analysis · UI/UX · Full-stack development · Deployment",
     stack: [
       "Next.js",
       "Supabase",
@@ -364,6 +398,13 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "asia-night-life-platform",
     isSample: false,
+    headline: "A multi-location nightlife platform with localization and SEO-focused URLs.",
+    projectType: "client",
+    statusLabel: "Client Project · Live",
+    featured: false,
+    
+    capabilities: ["Venue discovery","Localization","SEO slug architecture","Admin tools","AI venue assistant"],
+    closing: "Structured venue content and workflows across multiple markets.",
     imageKey: "projectAI",
     tag: "Entertainment · Platform",
     title: "Asia Night Life Platform",
@@ -436,6 +477,13 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "gcm-manager-dealer-operations",
     isSample: false,
+    headline: "Connecting showroom operations, customer workflows, and contract processes.",
+    projectType: "client",
+    statusLabel: "Client Project · Live",
+    featured: false,
+    
+    capabilities: ["Inventory","CRM","Contracts","Finance workflows","Staff permissions","Reporting"],
+    closing: "Internal management software for dealership operations from showroom to contract.",
     imageKey: "projectGcmManager",
     tag: "Automotive · Dealer Operations System",
     title: "GCM Manager - Showroom to Contract Operations",
@@ -505,6 +553,13 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "vinfast-dealership-website",
     isSample: false,
+    headline: "A digital vehicle showcase designed around discovery and customer inquiries.",
+    projectType: "client",
+    statusLabel: "Client Project · Live",
+    featured: false,
+    
+    capabilities: ["Vehicle catalog","Lead capture","Booking flows","Catalog sync","Local SEO"],
+    closing: "A practical digital showroom for vehicle discovery and inquiry capture.",
     imageKey: "projectVinfast",
     tag: "Automotive · Dealer Website",
     title: "VinFast Ngọc Anh — VinFast Dealership Platform",
@@ -580,4 +635,11 @@ export function getCaseStudyBySlug(slug: string): CaseStudy | undefined {
 
 export function getAllCaseStudySlugs(): string[] {
   return caseStudies.map((c) => c.slug);
+}
+
+
+export function getFeaturedCaseStudies(): CaseStudy[] {
+  return caseStudies
+    .filter((c) => c.featured)
+    .sort((a, b) => (a.featuredOrder ?? 99) - (b.featuredOrder ?? 99));
 }

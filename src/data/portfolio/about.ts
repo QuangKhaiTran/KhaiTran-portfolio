@@ -2,25 +2,66 @@ import type { Profile } from "./types";
 
 export const profile: Profile = {
   name: "Trần Quang Khái",
-  title: "Full-Stack Developer & Software Consultant",
+  title: "Business Software Developer",
   avatarKey: "avatarKhai",
-  bio: "I help startups and SMBs turn messy operations into reliable software — internal tools, SaaS MVPs, e-commerce, mobile apps, and AI automation. I've shipped products across fintech, hospitality, retail, automotive, coffee equipment, and pet-tech, always with a focus on clear scope, weekly demos, and measurable outcomes.",
+  bio: "I'm Trần Quang Khái, a full-stack software developer based in Vietnam.",
   longBio:
-    "Based in Cần Thơ, Vietnam, I work with clients in the US, EU, and Southeast Asia. I handle the full stack — React/Next.js and React Native/Expo frontends, Node.js/NestJS APIs, PostgreSQL databases, and cloud deployment on AWS or Vercel. When a project needs AI, I build practical integrations (chatbots, document extraction, workflow agents) that plug into existing tools — not science experiments.",
+    "My work sits between business operations and software development. I enjoy taking workflows that are spread across spreadsheets, chat messages, documents, and manual processes and turning them into systems that people can actually use every day.",
   skills: [
-    "React & Next.js",
-    "React Native & Expo",
-    "Node.js & NestJS",
-    "PostgreSQL & MongoDB",
-    "OpenAI & LangChain",
-    "AWS & Vercel",
+    "Next.js & React",
+    "TypeScript",
+    "Node.js",
+    "PostgreSQL & Supabase",
+    "OpenAI & automation",
+    "Vercel & Docker",
   ],
-  languages: ["English (fluent)", "Vietnamese (native)"],
+  languages: [
+    "Vietnamese — Native",
+    "English — Professional working proficiency",
+  ],
+  values: [
+    {
+      title: "Clarity",
+      desc: "The software should make a process easier to understand, not add another layer of complexity.",
+    },
+    {
+      title: "Practical architecture",
+      desc: "I choose architecture based on the product's actual requirements and expected growth — not complexity for its own sake.",
+    },
+    {
+      title: "Ownership",
+      desc: "I care about delivering software that the business can maintain, understand, and continue building on.",
+    },
+    {
+      title: "Real usage",
+      desc: "A beautiful interface means little if the team still has to maintain five spreadsheets behind it.",
+    },
+  ],
+  stackGroups: [
+    {
+      label: "Frontend",
+      items: "Next.js · React · TypeScript · Tailwind CSS",
+    },
+    {
+      label: "Backend & Data",
+      items: "Node.js · PostgreSQL · Supabase",
+    },
+    {
+      label: "Infrastructure",
+      items: "Vercel · Docker · Redis",
+    },
+    {
+      label: "AI & Automation",
+      items: "OpenAI · Python · APIs & workflow automation",
+    },
+  ],
+  location: "Cần Thơ, Vietnam · UTC+7",
+  availability: "Remote projects across Vietnam and international markets.",
 };
 
 export const aboutHighlights = [
   { label: "Shipped", value: "9+ projects" },
-  { label: "Focus", value: "Web · Mobile · AI" },
-  { label: "Timezone", value: "UTC+7 · US/EU overlap" },
-  { label: "Engagement", value: "Fixed-price · Milestones" },
+  { label: "Focus", value: "Web · SaaS · Internal Tools" },
+  { label: "Timezone", value: "UTC+7 · Remote worldwide" },
+  { label: "Engagement", value: "Milestones · Clear scope" },
 ];

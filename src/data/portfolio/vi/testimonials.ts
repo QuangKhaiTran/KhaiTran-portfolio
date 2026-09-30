@@ -1,14 +1,14 @@
-import type { Testimonial } from "./types";
+import type { Testimonial } from "../types";
 
 export const testimonials: Testimonial[] = [
   {
     id: "t-minh-tran",
     avatarKey: "avatar1",
     name: "Minh Tran",
-    role: "Hotel Operations Manager",
+    role: "Quản lý vận hành khách sạn",
     company: "Y Hotel",
     quote:
-      "We finally have a clearer way to manage our daily operations instead of keeping everything across messages and spreadsheets.",
+      "Cuối cùng chúng tôi cũng có cách rõ ràng hơn để quản lý vận hành hàng ngày, thay vì để mọi thứ nằm rải rác trên tin nhắn và spreadsheet.",
     platform: "Direct",
     projectSlug: "y-hotel-booking-platform",
     companyUrl: "https://yhotel.vn/",
@@ -22,7 +22,7 @@ export const testimonials: Testimonial[] = [
     role: "Product Lead",
     company: "Asia Night Life",
     quote:
-      "The new platform gave the team a much more structured way to manage the venue information and workflows.",
+      "Nền tảng mới giúp đội ngũ quản lý thông tin địa điểm và quy trình có cấu trúc hơn rất nhiều.",
     platform: "Direct",
     projectSlug: "asia-night-life-platform",
     companyUrl: "https://asianightlife.sg/",
@@ -33,10 +33,10 @@ export const testimonials: Testimonial[] = [
     id: "t-thao-vo",
     avatarKey: "avatar3",
     name: "Thao Vo",
-    role: "Marketing Director",
+    role: "Giám đốc Marketing",
     company: "VinFast Ngọc Anh",
     quote:
-      "The platform gave us a more professional way to present our vehicles and capture customer inquiries.",
+      "Nền tảng giúp chúng tôi giới thiệu xe chuyên nghiệp hơn và thu hút yêu cầu khách hàng tốt hơn.",
     platform: "Direct",
     projectSlug: "vinfast-dealership-website",
     companyUrl: "https://vinfast3scamau.com/",

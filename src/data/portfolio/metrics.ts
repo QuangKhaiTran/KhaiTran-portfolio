@@ -1,35 +1,13 @@
-import type { ResultMetric } from "./types";
+import type { ResultMetric, TechName } from "./types";
 
 export const resultMetrics: ResultMetric[] = [
-  { value: "9+", label: "Production projects delivered" },
-  { value: "~70%", label: "Avg. reduction in manual ops (client projects)" },
-  { value: "4–8 wks", label: "Typical MVP delivery time" },
-  { value: "30 days", label: "Post-launch support included" },
+  { value: "9+", label: "Production Projects" },
+  { value: "4+", label: "Business Domains" },
+  { value: "Web · SaaS · Mobile", label: "Product Types" },
+  { value: "Remote", label: "Vietnam · Worldwide" },
 ];
 
-export const techStack: Array<
-  | "React"
-  | "Next.js"
-  | "TypeScript"
-  | "Node.js"
-  | "Supabase"
-  | "PostgreSQL"
-  | "Redis"
-  | "Tailwind CSS"
-  | "Vercel"
-  | "OpenAI"
-  | "Sepay"
-  | "OnePay"
-  | "Resend"
-  | "TipTap"
-  | "TanStack Query"
-  | "Radix UI"
-  | "Zod"
-  | "decimal.js"
-  | "next-intl"
-  | "Vitest"
-  | "Docker"
-> = [
+export const techStack: TechName[] = [
   "Next.js",
   "React",
   "TypeScript",

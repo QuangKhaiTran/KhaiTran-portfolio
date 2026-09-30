@@ -1,4 +1,6 @@
 import { siteConfig } from "@/data/portfolio/site";
+import { uiCopy } from "@/i18n/ui";
+import type { Locale } from "@/i18n/types";
 
 const { contact } = siteConfig;
 
@@ -12,20 +14,64 @@ export function hasBookingLink(): boolean {
 }
 
 /** Primary outreach link — Calendly when configured, otherwise mailto. */
-export function getPrimaryContactHref(): string {
+export function getPrimaryContactHref(locale: Locale = "en"): string {
   if (hasBookingLink()) return contact.bookingUrl;
-  return getMailtoHref("Discovery Call Request");
+  return getMailtoHref(uiCopy[locale].contactSubjectDiscovery);
 }
 
-export function getPrimaryContactLabel(): string {
-  return hasBookingLink() ? "Book a Free Call" : "Send an Email";
+export function getPrimaryContactLabel(locale: Locale = "en"): string {
+  const t = uiCopy[locale];
+  return hasBookingLink() ? t.contactBookCall : t.contactSendEmail;
 }
 
-export function getSecondaryContactHref(): string {
-  if (hasBookingLink()) return getMailtoHref("Project Inquiry");
+export function getSecondaryContactHref(locale: Locale = "en"): string {
+  if (hasBookingLink()) return getMailtoHref(uiCopy[locale].contactSubjectInquiry);
   return "#projects";
 }
 
-export function getSecondaryContactLabel(): string {
-  return hasBookingLink() ? "Email instead" : "View projects";
+export function getSecondaryContactLabel(locale: Locale = "en"): string {
+  const t = uiCopy[locale];
+  return hasBookingLink() ? t.contactEmailInstead : t.contactViewProjects;
 }
+
+export type ProjectBrief = {
+  name: string;
+  email: string;
+  company?: string;
+  project: string;
+  budget: string;
+  timeline: string;
+};
+
+/** Build a mailto with structured project-brief body (preserves existing email flow). */
+export function getProjectBriefMailto(brief: ProjectBrief): string {
+  const subject = `Project Brief — ${brief.name}${brief.company ? ` · ${brief.company}` : ""}`;
+  const body = [
+    `Name: ${brief.name}`,
+    `Email: ${brief.email}`,
+    `Company / Website: ${brief.company || "—"}`,
+    "",
+    "What are you trying to build?",
+    brief.project,
+    "",
+    `Approximate budget: ${brief.budget}`,
+    `Timeline: ${brief.timeline}`,
+  ].join("\n");
+
+  return `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+export const BUDGET_OPTIONS = [
+  "Under $1,000",
+  "$1,000–$3,000",
+  "$3,000–$5,000",
+  "$5,000–$10,000",
+  "$10,000+",
+] as const;
+
+export const TIMELINE_OPTIONS = [
+  "ASAP",
+  "1–2 months",
+  "3–6 months",
+  "Flexible",
+] as const;

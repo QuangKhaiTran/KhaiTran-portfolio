@@ -13,6 +13,7 @@ export {
   caseStudies,
   getCaseStudyBySlug,
   getAllCaseStudySlugs,
+  getFeaturedCaseStudies,
 } from "./case-studies";
 export {
   processSteps,
@@ -34,7 +35,14 @@ export {
   trustGuarantees,
 } from "./trust";
 export {
+  engagement,
+  moreProjects,
+} from "./engagement";
+export {
   portfolioImages,
+  clientLogoImages,
   getPortfolioImage,
+  getClientLogoImage,
 } from "./assets";
+export type { ClientLogo, ClientLogoKey, TrustGuarantee } from "./trust";
 export type * from "./types";

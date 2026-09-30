@@ -1,39 +1,54 @@
-import type { FaqItem } from "./types";
-
-export const faqItems: FaqItem[] = [
-  {
-    question: "How do you price projects?",
-    answer:
-      "I offer fixed-price packages with clear deliverables (see Services). After a free discovery email or call, I send a written scope, timeline, and quote. No hourly surprises — each milestone ties to something you can see and test.",
-  },
-  {
-    question: "What's your typical project timeline?",
-    answer:
-      "Landing pages and small MVPs: 4–6 weeks. Business platforms (CRM, PMS, e-commerce): 8–16 weeks. AI automation: 2–5 weeks. You get a week-by-week plan before we start.",
-  },
-  {
-    question: "Do you work with US / EU time zones?",
-    answer:
-      "Yes. I'm based in UTC+7 (Cần Thơ, Vietnam) with 4–6 hours overlap with US Eastern and European business hours. I use Slack, Loom, and weekly video standups.",
-  },
-  {
-    question: "How do payments work — is my money protected?",
-    answer:
-      "Projects are split into milestones — you pay as each phase is demoed and approved. For extra protection, we can work through Upwork escrow. Direct engagements use written contracts with NDA and full IP transfer at handoff.",
-  },
-  {
-    question: "What happens after launch?",
-    answer:
-      "Every project includes 30 days of post-launch bug-fix support. I also offer monthly retainers for new features, monitoring, and ongoing maintenance.",
-  },
-  {
-    question: "Can you work with my existing codebase?",
-    answer:
-      "Absolutely. I often join mid-project — audit the stack, document the architecture, and ship features in your repo. NDA and full IP assignment are standard.",
-  },
-  {
-    question: "How do I get started?",
-    answer:
-      "Use the Contact section to email me (or book a call if scheduling is enabled) with a short description of your project. I'll reply within 48 hours with next steps and a scoped proposal if it's a good fit.",
-  },
-];
+import type { FaqItem } from "./types";
+
+export const faqItems: FaqItem[] = [
+  {
+    question: "How much does a project cost?",
+    answer:
+      "Smaller websites and focused tools can start from around $1,500–$3,000. Larger business platforms are scoped based on workflow complexity, integrations, user roles, and required infrastructure.\n\nI provide a fixed scope and milestone-based quote before development begins.",
+  },
+  {
+    question: "How long does a project take?",
+    answer:
+      "A focused MVP can typically take 4–8 weeks.\n\nLarger business platforms may take 8–16+ weeks, depending on scope and the number of workflows involved.\n\nThe exact timeline is established after requirements are defined.",
+  },
+  {
+    question: "Can you work with my existing design?",
+    answer:
+      "Yes.\n\nI can work from Figma, an existing frontend, a design system, or an existing application that needs new features.",
+  },
+  {
+    question: "Can you work with an existing codebase?",
+    answer:
+      "Yes.\n\nI can audit an existing project, identify technical issues, and continue development instead of rebuilding everything from scratch.",
+  },
+  {
+    question: "Do you work with startups?",
+    answer:
+      "Yes.\n\nFor early-stage products, I usually recommend launching the smallest useful version first, validating the workflow, then expanding based on real usage.",
+  },
+  {
+    question: "Can you work with a small budget?",
+    answer:
+      "Yes.\n\nInstead of removing quality from the project, we can reduce the initial scope and launch the highest-value workflow first.",
+  },
+  {
+    question: "Do you provide maintenance after launch?",
+    answer:
+      "Yes.\n\nMaintenance can include bug fixes, monitoring, small improvements, dependency updates, and technical support.",
+  },
+  {
+    question: "Who owns the code?",
+    answer:
+      "Unless otherwise agreed, the client receives ownership of the final project code and assets after the agreed handoff and payment terms are completed.",
+  },
+  {
+    question: "Do you sign NDAs?",
+    answer:
+      "Yes.\n\nI can work under an NDA when a project involves confidential business information.",
+  },
+  {
+    question: "What do you need to get started?",
+    answer:
+      "You don't need a complete specification.\n\nTell me:\n1. What your business does\n2. What problem you're trying to solve\n3. Who will use the software\n4. Any existing website, system, or workflow\n5. Your approximate timeline\n\nI'll help turn that into a practical project scope.",
+  },
+];

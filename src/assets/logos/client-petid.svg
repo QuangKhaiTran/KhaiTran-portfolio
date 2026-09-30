@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" role="img" aria-label="PetID.vn">
+  <rect x="0" y="2" width="44" height="44" rx="14" fill="#EC4899"/>
+  <g fill="#fff">
+    <circle cx="18.5" cy="15" r="3"/>
+    <circle cx="29.5" cy="18.5" r="3"/>
+    <circle cx="32" cy="29" r="3"/>
+    <path d="M14.2 24.2c5.2 0 9.3 4.2 9.3 9.3v3.8a4.6 4.6 0 0 1-9 1.4c-.9-1.8-2.8-2.9-5-3.4a4.6 4.6 0 0 1 4.7-11.1Z"/>
+  </g>
+  <text x="56" y="32" font-family="ui-sans-serif, system-ui, Segoe UI, sans-serif" font-size="22" font-weight="700" fill="#111827">PetID<tspan fill="#EC4899">.vn</tspan></text>
+</svg>
