@@ -4,9 +4,9 @@ export const profile: Profile = {
   name: "Trần Quang Khái",
   title: "Business Software Developer",
   avatarKey: "avatarKhai",
-  bio: "Mình là Trần Quang Khái, lập trình viên full-stack tại Việt Nam.",
+  bio: "Mình là Trần Quang Khái, lập trình viên full-stack ở Việt Nam.",
   longBio:
-    "Công việc của mình nằm giữa vận hành doanh nghiệp và phát triển phần mềm. Mình thích biến những quy trình đang nằm rải rác trên spreadsheet, tin nhắn, tài liệu và thao tác thủ công thành hệ thống mà mọi người có thể dùng mỗi ngày.",
+    "Công việc của mình nằm giữa vận hành doanh nghiệp và phát triển phần mềm. Mình thích lấy những quy trình đang nằm rải rác trên spreadsheet, tin nhắn, tài liệu và thao tác thủ công — rồi biến thành hệ thống team dùng được mỗi ngày.",
   skills: [
     "Next.js & React",
     "TypeScript",
@@ -17,24 +17,24 @@ export const profile: Profile = {
   ],
   languages: [
     "Tiếng Việt — Bản ngữ",
-    "English — Trình độ chuyên môn làm việc",
+    "English — Dùng tốt trong công việc",
   ],
   values: [
     {
       title: "Rõ ràng",
-      desc: "Phần mềm phải giúp quy trình dễ hiểu hơn, không thêm một lớp phức tạp.",
+      desc: "Phần mềm phải giúp quy trình dễ hiểu hơn — không thêm một lớp rối.",
     },
     {
-      title: "Kiến trúc thực tế",
-      desc: "Mình chọn kiến trúc dựa trên nhu cầu thật và mức tăng trưởng kỳ vọng — không phức tạp vì thích phức tạp.",
+      title: "Vừa đủ, đúng nhu cầu",
+      desc: "Mình làm đúng những gì sản phẩm cần hiện tại, vẫn chừa chỗ để mở rộng — không làm phức tạp chỉ vì thích.",
     },
     {
       title: "Trách nhiệm bàn giao",
-      desc: "Mình muốn giao phần mềm mà doanh nghiệp có thể duy trì, hiểu và tiếp tục phát triển.",
+      desc: "Mình muốn bàn giao phần mềm team bạn hiểu được, giữ được và còn mở rộng tiếp được.",
     },
     {
       title: "Dùng thật",
-      desc: "Giao diện đẹp chẳng có ý nghĩa nếu đội ngũ vẫn phải giữ năm spreadsheet phía sau.",
+      desc: "Giao diện đẹp chẳng có ý nghĩa nếu team vẫn phải giữ năm spreadsheet phía sau.",
     },
   ],
   stackGroups: [
@@ -60,8 +60,8 @@ export const profile: Profile = {
 };
 
 export const aboutHighlights = [
-  { label: "Đã ship", value: "9+ dự án" },
-  { label: "Tập trung", value: "Web · SaaS · Công cụ nội bộ" },
-  { label: "Múi giờ", value: "UTC+7 · Remote toàn cầu" },
-  { label: "Hợp tác", value: "Milestone · Phạm vi rõ" },
+  { label: "Đã hoàn thành", value: "9+ dự án" },
+  { label: "Tập trung", value: "Website · Phần mềm quản lý · Công cụ nội bộ" },
+  { label: "Múi giờ", value: "UTC+7 · Làm việc từ xa toàn cầu" },
+  { label: "Hợp tác", value: "Theo giai đoạn · Phạm vi rõ" },
 ];

@@ -28,8 +28,8 @@ export const processSteps: ProcessStep[] = [
   {
     n: "05",
     title: "Launch",
-    shortTitle: "Put it into production.",
-    desc: "Deployment, configuration, data handling, and production readiness are part of the delivery — not an afterthought.",
+    shortTitle: "Put it to work.",
+    desc: "Setting everything up, moving your existing data over, and making sure it runs reliably in daily use are part of the delivery — not an afterthought.",
   },
   {
     n: "06",

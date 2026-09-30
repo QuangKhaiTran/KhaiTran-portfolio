@@ -9,17 +9,17 @@ export const faqItems: FaqItem[] = [
   {
     question: "How long does a project take?",
     answer:
-      "A focused MVP can typically take 4–8 weeks.\n\nLarger business platforms may take 8–16+ weeks, depending on scope and the number of workflows involved.\n\nThe exact timeline is established after requirements are defined.",
+      "A focused first version (MVP) typically takes 4–8 weeks.\n\nLarger business platforms may take 8–16+ weeks, depending on scope and the number of workflows involved.\n\nThe exact timeline is established after requirements are defined.",
   },
   {
     question: "Can you work with my existing design?",
     answer:
-      "Yes.\n\nI can work from Figma, an existing frontend, a design system, or an existing application that needs new features.",
+      "Yes.\n\nI can work from Figma designs, an existing website or app, your brand guidelines, or a product that just needs new features.",
   },
   {
-    question: "Can you work with an existing codebase?",
+    question: "Can you continue work on software we already have?",
     answer:
-      "Yes.\n\nI can audit an existing project, identify technical issues, and continue development instead of rebuilding everything from scratch.",
+      "Yes.\n\nI can review your existing project, point out what needs fixing, and keep building on it instead of starting over from scratch.",
   },
   {
     question: "Do you work with startups?",
@@ -34,7 +34,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Do you provide maintenance after launch?",
     answer:
-      "Yes.\n\nMaintenance can include bug fixes, monitoring, small improvements, dependency updates, and technical support.",
+      "Yes.\n\nMaintenance can include bug fixes, keeping an eye on the system, small improvements, security and software updates, and help whenever your team has questions.",
   },
   {
     question: "Who owns the code?",

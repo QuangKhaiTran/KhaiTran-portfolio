@@ -181,7 +181,7 @@ function CaseStudyPage() {
         {study.capabilities?.length ? (
           <section className="border-t border-border bg-surface py-16">
             <div className="container-page">
-              <h2 className="text-2xl font-semibold tracking-tight">Key capabilities</h2>
+              <h2 className="text-2xl font-semibold tracking-tight">{t.caseStudyCapabilities}</h2>
               <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {study.capabilities.map((item) => (
                   <li
@@ -221,7 +221,7 @@ function CaseStudyPage() {
             <Accordion type="single" collapsible>
               <AccordionItem value="technical">
                 <AccordionTrigger className="text-left text-lg font-semibold hover:no-underline">
-                  Technical Details
+                  {t.caseStudyTechnicalDetails}
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className="space-y-8 pb-2">

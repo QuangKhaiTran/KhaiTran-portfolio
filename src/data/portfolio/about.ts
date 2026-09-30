@@ -25,8 +25,8 @@ export const profile: Profile = {
       desc: "The software should make a process easier to understand, not add another layer of complexity.",
     },
     {
-      title: "Practical architecture",
-      desc: "I choose architecture based on the product's actual requirements and expected growth — not complexity for its own sake.",
+      title: "Right-sized solutions",
+      desc: "I build what the product actually needs today, with room to grow — never complexity for its own sake.",
     },
     {
       title: "Ownership",

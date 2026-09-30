@@ -1,7 +1,7 @@
 import type { ResultMetric, TechName } from "./types";
 
 export const resultMetrics: ResultMetric[] = [
-  { value: "9+", label: "Production Projects" },
+  { value: "9+", label: "Projects in Real Use" },
   { value: "4+", label: "Business Domains" },
   { value: "Web · SaaS · Mobile", label: "Product Types" },
   { value: "Remote", label: "Vietnam · Worldwide" },

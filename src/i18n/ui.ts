@@ -56,6 +56,8 @@ export type UiCopy = {
   caseStudyApproach: string;
   caseStudyOutcomes: string;
   caseStudyTechStack: string;
+  caseStudyCapabilities: string;
+  caseStudyTechnicalDetails: string;
   caseStudyWantSimilar: string;
   caseStudyWantSimilarDesc: string;
   caseStudyVerifyLive: string;
@@ -135,6 +137,8 @@ export const uiCopy: Record<Locale, UiCopy> = {
     caseStudyApproach: "Approach",
     caseStudyOutcomes: "Outcomes",
     caseStudyTechStack: "Tech stack",
+    caseStudyCapabilities: "Key capabilities",
+    caseStudyTechnicalDetails: "Technical details (for developers)",
     caseStudyWantSimilar: "Want similar results for your business?",
     caseStudyWantSimilarDesc:
       "Email me about your project — I'll reply with a scoped plan and fixed-price quote within 48 hours.",
@@ -194,13 +198,13 @@ export const uiCopy: Record<Locale, UiCopy> = {
     footerServices: "Dịch vụ",
     footerLinks: "Liên kết",
     footerContact: "Liên hệ",
-    footerRights: "Đã đăng ký bản quyền.",
+    footerRights: "Bản quyền thuộc về tác giả.",
     caseStudiesBack: "Quay lại portfolio",
     caseStudiesGetInTouch: "Liên hệ",
     caseStudiesCount: "dự án",
     caseStudiesHaveChallenge: "Bạn đang có bài toán tương tự?",
     caseStudiesHaveChallengeDesc:
-      "Kể mình nghe về dự án — mình sẽ phản hồi kèm phạm vi và báo giá trong vòng 48 giờ.",
+      "Kể mình nghe về dự án — mình sẽ trả lời kèm phạm vi và báo giá trong 48 giờ.",
     caseStudyClient: "Khách hàng",
     caseStudyDuration: "Thời gian",
     caseStudyYear: "Năm",
@@ -208,22 +212,24 @@ export const uiCopy: Record<Locale, UiCopy> = {
     caseStudyBusinessOutcomes: "Kết quả kinh doanh",
     caseStudyTechnicalScale: "Quy mô kỹ thuật",
     caseStudyProjectMetrics: "Chỉ số dự án",
-    caseStudyProblem: "Thách thức",
+    caseStudyProblem: "Vấn đề",
     caseStudySolution: "Những gì mình xây",
     caseStudyChallenges: "Thách thức chính",
     caseStudyApproach: "Cách triển khai",
     caseStudyOutcomes: "Kết quả đạt được",
     caseStudyTechStack: "Công nghệ",
+    caseStudyCapabilities: "Tính năng chính",
+    caseStudyTechnicalDetails: "Chi tiết kỹ thuật (dành cho dân kỹ thuật)",
     caseStudyWantSimilar: "Muốn kết quả tương tự cho doanh nghiệp của bạn?",
     caseStudyWantSimilarDesc:
-      "Gửi email mô tả dự án — mình sẽ phản hồi kèm phạm vi và báo giá cố định trong 48 giờ.",
-    caseStudyVerifyLive: "Xác minh dự án live",
+      "Gửi email mô tả dự án — mình sẽ trả lời kèm phạm vi và báo giá cố định trong 48 giờ.",
+    caseStudyVerifyLive: "Xem dự án đang chạy",
     caseStudyLiveWebsite: "Website live:",
     contactBookCall: "Đặt lịch gọi miễn phí",
     contactSendEmail: "Gửi email",
-    contactEmailInstead: "Gửi email thay thế",
+    contactEmailInstead: "Hoặc gửi email",
     contactViewProjects: "Xem dự án",
-    contactSubjectDiscovery: "Yêu cầu tư vấn nhanh",
+    contactSubjectDiscovery: "Đặt lịch trao đổi dự án",
     contactSubjectInquiry: "Tư vấn dự án",
     specializations: "Chuyên môn",
     deliverables: "Bàn giao",

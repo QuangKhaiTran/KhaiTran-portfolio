@@ -30,7 +30,7 @@ export const siteConfig: SiteConfig = {
     bookingUrl: BOOKING_URL,
     calendlyUrl:
       BOOKING_URL ||
-      `mailto:${EMAIL}?subject=${encodeURIComponent("Yêu cầu tư vấn dự án")}`,
+      `mailto:${EMAIL}?subject=${encodeURIComponent("Tư vấn dự án")}`,
   },
   social: SOCIAL,
   nav: [
@@ -45,59 +45,59 @@ export const siteConfig: SiteConfig = {
     eyebrow: "PHẦN MỀM NGHIỆP VỤ · WEB · TỰ ĐỘNG HÓA",
     headline: "Mình biến quy trình kinh doanh rối rắm thành phần mềm đáng tin cậy.",
     subheadline:
-      "Mình xây web app tuỳ chỉnh, công cụ nội bộ, sản phẩm SaaS và quy trình AI — thay spreadsheet, giảm việc lặp lại, giúp đội ngũ vận hành hiệu quả hơn.",
+      "Mình làm website, phần mềm quản lý nội bộ, sản phẩm online và công cụ AI theo đúng nhu cầu doanh nghiệp — thay cho file Excel, bớt việc lặp đi lặp lại, giúp đội ngũ làm việc gọn gàng hơn.",
     supportingText:
-      "Từ website doanh nghiệp đến nền tảng vận hành đầy đủ, mình bắt đầu từ bài toán — rồi thiết kế và xây phần mềm quanh quy trình thực tế.",
+      "Từ website doanh nghiệp đến nền tảng vận hành đầy đủ, mình bắt đầu từ bài toán thật — rồi mới thiết kế và viết phần mềm bám theo cách team đang làm việc.",
     primaryCta: "Kể mình nghe về dự án →",
     secondaryCta: "Xem dự án tiêu biểu ↓",
-    proofLine: "9+ dự án production · Web · SaaS · Công cụ nội bộ · AI",
-    locationLine: "Tại Việt Nam · UTC+7 · Remote toàn cầu",
+    proofLine: "9+ dự án đang chạy thực tế · Website · Phần mềm quản lý · Ứng dụng · AI",
+    locationLine: "Việt Nam · UTC+7 · Remote toàn cầu",
   },
   sections: {
     selectedWork: {
       eyebrow: "Minh chứng",
       title: "Dự án tiêu biểu",
       subtitle:
-        "Một số hệ thống nghiệp vụ, sản phẩm và nền tảng số mình đã tham gia xây dựng.",
+        "Một số hệ thống nghiệp vụ, sản phẩm và nền tảng số mình đã tham gia xây.",
     },
     services: {
       eyebrow: "Dịch vụ",
       title: "Phần mềm xây quanh doanh nghiệp của bạn.",
       subtitle:
-        "Mình không bắt đầu từ stack công nghệ. Mình bắt đầu từ cách đội ngũ đang làm việc, đâu đang mất thời gian, và phần mềm thực sự cần giải quyết gì.",
+        "Mình không bắt đầu từ việc chọn công nghệ. Mình bắt đầu từ cách team đang làm việc, chỗ nào đang mất thời gian, và phần mềm thật sự cần giải quyết gì.",
     },
     projects: {
       eyebrow: "Case study",
       title: "Dự án nổi bật",
       subtitle:
-        "Bốn hệ thống cho thấy cách mình biến quy trình kinh doanh thành phần mềm production.",
+        "Bốn hệ thống cho thấy cách mình biến quy trình kinh doanh thành phần mềm chạy thật.",
     },
     moreWork: {
       eyebrow: "Thêm",
       title: "Thêm dự án",
-      subtitle: "Một vài hệ thống và sản phẩm số khác mình đã làm.",
+      subtitle: "Vài hệ thống và sản phẩm số khác mình đã làm.",
     },
     process: {
       eyebrow: "Quy trình",
-      title: "Từ bài toán kinh doanh đến phần mềm production.",
+      title: "Từ bài toán kinh doanh đến phần mềm dùng được mỗi ngày.",
       subtitle:
-        "Phần mềm tốt bắt đầu từ hiểu quy trình — không phải chọn framework.",
+        "Phần mềm tốt bắt đầu từ việc hiểu quy trình — không phải chọn công nghệ trước.",
     },
     about: {
       eyebrow: "Giới thiệu",
       title: "Mình xây phần mềm cho cách doanh nghiệp thực sự vận hành.",
-      subtitle: "Mình là Trần Quang Khái, full-stack developer tại Việt Nam.",
+      subtitle: "Mình là Trần Quang Khái, full-stack developer ở Việt Nam.",
     },
     testimonials: {
       eyebrow: "Nhận xét",
       title: "Khách hàng nói gì",
-      subtitle: "Phản hồi từ các đội ngũ mình đã cùng ship phần mềm.",
+      subtitle: "Phản hồi từ các doanh nghiệp mình đã đồng hành.",
     },
     engagement: {
       eyebrow: "Hợp tác",
       title: "Hợp tác đơn giản. Phạm vi rõ ràng.",
       subtitle:
-        "Mỗi dự án khác nhau, nên mình dựa trên phạm vi và độ phức tạp của quy trình để chốt mức giá cuối.",
+        "Mỗi dự án khác nhau, nên mình xem phạm vi và độ phức tạp quy trình rồi mới chốt giá cuối.",
     },
     faq: {
       eyebrow: "FAQ",
@@ -108,19 +108,19 @@ export const siteConfig: SiteConfig = {
       eyebrow: "Liên hệ",
       title: "Kể mình nghe về dự án",
       subtitle:
-        "Chia sẻ vài thông tin — mình sẽ xem bài toán, đề xuất hướng làm thực tế và gửi đề xuất có phạm vi rõ.",
+        "Chia sẻ vài thông tin — mình sẽ xem bài toán, gợi ý hướng làm thực tế và gửi đề xuất có phạm vi rõ.",
       submitCta: "Gửi mô tả dự án →",
-      supporting: "Không ràng buộc. Mình sẽ xem và phản hồi lại.",
+      supporting: "Không cần cam kết gì. Mình đọc rồi trả lời lại.",
     },
     cta: {
       badge: "Bước tiếp theo",
-      title: "Có quy trình nào đang làm chậm đội ngũ của bạn?",
+      title: "Có quy trình nào đang làm chậm team của bạn?",
       subtitle:
-        "Có thể là spreadsheet đội ngũ đã dùng quá tải.\nCó thể khách hàng cần portal tốt hơn.\nCó thể doanh nghiệp đã lớn đến mức quy trình thủ công đang đắt đỏ.\n\nHãy kể mình nghe bạn đang muốn khắc phục gì.",
+        "Có thể file Excel của team đã quá tải.\nCó thể khách hàng cần một cách đặt hàng, đặt lịch hay tra cứu dễ hơn.\nCó thể doanh nghiệp đã lớn đến mức làm tay đang tốn kém.\n\nKể mình nghe bạn đang muốn khắc phục gì.",
       primaryCta: "Kể mình nghe về dự án →",
       secondaryCta: "Xem dự án tiêu biểu",
       supporting:
-        "Mình sẽ xem bài toán, đề xuất hướng làm thực tế và gửi đề xuất có phạm vi rõ.",
+        "Mình sẽ xem bài toán, gợi ý hướng làm thực tế và gửi đề xuất có phạm vi rõ.",
     },
   },
   footer: {

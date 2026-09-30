@@ -41,8 +41,7 @@ export function Hero() {
       <div className="container-page relative grid items-center gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-24">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-            <span className="sm:hidden">BUSINESS SOFTWARE</span>
-            <span className="hidden sm:inline">{hero.eyebrow}</span>
+            {hero.eyebrow}
           </p>
           <h1
             id="hero-heading"
@@ -51,10 +50,7 @@ export function Hero() {
             {hero.headline}
           </h1>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            <span className="sm:hidden">
-              Custom web apps, internal tools, SaaS and AI automation.
-            </span>
-            <span className="hidden sm:inline">{hero.subheadline}</span>
+            {hero.subheadline}
           </p>
           <p className="mt-4 hidden max-w-xl text-sm leading-relaxed text-muted-foreground sm:block">
             {hero.supportingText}
@@ -79,8 +75,7 @@ export function Hero() {
 
           <div className="mt-8 space-y-2 text-sm text-muted-foreground">
             <p className="font-medium text-foreground/80">{hero.proofLine}</p>
-            <p className="hidden sm:block">{hero.locationLine}</p>
-            <p className="sm:hidden">9+ production projects</p>
+            <p>{hero.locationLine}</p>
           </div>
         </div>
 
@@ -91,6 +86,7 @@ export function Hero() {
 }
 
 function HeroCardStack() {
+  const { t } = useLocale();
   const reduceMotion = useReducedMotion();
   const [order, setOrder] = useState(() => HERO_SHOTS.map((_, i) => i));
   const [paused, setPaused] = useState(false);
@@ -125,7 +121,7 @@ function HeroCardStack() {
   return (
     <div
       className="relative z-0 isolate w-full overflow-hidden"
-      aria-label="Selected production work"
+      aria-label={t.selectedWorkBoardLabel}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -143,7 +139,7 @@ function HeroCardStack() {
       <div className="mb-3 flex items-end justify-between gap-3 px-1 sm:mb-4">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-            Selected production work
+            {t.selectedWorkBoardLabel}
           </p>
           <AnimatePresence mode="wait">
             <motion.p

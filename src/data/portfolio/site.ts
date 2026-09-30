@@ -60,12 +60,12 @@ export const siteConfig: SiteConfig = {
     eyebrow: "BUSINESS SOFTWARE · WEB · AUTOMATION",
     headline: "I turn messy business workflows into reliable software.",
     subheadline:
-      "I build custom web applications, internal tools, SaaS products, and AI-powered workflows that replace spreadsheets, reduce repetitive work, and help teams operate more efficiently.",
+      "I build websites, internal management tools, online products, and AI helpers tailored to your business — replacing spreadsheets, cutting repetitive work, and helping your team run more smoothly.",
     supportingText:
       "From a simple business website to a full operational platform, I work from the problem first — then design and build the software around the workflow.",
     primaryCta: "Tell Me About Your Project →",
     secondaryCta: "View Selected Work ↓",
-    proofLine: "9+ production projects · Web · SaaS · Internal Tools · AI",
+    proofLine: "9+ projects in real-world use · Websites · Business tools · Apps · AI",
     locationLine: "Based in Vietnam · UTC+7 · Remote worldwide",
   },
   sections: {
@@ -79,7 +79,7 @@ export const siteConfig: SiteConfig = {
       eyebrow: "Services",
       title: "Software built around your business.",
       subtitle:
-        "I don't start with a technology stack. I start by understanding how your team works, where time is being lost, and what the software actually needs to accomplish.",
+        "I don't start by picking technologies. I start by understanding how your team works, where time is being lost, and what the software actually needs to accomplish.",
     },
     projects: {
       eyebrow: "Case Studies",
@@ -94,9 +94,9 @@ export const siteConfig: SiteConfig = {
     },
     process: {
       eyebrow: "Process",
-      title: "From business problem to production software.",
+      title: "From business problem to software your team uses every day.",
       subtitle:
-        "Good software starts with understanding the workflow — not choosing a framework.",
+        "Good software starts with understanding the workflow — not picking the technology.",
     },
     about: {
       eyebrow: "About",
@@ -107,7 +107,7 @@ export const siteConfig: SiteConfig = {
     testimonials: {
       eyebrow: "Testimonials",
       title: "What clients say",
-      subtitle: "Feedback from teams I've shipped software with.",
+      subtitle: "Feedback from businesses I've worked with.",
     },
     engagement: {
       eyebrow: "Engagement",
@@ -132,7 +132,7 @@ export const siteConfig: SiteConfig = {
       badge: "Next step",
       title: "Have a workflow that's slowing your team down?",
       subtitle:
-        "Maybe it's a spreadsheet your team has outgrown. Maybe your customers need a better portal. Maybe your business has grown to the point where manual processes are becoming expensive.\n\nTell me what you're trying to fix.",
+        "Maybe it's a spreadsheet your team has outgrown. Maybe your customers need an easier way to order, book, or check their status. Maybe your business has grown to the point where manual processes are becoming expensive.\n\nTell me what you're trying to fix.",
       primaryCta: "Tell Me About Your Project →",
       secondaryCta: "View Selected Work",
       supporting:

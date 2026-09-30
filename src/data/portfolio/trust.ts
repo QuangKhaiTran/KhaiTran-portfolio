@@ -91,6 +91,6 @@ export const trustGuarantees: TrustGuarantee[] = [
   {
     icon: "file",
     title: "Written scope before code",
-    desc: "The scope is documented before development begins — with a clear quote after discovery.",
+    desc: "The scope is documented before development begins — with a clear quote after our first conversation.",
   },
 ];

@@ -8,7 +8,7 @@ export const testimonials: Testimonial[] = [
     role: "Quản lý vận hành khách sạn",
     company: "Y Hotel",
     quote:
-      "Cuối cùng chúng tôi cũng có cách rõ ràng hơn để quản lý vận hành hàng ngày, thay vì để mọi thứ nằm rải rác trên tin nhắn và spreadsheet.",
+      "Cuối cùng team cũng có chỗ rõ để chạy vận hành hàng ngày — không còn để mọi thứ nằm rải rác trên tin nhắn và spreadsheet.",
     platform: "Direct",
     projectSlug: "y-hotel-booking-platform",
     companyUrl: "https://yhotel.vn/",
@@ -22,7 +22,7 @@ export const testimonials: Testimonial[] = [
     role: "Product Lead",
     company: "Asia Night Life",
     quote:
-      "Nền tảng mới giúp đội ngũ quản lý thông tin địa điểm và quy trình có cấu trúc hơn rất nhiều.",
+      "Platform mới giúp team quản lý thông tin địa điểm và quy trình rõ ràng, gọn hơn hẳn.",
     platform: "Direct",
     projectSlug: "asia-night-life-platform",
     companyUrl: "https://asianightlife.sg/",
@@ -36,7 +36,7 @@ export const testimonials: Testimonial[] = [
     role: "Giám đốc Marketing",
     company: "VinFast Ngọc Anh",
     quote:
-      "Nền tảng giúp chúng tôi giới thiệu xe chuyên nghiệp hơn và thu hút yêu cầu khách hàng tốt hơn.",
+      "Nền tảng giúp mình giới thiệu xe chuyên nghiệp hơn, và nhận yêu cầu từ khách dễ hơn.",
     platform: "Direct",
     projectSlug: "vinfast-dealership-website",
     companyUrl: "https://vinfast3scamau.com/",
