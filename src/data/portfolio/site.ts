@@ -69,14 +69,14 @@ export const siteConfig: SiteConfig = {
     floatCards: [
       {
         icon: "gauge",
-        title: "6+ Projects",
+        title: "9+ Projects",
         sub: "Shipped to production",
         className: "absolute -left-6 top-10 lg:-left-12",
       },
       {
         icon: "boxes",
         title: "6+ Industries",
-        sub: "Fintech · Retail · AI",
+        sub: "Fintech · Pet · Retail",
         className: "absolute -right-4 top-24 lg:-right-10",
       },
       {
@@ -110,7 +110,7 @@ export const siteConfig: SiteConfig = {
       eyebrow: "Case Studies",
       title: "Selected project work",
       subtitle:
-        "Real engagements across fintech, hospitality, retail, and legal tech — scoped clearly and shipped on time.",
+        "Real engagements across fintech, pet-tech, e-commerce, hospitality, retail, and automotive — scoped clearly and shipped on time.",
     },
     process: {
       eyebrow: "Process",

@@ -657,7 +657,7 @@ function ClientLogos() {
 /* ---------------- RESULTS ---------------- */
 function Results() {
   const metricDetails = [
-    "Fintech, hospitality, automotive, and entertainment platforms shipped to production.",
+    "Fintech, pet-tech, e-commerce, hospitality, automotive, and entertainment platforms shipped to production.",
     "Clients report fewer manual steps — unified dashboards replace spreadsheets and phone-tag workflows.",
     "From discovery to production launch — agile sprints with weekly demos you can test.",
     "Bug fixes, performance tuning, and handoff training included after every launch.",

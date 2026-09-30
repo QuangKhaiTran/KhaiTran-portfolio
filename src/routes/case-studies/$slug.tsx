@@ -160,10 +160,10 @@ function CaseStudyPage() {
                 <p className="mb-6 text-center text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
                   Business outcomes
                 </p>
-                <div className="flex flex-nowrap items-start justify-between gap-2 sm:gap-4 lg:gap-6">
+                <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4 lg:gap-8">
                   {study.businessMetrics!.map((m) => (
-                    <div key={m.label} className="min-w-0 flex-1 px-0.5 text-center">
-                      <div className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
+                    <div key={m.label} className="min-w-0 px-1 text-center">
+                      <div className="text-balance break-words text-xl font-bold leading-snug tracking-tight text-primary sm:text-2xl lg:text-3xl">
                         {m.value}
                       </div>
                       <div className="mt-1.5 text-xs leading-snug text-muted-foreground sm:text-sm">
@@ -181,17 +181,17 @@ function CaseStudyPage() {
             >
               {study.businessMetrics?.length ? "Technical scale" : "Project metrics"}
             </p>
-            <div className="mt-6 flex flex-nowrap items-start justify-between gap-2 sm:gap-4 lg:gap-6">
+            <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-5 lg:gap-8">
               {study.metrics.map((m) => (
-              <div key={m.label} className="min-w-0 flex-1 px-0.5 text-center">
-                <div className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
-                  {m.value}
+                <div key={m.label} className="min-w-0 px-1 text-center">
+                  <div className="text-balance break-words text-xl font-bold leading-snug tracking-tight text-primary sm:text-2xl lg:text-3xl">
+                    {m.value}
+                  </div>
+                  <div className="mt-1.5 text-xs leading-snug text-muted-foreground sm:text-sm">
+                    {m.label}
+                  </div>
                 </div>
-                <div className="mt-1.5 text-xs leading-snug text-muted-foreground sm:text-sm">
-                  {m.label}
-                </div>
-              </div>
-            ))}
+              ))}
             </div>
           </div>
         </section>

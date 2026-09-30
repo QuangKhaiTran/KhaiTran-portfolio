@@ -1,7 +1,7 @@
 import type { ResultMetric } from "./types";
 
 export const resultMetrics: ResultMetric[] = [
-  { value: "6+", label: "Production projects delivered" },
+  { value: "9+", label: "Production projects delivered" },
   { value: "~70%", label: "Avg. reduction in manual ops (client projects)" },
   { value: "4–8 wks", label: "Typical MVP delivery time" },
   { value: "30 days", label: "Post-launch support included" },

@@ -12,6 +12,9 @@ export interface TrustGuarantee {
 }
 
 export const clientLogos: ClientLogo[] = [
+  { name: "PetID Vietnam", industry: "Pet-tech · In progress", url: "https://petid.vn/" },
+  { name: "Y99 Finance", industry: "Fintech", url: "https://vayicloudcantho.com/" },
+  { name: "Cafinex Coffee", industry: "E-commerce", url: "https://cafinex.vn/" },
   { name: "Y Hotel", industry: "Hospitality", url: "https://yhotel.vn/" },
   {
     name: "VinFast Ngọc Anh",
@@ -24,7 +27,7 @@ export const clientLogos: ClientLogo[] = [
     industry: "Entertainment",
     url: "https://asianightlife.sg/",
   },
-  { name: "Fintech Lending", industry: "Fintech" },
+  { name: "Fintech Lending", industry: "Fintech · NDA" },
 ];
 
 export const trustGuarantees: TrustGuarantee[] = [

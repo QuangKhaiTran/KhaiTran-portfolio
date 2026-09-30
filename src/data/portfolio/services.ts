@@ -34,8 +34,8 @@ export const services: Service[] = [
     icon: "smartphone",
     title: "Mobile App Development",
     gigTitle:
-      "Cross-platform apps when your roadmap needs native — most clients start with a responsive web app first",
-    desc: "I build React Native and Flutter apps for field teams and customer products — typically after validating with a web MVP.",
+      "Cross-platform apps for field teams, customer products, and multi-sided platforms — React Native / Expo",
+    desc: "I build React Native and Flutter apps for field teams and customer-facing products — including full mobile + web ecosystems like PetID.",
     items: [
       "Android App",
       "iOS App",

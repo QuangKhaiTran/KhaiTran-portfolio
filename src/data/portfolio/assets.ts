@@ -8,6 +8,9 @@ import projectVinfast from "@/assets/project-vinfast.jpg";
 import projectEcommerce from "@/assets/project-ecommerce.jpg";
 import projectAI from "@/assets/project-ai.jpg";
 import projectRealEstate from "@/assets/project-realestate.jpg";
+import projectPetId from "@/assets/project-petid.png";
+import projectCafinex from "@/assets/project-cafinex.png";
+import projectY99 from "@/assets/project-y99.png";
 import avatar1 from "@/assets/avatar-1.jpg";
 import avatar2 from "@/assets/avatar-2.jpg";
 import avatar3 from "@/assets/avatar-3.jpg";
@@ -22,6 +25,9 @@ export const portfolioImages: Record<ImageKey, string> = {
   projectEcommerce,
   projectAI,
   projectRealEstate,
+  projectPetId,
+  projectCafinex,
+  projectY99,
   avatar1,
   avatar2,
   avatar3,
