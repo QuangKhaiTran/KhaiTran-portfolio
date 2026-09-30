@@ -24,7 +24,10 @@ export interface TrustGuarantee {
 
 /** Selected work logos — not "Trusted by". Mix of clients, own products, and in-progress. */
 export const clientLogos: ClientLogo[] = [
-  { name: "ERP & Loan Platform", industry: "Fintech · Internal · NDA" },
+  {
+    name: "ERP & Loan Platform",
+    industry: "Fintech · Internal · NDA",
+  },
   {
     name: "Y Hotel",
     industry: "Hospitality",

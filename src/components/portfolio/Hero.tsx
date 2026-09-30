@@ -1,13 +1,31 @@
 import { ArrowDown, ArrowRight } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { getPortfolioImage } from "@/data/portfolio";
+import type { ImageKey } from "@/data/portfolio/types";
 import { useLocale } from "@/i18n/locale";
 
-const HERO_SHOTS = [
-  { key: "projectLoan" as const, label: "ERP & Loan" },
-  { key: "projectHotel" as const, label: "Y Hotel" },
-  { key: "projectCafinex" as const, label: "Cafinex" },
-  { key: "projectPetId" as const, label: "PETID" },
+const HERO_SHOTS: Array<{ key: ImageKey; label: string; category: string }> = [
+  { key: "projectLoan", label: "ERP & Loan", category: "Internal · Fintech" },
+  { key: "projectHotel", label: "Y Hotel", category: "Hospitality" },
+  { key: "projectCafinex", label: "Cafinex", category: "E-commerce · CMS" },
+  { key: "projectPetId", label: "PETID", category: "Own Product · Building" },
+  { key: "projectY99", label: "Y99 Finance", category: "Finance · CMS" },
+  { key: "projectAI", label: "Asia Night Life", category: "Content Platform" },
+  { key: "projectGcmManager", label: "GCM Manager", category: "Automotive · Internal" },
+  { key: "projectVinfast", label: "VinFast Ngọc Anh", category: "Automotive · Showroom" },
 ];
+
+const CYCLE_MS = 3400;
+
+/** Visible depth poses — z stays below sticky header (z-50) */
+const STACK = [
+  { x: 0, y: 12, rotate: 0, scale: 1, z: 5, opacity: 1 },
+  { x: 18, y: 26, rotate: 3.5, scale: 0.94, z: 4, opacity: 1 },
+  { x: -16, y: 34, rotate: -3, scale: 0.9, z: 3, opacity: 1 },
+  { x: 8, y: 46, rotate: 1.5, scale: 0.86, z: 2, opacity: 1 },
+  { x: -6, y: 56, rotate: -1.2, scale: 0.82, z: 1, opacity: 0.55 },
+] as const;
 
 export function Hero() {
   const { content } = useLocale();
@@ -66,37 +84,149 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative hidden sm:block" aria-label="Selected production work">
-          <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-primary/10 via-transparent to-brand-soft/20 blur-2xl" aria-hidden />
-          <div className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-hero">
-            <div className="border-b border-border px-4 py-3">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                Selected production work
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-2 p-2">
-              {HERO_SHOTS.map((shot, i) => (
-                <figure
-                  key={shot.key}
-                  className={`relative overflow-hidden rounded-xl bg-muted ${
-                    i === 0 ? "col-span-2 aspect-[16/9]" : "aspect-[4/3]"
-                  }`}
-                >
-                  <img
-                    src={getPortfolioImage(shot.key)}
-                    alt={`${shot.label} project screenshot`}
-                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
-                    loading={i === 0 ? "eager" : "lazy"}
-                  />
-                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-foreground/70 to-transparent px-3 pb-2 pt-8 text-[11px] font-medium text-white">
-                    {shot.label}
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-          </div>
-        </div>
+        <HeroCardStack />
       </div>
     </section>
+  );
+}
+
+function HeroCardStack() {
+  const reduceMotion = useReducedMotion();
+  const [order, setOrder] = useState(() => HERO_SHOTS.map((_, i) => i));
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (reduceMotion || paused) return;
+    const id = window.setInterval(() => {
+      setOrder((prev) => [...prev.slice(1), prev[0]!]);
+    }, CYCLE_MS);
+    return () => window.clearInterval(id);
+  }, [reduceMotion, paused]);
+
+  const bringToFront = (shotIndex: number) => {
+    setOrder((prev) => {
+      if (prev[0] === shotIndex) return prev;
+      return [shotIndex, ...prev.filter((i) => i !== shotIndex)];
+    });
+  };
+
+  const front = HERO_SHOTS[order[0]!]!;
+
+  return (
+    <div
+      className="relative z-0 isolate hidden overflow-hidden sm:block"
+      aria-label="Selected production work"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+          setPaused(false);
+        }
+      }}
+    >
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 rounded-[2rem] bg-gradient-to-br from-primary/10 via-transparent to-brand-soft/15 blur-2xl"
+        aria-hidden
+      />
+
+      <div className="mb-4 flex items-end justify-between gap-3 px-1">
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+            Selected production work
+          </p>
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={front.key}
+              initial={reduceMotion ? false : { opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduceMotion ? undefined : { opacity: 0, y: -4 }}
+              transition={{ duration: 0.28 }}
+              className="mt-1 text-sm font-semibold text-foreground"
+            >
+              {front.label}
+              <span className="ml-2 font-normal text-muted-foreground">
+                · {front.category}
+              </span>
+            </motion.p>
+          </AnimatePresence>
+        </div>
+        <div className="flex flex-wrap justify-end gap-1.5" role="tablist" aria-label="Projects">
+          {HERO_SHOTS.map((shot, i) => (
+            <button
+              key={shot.key}
+              type="button"
+              role="tab"
+              aria-selected={order[0] === i}
+              aria-label={shot.label}
+              onClick={() => bringToFront(i)}
+              className={`h-2 w-2 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                order[0] === i ? "bg-foreground" : "bg-border hover:bg-muted-foreground/50"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="relative mx-auto h-[460px] w-full max-w-[620px] overflow-hidden pt-2 lg:h-[500px] lg:max-w-[660px]">
+        {order.map((shotIndex, depth) => {
+          const shot = HERO_SHOTS[shotIndex]!;
+          const inStack = depth < STACK.length;
+          const pose = STACK[Math.min(depth, STACK.length - 1)]!;
+          const isFront = depth === 0;
+
+          return (
+            <motion.button
+              key={shot.key}
+              type="button"
+              aria-label={`View ${shot.label}`}
+              aria-current={isFront ? "true" : undefined}
+              tabIndex={inStack ? 0 : -1}
+              onClick={() => bringToFront(shotIndex)}
+              className="absolute inset-x-[4%] top-0 aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-card text-left shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              style={{ transformOrigin: "center center", pointerEvents: inStack ? "auto" : "none" }}
+              initial={false}
+              animate={{
+                x: reduceMotion ? 0 : pose.x,
+                y: reduceMotion ? 12 + depth * 10 : pose.y,
+                rotate: reduceMotion ? 0 : pose.rotate,
+                scale: reduceMotion ? 1 - depth * 0.03 : pose.scale,
+                zIndex: inStack ? pose.z : 0,
+                opacity: inStack ? pose.opacity : 0,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 28,
+                mass: 0.9,
+              }}
+              whileHover={
+                isFront && !reduceMotion
+                  ? { y: pose.y + 4, transition: { duration: 0.25 } }
+                  : undefined
+              }
+            >
+              <img
+                src={getPortfolioImage(shot.key)}
+                alt={`${shot.label} project screenshot`}
+                className="h-full w-full object-cover"
+                loading={depth < 3 ? "eager" : "lazy"}
+                decoding="async"
+                draggable={false}
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-foreground/70 to-transparent px-4 pb-3 pt-10">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-white/70">
+                  {shot.category}
+                </div>
+                <div className="text-sm font-semibold text-white">{shot.label}</div>
+              </div>
+              {!isFront ? (
+                <div className="absolute inset-0 bg-background/25" aria-hidden />
+              ) : null}
+            </motion.button>
+          );
+        })}
+      </div>
+    </div>
   );
 }

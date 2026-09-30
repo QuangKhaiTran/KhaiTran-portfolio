@@ -17,6 +17,7 @@ import {
 import { CaseStudyLiveLink } from "@/components/CaseStudyLiveLink";
 import { getClientLogoImage, getPortfolioImage } from "@/data/portfolio";
 import type { CaseStudy, Service } from "@/data/portfolio/types";
+import type { ClientLogoKey } from "@/data/portfolio/trust";
 import { serviceIconMap } from "@/lib/portfolio-icons";
 import {
   BUDGET_OPTIONS,
@@ -27,63 +28,115 @@ import { useLocale } from "@/i18n/locale";
 import { SectionHeader } from "./SectionHeader";
 
 export function SelectedWork() {
-  const { content } = useLocale();
+  const { content, t } = useLocale();
   const { selectedWork } = content.siteConfig.sections;
+  const items = content.clientLogos;
 
   return (
-    <section id="work" className="border-b border-border bg-background py-16 lg:py-20">
+    <section
+      id="work"
+      className="border-b border-border bg-surface py-14 lg:py-16"
+      aria-label={t.selectedWorkBoardLabel}
+    >
       <div className="container-page">
-        <SectionHeader
-          eyebrow={selectedWork.eyebrow}
-          title={selectedWork.title}
-          subtitle={selectedWork.subtitle}
-        />
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {content.resultMetrics.map((m) => (
-            <div key={m.label} className="border-t border-border pt-5">
-              <div className="text-3xl font-semibold tracking-tight text-foreground">
-                {m.value}
-              </div>
-              <div className="mt-2 text-sm text-muted-foreground">{m.label}</div>
-            </div>
-          ))}
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
+          <div className="max-w-xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              {selectedWork.eyebrow}
+            </p>
+            <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+              {selectedWork.title}
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
+              {selectedWork.subtitle}
+            </p>
+          </div>
+          <a
+            href="#projects"
+            className="inline-flex min-h-10 shrink-0 items-center gap-1.5 text-sm font-medium text-foreground underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            {t.projectsViewAll}
+            <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+          </a>
         </div>
-        <div className="mt-12 flex flex-wrap items-end gap-x-6 gap-y-5 border-t border-border pt-8 sm:gap-x-8">
-          {content.clientLogos.map((logo) => {
-            const mark = logo.logoKey ? (
-              <img
-                src={getClientLogoImage(logo.logoKey)}
-                alt={logo.name}
-                className="h-8 w-auto max-w-[140px] object-contain object-left sm:h-9"
-                loading="lazy"
-                decoding="async"
-              />
-            ) : (
-              <span className="text-sm font-medium text-foreground/80">{logo.name}</span>
-            );
 
-            return (
-              <div key={logo.name} className="min-w-0">
-                {logo.url ? (
-                  <a
-                    href={logo.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    aria-label={logo.name}
-                  >
-                    {mark}
-                  </a>
-                ) : (
-                  mark
-                )}
-                <div className="mt-1.5 text-xs text-muted-foreground">{logo.industry}</div>
-              </div>
-            );
-          })}
-        </div>
+        <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4 sm:gap-x-8 sm:gap-y-10">
+          {items.map((item) => (
+            <li key={item.name}>
+              <WorkProofItem item={item} />
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
+  );
+}
+
+function WorkProofItem({
+  item,
+}: {
+  item: {
+    name: string;
+    industry: string;
+    url?: string;
+    logoKey?: ClientLogoKey;
+  };
+}) {
+  const mark = item.logoKey ? (
+    <img
+      src={getClientLogoImage(item.logoKey)}
+      alt=""
+      className="h-8 w-auto max-w-[132px] object-contain sm:h-9"
+      loading="lazy"
+      decoding="async"
+      draggable={false}
+    />
+  ) : (
+    <span className="inline-flex items-center justify-center gap-2.5">
+      <span
+        className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-foreground text-[11px] font-bold tracking-wide text-background"
+        aria-hidden
+      >
+        ERP
+      </span>
+      <span className="text-sm font-semibold tracking-tight text-foreground/85">
+        {item.name.replace(/^ERP\s*&\s*/i, "")}
+      </span>
+    </span>
+  );
+
+  const body = (
+    <>
+      <div className="flex min-h-10 items-center justify-center opacity-80 transition-opacity group-hover/proof:opacity-100">
+        {mark}
+      </div>
+      <p className="mt-2.5 text-center text-xs leading-snug text-muted-foreground">
+        {item.industry}
+      </p>
+    </>
+  );
+
+  if (item.url) {
+    return (
+      <a
+        href={item.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group/proof flex flex-col items-center text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        aria-label={`${item.name} — ${item.industry}`}
+      >
+        {body}
+      </a>
+    );
+  }
+
+  return (
+    <div
+      className="flex flex-col items-center text-center"
+      aria-label={`${item.name} — ${item.industry}`}
+    >
+      {body}
+    </div>
   );
 }
 

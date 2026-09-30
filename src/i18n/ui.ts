@@ -24,6 +24,9 @@ export type UiCopy = {
   projectsSolution: string;
   projectsReadFull: string;
   projectsViewAll: string;
+  selectedWorkVisit: string;
+  selectedWorkConfidential: string;
+  selectedWorkBoardLabel: string;
   projectsNdaDemo: string;
   aboutWorkingLanguages: string;
   testimonialsVerify: string;
@@ -99,6 +102,9 @@ export const uiCopy: Record<Locale, UiCopy> = {
     projectsSolution: "Solution",
     projectsReadFull: "Read full case study",
     projectsViewAll: "View all case studies",
+    selectedWorkVisit: "Visit",
+    selectedWorkConfidential: "Confidential",
+    selectedWorkBoardLabel: "Projects & products",
     projectsNdaDemo: "NDA · demo on request",
     aboutWorkingLanguages: "Working Languages",
     testimonialsVerify: "Verify project",
@@ -175,6 +181,9 @@ export const uiCopy: Record<Locale, UiCopy> = {
     projectsSolution: "Giải pháp",
     projectsReadFull: "Xem case study đầy đủ",
     projectsViewAll: "Xem tất cả case study",
+    selectedWorkVisit: "Xem site",
+    selectedWorkConfidential: "Bảo mật",
+    selectedWorkBoardLabel: "Dự án & sản phẩm",
     projectsNdaDemo: "NDA · demo khi yêu cầu",
     aboutWorkingLanguages: "Ngôn ngữ làm việc",
     testimonialsVerify: "Xác minh dự án",
