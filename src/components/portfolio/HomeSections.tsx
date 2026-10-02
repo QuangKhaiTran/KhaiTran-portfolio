@@ -37,7 +37,6 @@ import {
   Stagger,
   StaggerItem,
   trackSpotlight,
-  useTilt,
   variants,
 } from "@/components/motion";
 import ctaBackground from "@/assets/cta-background.jpg";
@@ -286,13 +285,11 @@ export function ServicesSection() {
 
 function CaseStudyCard({ study, t }: { study: CaseStudy; t: ReturnType<typeof useLocale>["t"] }) {
   const metrics = (study.businessMetrics ?? study.metrics).slice(0, 3);
-  const tilt = useTilt(4);
 
   return (
     <StaggerItem
       as="article"
       whileHover={{ y: -6, transition: { duration: 0.3 } }}
-      {...tilt}
       className="group flex h-full flex-col overflow-hidden border border-border bg-card transition-shadow duration-300 hover:shadow-lift"
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-muted">

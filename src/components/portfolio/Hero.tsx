@@ -40,6 +40,7 @@ const HERO_SHOTS: Array<{
 
 const CYCLE_MS = 3400;
 const SWIPE_THRESHOLD = 60;
+const RETURN_FROM_X = 260;
 
 /** Visible depth poses — z stays below sticky header (z-50) */
 const STACK = [
@@ -210,8 +211,15 @@ function HeroCardStack() {
     return () => mq.removeEventListener("change", sync);
   }, []);
 
+  /** Bumped per card when it returns via "previous", remounting it so it can fly in from the left. */
+  const [returnCount, setReturnCount] = useState<Record<number, number>>({});
+
   const showNext = () => setOrder((prev) => [...prev.slice(1), prev[0]!]);
-  const showPrev = () => setOrder((prev) => [prev[prev.length - 1]!, ...prev.slice(0, -1)]);
+  const showPrev = () => {
+    const returning = order[order.length - 1]!;
+    setReturnCount((prev) => ({ ...prev, [returning]: (prev[returning] ?? 0) + 1 }));
+    setOrder((prev) => [prev[prev.length - 1]!, ...prev.slice(0, -1)]);
+  };
 
   useEffect(() => {
     if (paused) return;
@@ -228,8 +236,7 @@ function HeroCardStack() {
 
   const onSwipeEnd = (event: globalThis.PointerEvent | MouseEvent | TouchEvent, info: PanInfo) => {
     const swipe = info.offset.x + info.velocity.x * 0.2;
-    if (swipe < -SWIPE_THRESHOLD) showNext();
-    else if (swipe > SWIPE_THRESHOLD) showPrev();
+    if (Math.abs(swipe) > SWIPE_THRESHOLD) showNext();
     if (!("pointerType" in event) || event.pointerType !== "mouse") setPaused(false);
   };
 
@@ -309,7 +316,7 @@ function HeroCardStack() {
         onKeyDown={onStackKeyDown}
         style={
           tiltEnabled
-            ? { rotateX, rotateY, transformPerspective: 1200, transformStyle: "preserve-3d" }
+            ? { rotateX, rotateY, transformPerspective: 1200 }
             : undefined
         }
         className="relative mx-auto h-[300px] w-full max-w-[620px] pt-1 sm:h-[460px] sm:pt-2 lg:h-[500px] lg:max-w-[660px]"
@@ -319,10 +326,11 @@ function HeroCardStack() {
           const inStack = depth < STACK.length;
           const pose = STACK[Math.min(depth, STACK.length - 1)]!;
           const isFront = depth === 0;
+          const returns = returnCount[shotIndex] ?? 0;
 
           return (
             <motion.button
-              key={shot.key}
+              key={`${shot.key}-${returns}`}
               type="button"
               aria-label={`${t.heroViewProject} ${shot.label}`}
               aria-current={isFront ? "true" : undefined}
@@ -334,7 +342,7 @@ function HeroCardStack() {
                 if (!draggedRef.current) bringToFront(shotIndex);
               }}
               className={`absolute inset-x-[3%] top-0 aspect-[16/10] overflow-hidden rounded-xl border border-border bg-card text-left shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:inset-x-[4%] sm:rounded-2xl ${
-                isFront ? "cursor-grab active:cursor-grabbing" : ""
+                isFront ? "cursor-grab active:cursor-grabbing" : "cursor-pointer"
               }`}
               style={{ transformOrigin: "center center", pointerEvents: inStack ? "auto" : "none" }}
               drag={isFront ? "x" : false}
@@ -346,7 +354,18 @@ function HeroCardStack() {
               }}
               onDragEnd={onSwipeEnd}
               whileDrag={{ scale: 1.03 }}
-              initial={false}
+              initial={
+                returns > 0 && !reduceMotion
+                  ? {
+                      x: -RETURN_FROM_X * depthScale,
+                      y: pose.y * depthScale,
+                      rotate: -8,
+                      scale: 1,
+                      zIndex: pose.z + 1,
+                      opacity: 0,
+                    }
+                  : false
+              }
               animate={{
                 x: pose.x * depthScale,
                 y: pose.y * depthScale,
@@ -364,11 +383,6 @@ function HeroCardStack() {
                       damping: 28,
                       mass: 0.9,
                     }
-              }
-              whileHover={
-                isFront && !reduceMotion
-                  ? { y: pose.y * depthScale + 4, transition: { duration: 0.25 } }
-                  : undefined
               }
             >
               <img
