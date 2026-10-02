@@ -17,7 +17,7 @@ import avatar2 from "@/assets/avatar-2.jpg";
 import avatar3 from "@/assets/avatar-3.jpg";
 import avatarKhai from "@/assets/avatar-khai.png";
 
-import clientPetid from "@/assets/logos/client-petid.svg";
+import clientPetid from "@/assets/logos/client-petid.png";
 import clientY99 from "@/assets/logos/client-y99.png";
 import clientCafinex from "@/assets/logos/client-cafinex.png";
 import clientYhotel from "@/assets/logos/client-yhotel.png";

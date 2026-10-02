@@ -38,6 +38,7 @@ import {
   trackSpotlight,
   variants,
 } from "@/components/motion";
+import ctaBackground from "@/assets/cta-background.jpg";
 import { cn } from "@/lib/utils";
 import { getClientLogoImage, getPortfolioImage } from "@/data/portfolio";
 import type { CaseStudy, Service } from "@/data/portfolio/types";
@@ -85,7 +86,7 @@ export function SelectedWork() {
           </a>
         </div>
 
-        <Reveal variant="fadeIn" className="group/marquee marquee-mask mt-10 overflow-hidden">
+        <Reveal variant="fadeIn" className="group/marquee marquee-mask mt-8 overflow-hidden py-2">
           <div
             className="marquee-track flex w-max group-hover/marquee:[animation-play-state:paused]"
             style={{ "--marquee-duration": "36s" } as CSSProperties}
@@ -128,7 +129,10 @@ function WorkProofItem({
     <img
       src={getClientLogoImage(item.logoKey)}
       alt=""
-      className="h-8 w-auto max-w-[132px] object-contain sm:h-9"
+      className={cn(
+        "w-auto max-w-[132px] object-contain",
+        item.logoKey === "petid" ? "h-11 sm:h-12" : "h-8 sm:h-9",
+      )}
       loading="lazy"
       decoding="async"
       draggable={false}
@@ -149,7 +153,7 @@ function WorkProofItem({
 
   const body = (
     <>
-      <div className="flex min-h-10 items-center justify-center opacity-80 transition-opacity group-hover/proof:opacity-100">
+      <div className="flex h-11 items-center justify-center opacity-80 sm:h-12 transition-opacity group-hover/proof:opacity-100">
         {mark}
       </div>
       <p className="mt-2.5 text-center text-xs leading-snug text-muted-foreground">
@@ -861,6 +865,14 @@ export function FinalCta() {
   return (
     <section className="border-b border-border gradient-cta text-primary-foreground">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <img
+          src={ctaBackground}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover object-right"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1e3a8a] via-[#1e3a8a]/75 to-transparent lg:via-[#1e3a8a]/40" />
         <span className="orb-float absolute -left-24 -top-1/3 h-80 w-80 rounded-full bg-white/15 blur-3xl" />
         <span
           className="orb-float absolute -right-16 top-1/4 h-96 w-96 rounded-full bg-sky-300/30 blur-3xl"

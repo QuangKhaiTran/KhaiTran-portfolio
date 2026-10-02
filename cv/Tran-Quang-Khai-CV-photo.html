@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tran Quang Khai — Full-Stack Developer — CV</title>
+<meta name="description" content="Tran Quang Khai — Full-Stack Developer focused on business systems and production web applications. Can Tho, Vietnam · Open to remote." />
+<style>
+  @page { size: A4; margin: 12mm 14mm 12mm; }
+
+  :root {
+    --ink: #0f172a;
+    --text: #334155;
+    --muted: #64748b;
+    --rule: #e2e8f0;
+    --accent: #1d4ed8;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 9.4pt;
+    line-height: 1.45;
+    color: var(--text);
+    -webkit-text-size-adjust: 100%;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  strong { color: var(--ink); font-weight: 600; }
+  p, ul, h1, h2, h3 { margin: 0; }
+  ul { padding-left: 13px; }
+  li { margin: 1.5px 0; }
+  li::marker { color: #94a3b8; }
+
+  /* Header */
+  .masthead { padding-bottom: 9px; border-bottom: 2px solid var(--ink); }
+  .identity { display: flex; align-items: center; gap: 14px; }
+  .photo { flex: none; width: 22mm; height: 26mm; overflow: hidden; border-radius: 4px; }
+  .photo img { display: block; width: 220%; margin-left: -77%; margin-top: -5%; }
+  h1 { font-size: 22pt; line-height: 1.1; letter-spacing: -0.015em; color: var(--ink); }
+  .title { margin-top: 2px; font-size: 11.5pt; font-weight: 600; color: var(--accent); }
+  .positioning { margin-top: 1px; font-size: 9.6pt; color: var(--muted); }
+  .contact { display: flex; flex-wrap: wrap; gap: 2px 0; margin-top: 6px; padding: 0; list-style: none; font-size: 8.9pt; }
+  .contact li { margin: 0; }
+  .contact li + li::before { content: "·"; margin: 0 7px; color: #94a3b8; }
+
+  /* Sections */
+  section { margin-top: 12px; }
+  h2 {
+    margin-bottom: 6px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--rule);
+    font-size: 10pt;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .summary { text-align: justify; }
+
+  .strengths li { margin: 1px 0; }
+
+  /* Roles */
+  .role + .role { margin-top: 12px; }
+  .role-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .role-title { font-size: 10.6pt; color: var(--ink); }
+  .role-title .org { font-weight: 400; color: var(--text); }
+  .meta { flex: none; font-size: 8.8pt; color: var(--muted); white-space: nowrap; }
+  .role-intro { margin-top: 1px; color: var(--muted); }
+
+  /* Projects inside roles */
+  .project { margin-top: 7px; break-inside: avoid; }
+  .project-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  h3 { font-size: 9.6pt; color: var(--ink); }
+  h3 .kind { font-weight: 400; color: var(--muted); }
+  .link { flex: none; font-size: 8.7pt; white-space: nowrap; }
+  .project ul { margin-top: 2px; }
+  .stack { margin-top: 2px; font-size: 8.6pt; color: var(--muted); }
+  .stack strong { color: var(--text); font-weight: 600; }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: 132px 1fr; gap: 2px 10px; }
+  .skills dt { font-weight: 600; color: var(--ink); }
+  .skills dd { margin: 0; }
+
+  .keep { break-inside: avoid; }
+  .facts p + p { margin-top: 1px; }
+  .muted { color: var(--muted); }
+
+  /* Screen: A4-like sheet on desktop, single column on mobile */
+  @media screen {
+    html { background: #f1f5f9; }
+    body { max-width: 210mm; margin: 24px auto; padding: 14mm; background: #fff; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08), 0 8px 24px rgba(15, 23, 42, 0.06); }
+  }
+  @media screen and (max-width: 720px) {
+    body { margin: 0; padding: 20px 18px 28px; font-size: 15px; box-shadow: none; }
+    h1 { font-size: 28px; }
+    .identity { align-items: flex-start; }
+    .contact { flex-direction: column; font-size: 14px; }
+    .contact li + li::before { content: none; }
+    .role-head, .project-head { flex-direction: column; gap: 0; }
+    .meta, .link { white-space: normal; }
+    .skills { grid-template-columns: 1fr; }
+    .skills dd { margin-bottom: 6px; }
+    .summary { text-align: left; }
+    a { overflow-wrap: anywhere; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="identity">
+    <div class="photo"><img src="../src/assets/avatar-khai.png" alt="Tran Quang Khai" /></div>
+    <div>
+      <h1>Tran Quang Khai</h1>
+      <p class="title">Full-Stack Developer</p>
+      <p class="positioning">Business Systems · Web Applications · Product Development</p>
+    </div>
+  </div>
+  <ul class="contact">
+    <li>Can Tho, Vietnam · Open to Remote</li>
+    <li><a href="tel:+84852795597">+84 852 795 597</a></li>
+    <li><a href="mailto:tranquangkhai562@gmail.com">tranquangkhai562@gmail.com</a></li>
+    <li><a href="https://khai-tran-portfolio.vercel.app">khai-tran-portfolio.vercel.app</a></li>
+  </ul>
+</header>
+
+<main>
+
+<section>
+  <h2>Summary</h2>
+  <p class="summary">
+    Full-Stack Developer focused on production software for real business workflows. Since mid-2025, I have built and
+    shipped internal systems and client products across lending, HR, hospitality, e-commerce and car dealership
+    operations. I work end to end — requirements, database design, frontend, backend, integrations and deployment —
+    mainly with <strong>Next.js, TypeScript, Supabase/PostgreSQL and Node.js</strong>. Based in Vietnam (UTC+7), open to remote work with international teams.
+  </p>
+</section>
+
+<section>
+  <h2>Core Strengths</h2>
+  <ul class="strengths">
+    <li><strong>Business systems</strong> — turning lending, HR, booking and dealership workflows into internal tools</li>
+    <li><strong>Full-stack development</strong> — React/Next.js frontends, Node.js and Supabase backends, deployment</li>
+    <li><strong>Database &amp; API design</strong> — PostgreSQL schemas, REST APIs, background jobs</li>
+    <li><strong>Access control</strong> — role- and branch-based permissions, Row Level Security, audit logs</li>
+    <li><strong>Payments &amp; integrations</strong> — VietQR, Sepay, OnePay, bank webhooks, OpenAI/Gemini</li>
+    <li><strong>i18n &amp; technical SEO</strong> — multilingual sites in up to 8 languages, structured data</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Experience</h2>
+
+  <article class="role">
+    <div class="role-head">
+      <h3 class="role-title">Full-Stack Developer <span class="org">· Y99 Pawn Joint Stock Company</span></h3>
+      <span class="meta">Can Tho, Vietnam · Jun 2025 – Present</span>
+    </div>
+    <p class="role-intro">Building the internal systems and public website for a pawn and lending company.</p>
+
+    <div class="project">
+      <h3>ERP &amp; Loan Management Platform <span class="kind">· internal system</span></h3>
+      <ul>
+        <li>Built the company's core loan platform, covering the workflow from application and approval to disbursement, repayment and collections; used daily by credit, accounting and branch staff.</li>
+        <li>Designed and developed <strong>16 modules</strong> with <strong>60+ PostgreSQL tables</strong>, <strong>200+ APIs</strong> and <strong>140+ screens</strong>.</li>
+        <li>Implemented interest and repayment-schedule calculations so credit and accounting work from the same figures.</li>
+        <li>Implemented role- and branch-based access control for 5 roles with Supabase Row Level Security, plus audit logging of key actions.</li>
+        <li>Automated payment reminders and real-time notifications; integrated VietQR and bank webhooks for payment confirmation.</li>
+      </ul>
+      <p class="stack"><strong>Stack:</strong> Next.js, TypeScript, Supabase, PostgreSQL, Redis, Bull, TanStack Query, Zod</p>
+    </div>
+
+    <div class="project">
+      <h3>Y99HR <span class="kind">· internal system</span></h3>
+      <ul>
+        <li>Replaced manual shift sign-ups with an admin dashboard for shift planning and a mobile PWA where staff register shifts, check in/out, view payslips and receive notifications.</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Company Website &amp; CMS</h3>
+        <a class="link" href="https://vayicloudcantho.com">vayicloudcantho.com</a>
+      </div>
+      <ul>
+        <li>Built the public loan website and a CMS for the marketing team: SEO-oriented product pages, branch map, article editor (TipTap) and automatic image optimization.</li>
+        <li>Connected website inquiries to the loan system, with fallback storage so no lead is lost when the integration fails.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="role">
+    <div class="role-head">
+      <h3 class="role-title">Freelance Full-Stack Developer <span class="org">· Self-employed</span></h3>
+      <span class="meta">Remote · Sep 2025 – Present</span>
+    </div>
+    <p class="role-intro">Client projects for businesses in Vietnam and Singapore, delivered end to end.</p>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Y Hotel <span class="kind">· booking platform &amp; operations dashboard</span></h3>
+        <a class="link" href="https://yhotel.vn">yhotel.vn</a>
+      </div>
+      <ul>
+        <li>Built a guest booking website and staff dashboard for a two-branch hotel, delivered in 12 weeks.</li>
+        <li>Implemented live availability and multi-room bookings, with double-booking prevented at the database level.</li>
+        <li>Integrated Sepay and OnePay with automatic payment confirmation; added role- and branch-based permissions and guest pages in Vietnamese, English and Chinese.</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>GCM Manager <span class="kind">· car dealership management system</span></h3>
+        <span class="link muted">Internal system</span>
+      </div>
+      <ul>
+        <li>Built an internal system that lets a car dealership follow each deal from first customer contact to signed contract.</li>
+        <li>Developed 16+ modules — inventory, CRM, contracts, finance and debt, registration paperwork — with Excel/PDF exports and AI-generated insights (Gemini).</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Asia Night Life <span class="kind">· multilingual venue discovery platform</span></h3>
+        <a class="link" href="https://asianightlife.sg">asianightlife.sg</a>
+      </div>
+      <ul>
+        <li>Built a public site and admin dashboard listing 100+ venues across 4 countries in 8 languages, with an AI assistant that recommends venues.</li>
+        <li>Migrated all venue URLs from IDs to readable slugs without breaking existing links; set up JSON-LD, hreflang and sitemaps.</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Cafinex <span class="kind">· e-commerce store &amp; CMS</span></h3>
+        <a class="link" href="https://cafinex.vn">cafinex.vn</a>
+      </div>
+      <ul>
+        <li>Built an online store and back office for a coffee equipment business: ~195 API routes, 41 MongoDB models and a homepage builder the team edits without a developer.</li>
+        <li>Added ~40-permission staff access control and Playwright end-to-end tests; deployed with Docker Compose, Nginx and Redis on a VPS.</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>VinFast Ngoc Anh <span class="kind">· dealer website</span></h3>
+        <a class="link" href="https://vinfast3scamau.com">vinfast3scamau.com</a>
+      </div>
+      <ul>
+        <li>Built a dealer website whose catalog of 30 car and e-scooter models and 80+ accessories is synced from VinFast's site by Node.js scripts; includes online test-drive and deposit booking.</li>
+      </ul>
+    </div>
+  </article>
+</section>
+
+<section class="keep">
+  <h2>Projects</h2>
+  <div class="project">
+    <div class="project-head">
+      <h3>PETID Vietnam <span class="kind">· Founder / Product Developer · in progress</span></h3>
+      <a class="link" href="https://petid.vn">petid.vn</a>
+    </div>
+    <ul>
+    <li>Personal product, built solo: a digital pet ID delivered as five connected apps — a mobile app, a website, and dashboards for admins, vet clinics and pet shops.</li>
+    <li>Anyone who finds a lost pet can scan its QR tag to reach the owner, with no app or login required; also includes health records, a lost-pet map and a multi-shop store.</li>
+    <li>~65 database tables and 15 serverless functions; built with React Native, Expo, React, TypeScript, Supabase and Redis.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="keep">
+  <h2>Technical Skills</h2>
+  <dl class="skills">
+    <dt>Languages</dt><dd>TypeScript · JavaScript · SQL · Python</dd>
+    <dt>Frontend</dt><dd>React · Next.js · React Native / Expo · Tailwind CSS · shadcn/ui · Radix UI · TanStack Query · Framer Motion</dd>
+    <dt>Backend &amp; Data</dt><dd>Node.js · REST APIs · Supabase · PostgreSQL · MongoDB · Redis · Webhooks · Background Jobs</dd>
+    <dt>Integrations</dt><dd>VietQR · Sepay · OnePay · OpenAI · Gemini · Resend · Leaflet</dd>
+    <dt>DevOps &amp; Testing</dt><dd>Vercel · Docker · Nginx · VPS · Git · Vitest · Playwright</dd>
+    <dt>Engineering Practices</dt><dd>Domain-driven design · Access Control · Security · i18n · Technical SEO · PWA</dd>
+  </dl>
+</section>
+
+<section class="keep facts">
+  <h2>Education</h2>
+  <p><strong>Can Tho University</strong> — Software Engineering · K47 (2021 intake)</p>
+  <p class="muted">Studies paused</p>
+</section>
+
+<section class="keep facts">
+  <h2>Languages</h2>
+  <p><strong>Vietnamese</strong> — Native · <strong>English</strong> — VSTEP B1 certificate</p>
+</section>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Trần Quang Khái — Lập trình viên Full-Stack — CV</title>
+<meta name="description" content="Trần Quang Khái — Lập trình viên Full-Stack, xây dựng hệ thống doanh nghiệp và ứng dụng web. Cần Thơ, Việt Nam · Có thể làm remote." />
+<style>
+  @page { size: A4; margin: 12mm 14mm 12mm; }
+
+  :root {
+    --ink: #0f172a;
+    --text: #334155;
+    --muted: #64748b;
+    --rule: #e2e8f0;
+    --accent: #1d4ed8;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 9.4pt;
+    line-height: 1.45;
+    color: var(--text);
+    -webkit-text-size-adjust: 100%;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  strong { color: var(--ink); font-weight: 600; }
+  p, ul, h1, h2, h3 { margin: 0; }
+  ul { padding-left: 13px; }
+  li { margin: 1.5px 0; }
+  li::marker { color: #94a3b8; }
+
+  /* Header */
+  .masthead { padding-bottom: 9px; border-bottom: 2px solid var(--ink); }
+  .identity { display: flex; align-items: center; gap: 14px; }
+  .photo { flex: none; width: 22mm; height: 26mm; overflow: hidden; border-radius: 4px; }
+  .photo img { display: block; width: 220%; margin-left: -77%; margin-top: -5%; }
+  h1 { font-size: 22pt; line-height: 1.1; letter-spacing: -0.015em; color: var(--ink); }
+  .title { margin-top: 2px; font-size: 11.5pt; font-weight: 600; color: var(--accent); }
+  .positioning { margin-top: 1px; font-size: 9.6pt; color: var(--muted); }
+  .contact { display: flex; flex-wrap: wrap; gap: 2px 0; margin-top: 6px; padding: 0; list-style: none; font-size: 8.9pt; }
+  .contact li { margin: 0; }
+  .contact li + li::before { content: "·"; margin: 0 7px; color: #94a3b8; }
+
+  /* Sections */
+  section { margin-top: 12px; }
+  h2 {
+    margin-bottom: 6px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--rule);
+    font-size: 10pt;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .summary { text-align: justify; }
+
+  .strengths li { margin: 1px 0; }
+
+  /* Roles */
+  .role + .role { margin-top: 12px; }
+  .role-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .role-title { font-size: 10.6pt; color: var(--ink); }
+  .role-title .org { font-weight: 400; color: var(--text); }
+  .meta { flex: none; font-size: 8.8pt; color: var(--muted); white-space: nowrap; }
+  .role-intro { margin-top: 1px; color: var(--muted); }
+
+  /* Projects inside roles */
+  .project { margin-top: 7px; break-inside: avoid; }
+  .project-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  h3 { font-size: 9.6pt; color: var(--ink); }
+  h3 .kind { font-weight: 400; color: var(--muted); }
+  .link { flex: none; font-size: 8.7pt; white-space: nowrap; }
+  .project ul { margin-top: 2px; }
+  .stack { margin-top: 2px; font-size: 8.6pt; color: var(--muted); }
+  .stack strong { color: var(--text); font-weight: 600; }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: 140px 1fr; gap: 2px 10px; }
+  .skills dt { font-weight: 600; color: var(--ink); }
+  .skills dd { margin: 0; }
+
+  .keep { break-inside: avoid; }
+  .facts p + p { margin-top: 1px; }
+  .muted { color: var(--muted); }
+
+  /* Screen: A4-like sheet on desktop, single column on mobile */
+  @media screen {
+    html { background: #f1f5f9; }
+    body { max-width: 210mm; margin: 24px auto; padding: 14mm; background: #fff; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08), 0 8px 24px rgba(15, 23, 42, 0.06); }
+  }
+  @media screen and (max-width: 720px) {
+    body { margin: 0; padding: 20px 18px 28px; font-size: 15px; box-shadow: none; }
+    h1 { font-size: 28px; }
+    .identity { align-items: flex-start; }
+    .contact { flex-direction: column; font-size: 14px; }
+    .contact li + li::before { content: none; }
+    .role-head, .project-head { flex-direction: column; gap: 0; }
+    .meta, .link { white-space: normal; }
+    .skills { grid-template-columns: 1fr; }
+    .skills dd { margin-bottom: 6px; }
+    .summary { text-align: left; }
+    a { overflow-wrap: anywhere; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="identity">
+    <div class="photo"><img src="../src/assets/avatar-khai.png" alt="Trần Quang Khái" /></div>
+    <div>
+      <h1>Trần Quang Khái</h1>
+      <p class="title">Lập trình viên Full-Stack</p>
+      <p class="positioning">Hệ thống doanh nghiệp · Ứng dụng web · Phát triển sản phẩm</p>
+    </div>
+  </div>
+  <ul class="contact">
+    <li>Cần Thơ, Việt Nam · Có thể làm remote</li>
+    <li><a href="tel:0852795597">0852 795 597</a></li>
+    <li><a href="mailto:tranquangkhai562@gmail.com">tranquangkhai562@gmail.com</a></li>
+    <li><a href="https://khai-tran-portfolio.vercel.app">khai-tran-portfolio.vercel.app</a></li>
+  </ul>
+</header>
+
+<main>
+
+<section>
+  <h2>Giới thiệu</h2>
+  <p class="summary">
+    Lập trình viên Full-Stack, tập trung xây dựng phần mềm chạy thật cho các quy trình nghiệp vụ của doanh nghiệp.
+    Từ giữa năm 2025, tôi đã xây dựng và đưa vào sử dụng các hệ thống nội bộ và sản phẩm cho khách hàng trong lĩnh vực
+    cho vay, nhân sự, khách sạn, thương mại điện tử và đại lý ô tô. Tôi làm dự án từ đầu đến cuối — phân tích yêu cầu,
+    thiết kế cơ sở dữ liệu, frontend, backend, tích hợp và triển khai — chủ yếu với <strong>Next.js, TypeScript,
+    Supabase/PostgreSQL và Node.js</strong>. Có thể làm việc tại Cần Thơ hoặc remote.
+  </p>
+</section>
+
+<section>
+  <h2>Thế mạnh chính</h2>
+  <ul class="strengths">
+    <li><strong>Hệ thống doanh nghiệp</strong> — số hóa quy trình cho vay, nhân sự, đặt phòng và đại lý xe thành công cụ nội bộ</li>
+    <li><strong>Phát triển full-stack</strong> — frontend React/Next.js, backend Node.js và Supabase, triển khai</li>
+    <li><strong>Thiết kế cơ sở dữ liệu &amp; API</strong> — schema PostgreSQL, REST API, tác vụ nền</li>
+    <li><strong>Phân quyền</strong> — theo vai trò và chi nhánh, Row Level Security, nhật ký thao tác</li>
+    <li><strong>Thanh toán &amp; tích hợp</strong> — VietQR, Sepay, OnePay, webhook ngân hàng, OpenAI/Gemini</li>
+    <li><strong>Đa ngôn ngữ &amp; SEO kỹ thuật</strong> — website tới 8 ngôn ngữ, dữ liệu có cấu trúc</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Kinh nghiệm làm việc</h2>
+
+  <article class="role">
+    <div class="role-head">
+      <h3 class="role-title">Full-Stack Developer <span class="org">· Công ty Cổ phần Cầm đồ Y99</span></h3>
+      <span class="meta">Cần Thơ · 06/2025 – Hiện tại</span>
+    </div>
+    <p class="role-intro">Xây dựng các hệ thống nội bộ và website cho công ty cầm đồ, cho vay.</p>
+
+    <div class="project">
+      <h3>Hệ thống ERP &amp; Quản lý khoản vay <span class="kind">· hệ thống nội bộ</span></h3>
+      <ul>
+        <li>Xây dựng nền tảng cho vay cốt lõi của công ty, bao trọn quy trình từ nhận hồ sơ, duyệt, giải ngân đến thu nợ và xử lý nợ quá hạn; bộ phận tín dụng, kế toán và các chi nhánh sử dụng hằng ngày.</li>
+        <li>Thiết kế và phát triển <strong>16 module</strong> với <strong>hơn 60 bảng PostgreSQL</strong>, <strong>200+ API</strong> và <strong>140+ màn hình</strong>.</li>
+        <li>Xây dựng phần tính lãi và lịch trả nợ để tín dụng và kế toán làm việc trên cùng một số liệu.</li>
+        <li>Phân quyền theo vai trò và chi nhánh cho 5 vai trò bằng Supabase Row Level Security, kèm nhật ký các thao tác quan trọng.</li>
+        <li>Tự động nhắc thanh toán và gửi thông báo tức thì; tích hợp VietQR và webhook ngân hàng để xác nhận thanh toán.</li>
+      </ul>
+      <p class="stack"><strong>Công nghệ:</strong> Next.js, TypeScript, Supabase, PostgreSQL, Redis, Bull, TanStack Query, Zod</p>
+    </div>
+
+    <div class="project">
+      <h3>Y99HR <span class="kind">· hệ thống nội bộ</span></h3>
+      <ul>
+        <li>Thay việc đăng ký ca thủ công bằng trang admin để xếp ca và ứng dụng PWA trên điện thoại, nơi nhân viên đăng ký ca, chấm công vào/ra, xem bảng lương và nhận thông báo.</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Website công ty &amp; CMS</h3>
+        <a class="link" href="https://vayicloudcantho.com">vayicloudcantho.com</a>
+      </div>
+      <ul>
+        <li>Xây dựng website dịch vụ vay và CMS cho đội marketing: trang sản phẩm tối ưu SEO, bản đồ chi nhánh, trình soạn bài viết (TipTap) và tự động tối ưu hình ảnh.</li>
+        <li>Kết nối thông tin khách đăng ký trên web với hệ thống cho vay, có lưu dự phòng để không mất khách khi kết nối lỗi.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="role">
+    <div class="role-head">
+      <h3 class="role-title">Freelance Full-Stack Developer <span class="org">· Tự do</span></h3>
+      <span class="meta">Remote · 09/2025 – Hiện tại</span>
+    </div>
+    <p class="role-intro">Dự án cho khách hàng tại Việt Nam và Singapore, thực hiện từ đầu đến cuối.</p>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Y Hotel <span class="kind">· nền tảng đặt phòng &amp; quản lý vận hành</span></h3>
+        <a class="link" href="https://yhotel.vn">yhotel.vn</a>
+      </div>
+      <ul>
+        <li>Xây dựng website đặt phòng cho khách và trang quản lý cho nhân viên của khách sạn 2 chi nhánh, hoàn thành trong 12 tuần.</li>
+        <li>Hiển thị phòng trống theo thời gian thực, đặt nhiều phòng cùng lúc, chặn đặt trùng phòng ngay ở tầng cơ sở dữ liệu.</li>
+        <li>Tích hợp Sepay và OnePay với xác nhận thanh toán tự động; phân quyền theo vai trò và chi nhánh; giao diện khách bằng tiếng Việt, Anh và Trung.</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>GCM Manager <span class="kind">· hệ thống quản lý đại lý ô tô</span></h3>
+        <span class="link muted">Hệ thống nội bộ</span>
+      </div>
+      <ul>
+        <li>Xây dựng phần mềm nội bộ giúp đại lý xe theo dõi từng giao dịch, từ lần đầu tiếp xúc khách đến khi ký hợp đồng.</li>
+        <li>Phát triển hơn 16 module — kho xe, khách hàng (CRM), hợp đồng, tài chính – công nợ, hồ sơ đăng ký — kèm xuất Excel/PDF và phân tích dữ liệu bằng AI (Gemini).</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Asia Night Life <span class="kind">· nền tảng tìm địa điểm giải trí đa ngôn ngữ</span></h3>
+        <a class="link" href="https://asianightlife.sg">asianightlife.sg</a>
+      </div>
+      <ul>
+        <li>Xây dựng website và trang quản trị với hơn 100 địa điểm tại 4 quốc gia, 8 ngôn ngữ, kèm trợ lý AI gợi ý địa điểm.</li>
+        <li>Chuyển toàn bộ đường dẫn từ ID sang slug dễ đọc mà không làm hỏng link cũ; thiết lập JSON-LD, hreflang và sitemap.</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Cafinex <span class="kind">· thương mại điện tử &amp; CMS</span></h3>
+        <a class="link" href="https://cafinex.vn">cafinex.vn</a>
+      </div>
+      <ul>
+        <li>Xây dựng cửa hàng online và trang quản trị cho doanh nghiệp thiết bị cà phê: khoảng 195 API, 41 model MongoDB và công cụ dựng trang chủ để đội ngũ tự chỉnh sửa.</li>
+        <li>Phân quyền nhân viên khoảng 40 quyền, kiểm thử end-to-end bằng Playwright; triển khai bằng Docker Compose, Nginx và Redis trên VPS.</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>VinFast Ngọc Anh <span class="kind">· website đại lý</span></h3>
+        <a class="link" href="https://vinfast3scamau.com">vinfast3scamau.com</a>
+      </div>
+      <ul>
+        <li>Xây dựng website đại lý với danh mục 30 mẫu ô tô, xe máy điện và hơn 80 phụ kiện được đồng bộ từ website VinFast bằng script Node.js; khách đặt lịch lái thử và đặt cọc online.</li>
+      </ul>
+    </div>
+  </article>
+</section>
+
+<section class="keep">
+  <h2>Dự án cá nhân</h2>
+  <div class="project">
+    <div class="project-head">
+      <h3>PETID Vietnam <span class="kind">· Nhà sáng lập / Phát triển sản phẩm · đang phát triển</span></h3>
+      <a class="link" href="https://petid.vn">petid.vn</a>
+    </div>
+    <ul>
+      <li>Sản phẩm cá nhân, tự xây dựng một mình: định danh số cho thú cưng gồm 5 ứng dụng liên kết — app di động, website, và trang quản trị cho admin, phòng khám thú y, cửa hàng.</li>
+      <li>Ai nhặt được thú lạc chỉ cần quét mã QR là liên hệ được chủ, không cần cài app hay đăng nhập; có thêm sổ sức khỏe, bản đồ tìm thú lạc và cửa hàng nhiều người bán.</li>
+      <li>Khoảng 65 bảng dữ liệu và 15 hàm serverless; xây dựng bằng React Native, Expo, React, TypeScript, Supabase và Redis.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="keep">
+  <h2>Kỹ năng chuyên môn</h2>
+  <dl class="skills">
+    <dt>Ngôn ngữ lập trình</dt><dd>TypeScript · JavaScript · SQL · Python</dd>
+    <dt>Frontend</dt><dd>React · Next.js · React Native / Expo · Tailwind CSS · shadcn/ui · Radix UI · TanStack Query · Framer Motion</dd>
+    <dt>Backend &amp; Dữ liệu</dt><dd>Node.js · REST API · Supabase · PostgreSQL · MongoDB · Redis · Webhook · Tác vụ nền</dd>
+    <dt>Tích hợp</dt><dd>VietQR · Sepay · OnePay · OpenAI · Gemini · Resend · Leaflet</dd>
+    <dt>DevOps &amp; Kiểm thử</dt><dd>Vercel · Docker · Nginx · VPS · Git · Vitest · Playwright</dd>
+    <dt>Phương pháp</dt><dd>Domain-driven design · Phân quyền · Bảo mật · Đa ngôn ngữ (i18n) · SEO kỹ thuật · PWA</dd>
+  </dl>
+</section>
+
+<section class="keep facts">
+  <h2>Học vấn</h2>
+  <p><strong>Đại học Cần Thơ</strong> — Kỹ thuật phần mềm · Khóa 47 (nhập học 2021)</p>
+  <p class="muted">Tạm dừng học</p>
+</section>
+
+<section class="keep facts">
+  <h2>Ngoại ngữ</h2>
+  <p><strong>Tiếng Việt</strong> — Bản ngữ · <strong>Tiếng Anh</strong> — Chứng chỉ VSTEP B1</p>
+</section>
+
+</main>
+</body>
+</html>
