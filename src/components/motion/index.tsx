@@ -3,9 +3,11 @@ import {
   animate,
   motion,
   useInView,
+  useMotionValue,
   useReducedMotion,
   useScroll,
   useSpring,
+  useTransform,
   type HTMLMotionProps,
 } from "framer-motion";
 import {
@@ -162,6 +164,62 @@ export function Magnetic({
       {children}
     </motion.div>
   );
+}
+
+/** Drifts its content vertically while the wrapper crosses the viewport. */
+export function Parallax({
+  children,
+  amount = 6,
+  className,
+}: {
+  children: ReactNode;
+  /** Max shift as a percentage of the content height. */
+  amount?: number;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], [`-${amount}%`, `${amount}%`]);
+
+  return (
+    <div ref={ref} className={cn("relative h-full w-full overflow-hidden", className)}>
+      <motion.div
+        className="h-full w-full"
+        style={reduceMotion ? undefined : { y, scale: 1 + (amount * 2.4) / 100 }}
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+}
+
+/** Pointer-driven 3D tilt; spread the result onto a motion element. */
+export function useTilt(maxDeg = 5) {
+  const reduceMotion = useReducedMotion();
+  const px = useMotionValue(0);
+  const py = useMotionValue(0);
+  const spring = { stiffness: 180, damping: 20, mass: 0.5 };
+  const rotateX = useSpring(useTransform(py, [-0.5, 0.5], [maxDeg, -maxDeg]), spring);
+  const rotateY = useSpring(useTransform(px, [-0.5, 0.5], [-maxDeg, maxDeg]), spring);
+
+  const onPointerMove = (e: PointerEvent<HTMLElement>) => {
+    if (reduceMotion || e.pointerType !== "mouse") return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    px.set((e.clientX - rect.left) / rect.width - 0.5);
+    py.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  const onPointerLeave = () => {
+    px.set(0);
+    py.set(0);
+  };
+
+  return {
+    style: { rotateX, rotateY, transformPerspective: 1100 },
+    onPointerMove,
+    onPointerLeave,
+  };
 }
 
 const COUNT_PATTERN = /^(\d[\d,.]*)(\+?)$/;

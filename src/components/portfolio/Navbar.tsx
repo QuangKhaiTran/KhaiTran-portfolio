@@ -124,7 +124,7 @@ export function Navbar() {
               href="#contact"
               whileHover={{ y: -1 }}
               whileTap={{ scale: 0.97 }}
-              className="hidden min-h-11 items-center gap-1.5 rounded-md bg-foreground px-4 py-2 text-[13px] font-semibold text-background transition-colors hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:inline-flex"
+              className="btn-shine hidden min-h-11 items-center gap-1.5 rounded-md bg-foreground px-4 py-2 text-[13px] font-semibold text-background transition-colors hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:inline-flex"
             >
               {navCta}
               <ArrowRight className="h-3.5 w-3.5" aria-hidden />

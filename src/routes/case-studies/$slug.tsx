@@ -20,6 +20,7 @@ import {
   Stagger,
   StaggerItem,
 } from "@/components/motion";
+import { BackToTop } from "@/components/motion/BackToTop";
 
 const enContent = getPortfolioContent("en");
 
@@ -350,6 +351,7 @@ function CaseStudyPage() {
           </Reveal>
         </section>
       </article>
+      <BackToTop className="bottom-6" />
     </div>
   );
 }

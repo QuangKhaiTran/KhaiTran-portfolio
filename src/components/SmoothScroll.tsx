@@ -1,6 +1,21 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
 
+let activeLenis: Lenis | null = null;
+
+/** Scrolls through Lenis when it is running so the easing matches wheel scrolling. */
+export function smoothScrollTo(target: number | HTMLElement, offset = 0) {
+  if (activeLenis) {
+    activeLenis.scrollTo(target, { offset });
+    return;
+  }
+  const top =
+    typeof target === "number"
+      ? target
+      : target.getBoundingClientRect().top + window.scrollY + offset;
+  window.scrollTo({ top, behavior: "smooth" });
+}
+
 export function SmoothScroll() {
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -11,6 +26,7 @@ export function SmoothScroll() {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
+    activeLenis = lenis;
 
     let rafId = 0;
     const raf = (time: number) => {
@@ -37,6 +53,7 @@ export function SmoothScroll() {
       document.removeEventListener("click", onClick);
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      if (activeLenis === lenis) activeLenis = null;
     };
   }, []);
 

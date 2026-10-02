@@ -17,6 +17,8 @@ import {
   TestimonialsSection,
 } from "@/components/portfolio/HomeSections";
 import { getPortfolioContent } from "@/data/portfolio/content";
+import { ScrollProgress } from "@/components/motion";
+import { BackToTop } from "@/components/motion/BackToTop";
 
 const enSeo = getPortfolioContent("en").siteConfig.seo;
 
@@ -45,6 +47,7 @@ export const Route = createFileRoute("/")({
 function Landing() {
   return (
     <div className="min-h-screen bg-background pb-20 text-foreground md:pb-0">
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />
@@ -62,6 +65,7 @@ function Landing() {
       </main>
       <Footer />
       <MobileStickyCta />
+      <BackToTop />
     </div>
   );
 }

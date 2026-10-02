@@ -32,10 +32,12 @@ import { CaseStudyLiveLink } from "@/components/CaseStudyLiveLink";
 import {
   CountUp,
   Magnetic,
+  Parallax,
   Reveal,
   Stagger,
   StaggerItem,
   trackSpotlight,
+  useTilt,
   variants,
 } from "@/components/motion";
 import ctaBackground from "@/assets/cta-background.jpg";
@@ -79,10 +81,10 @@ export function SelectedWork() {
           </Stagger>
           <a
             href="#projects"
-            className="inline-flex min-h-10 shrink-0 items-center gap-1.5 text-sm font-medium text-foreground underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="inline-flex min-h-10 shrink-0 items-center gap-1.5 text-sm font-medium text-foreground group/link underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {t.projectsViewAll}
-            <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:translate-x-1" aria-hidden />
           </a>
         </div>
 
@@ -201,7 +203,7 @@ function ServiceBody({ service }: { service: Service }) {
       </ul>
       <a
         href={service.ctaHref}
-        className="mt-6 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-foreground underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="mt-6 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-foreground group/link underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         {service.cta}
       </a>
@@ -284,21 +286,25 @@ export function ServicesSection() {
 
 function CaseStudyCard({ study, t }: { study: CaseStudy; t: ReturnType<typeof useLocale>["t"] }) {
   const metrics = (study.businessMetrics ?? study.metrics).slice(0, 3);
+  const tilt = useTilt(4);
 
   return (
     <StaggerItem
       as="article"
       whileHover={{ y: -6, transition: { duration: 0.3 } }}
+      {...tilt}
       className="group flex h-full flex-col overflow-hidden border border-border bg-card transition-shadow duration-300 hover:shadow-lift"
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-muted">
         <motion.div variants={variants.imageReveal} className="h-full w-full">
-          <img
-            src={getPortfolioImage(study.imageKey)}
-            alt={`${study.title} screenshot`}
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-            loading="lazy"
-          />
+          <Parallax amount={5}>
+            <img
+              src={getPortfolioImage(study.imageKey)}
+              alt={`${study.title} screenshot`}
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+              loading="lazy"
+            />
+          </Parallax>
         </motion.div>
       </div>
       <div className="flex flex-1 flex-col p-6">
@@ -330,10 +336,10 @@ function CaseStudyCard({ study, t }: { study: CaseStudy; t: ReturnType<typeof us
           <Link
             to="/case-studies/$slug"
             params={{ slug: study.slug }}
-            className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-foreground underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-foreground group/link underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {t.projectsReadFull}
-            <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:translate-x-1" aria-hidden />
           </Link>
           {study.isConfidential ? (
             <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
@@ -375,10 +381,10 @@ export function FlagshipProjects() {
         <div className="mt-10 text-center md:hidden">
           <Link
             to="/case-studies"
-            className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-foreground underline-offset-4 hover:underline"
+            className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-foreground group/link underline-offset-4 hover:underline"
           >
             {t.projectsViewAll}
-            <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:translate-x-1" aria-hidden />
           </Link>
         </div>
       </div>
@@ -464,10 +470,10 @@ export function MoreWork() {
                   <Link
                     to="/case-studies/$slug"
                     params={{ slug: project.slug }}
-                    className="mt-3 inline-flex min-h-10 items-center gap-1 text-sm font-semibold underline-offset-4 hover:underline"
+                    className="mt-3 inline-flex min-h-10 items-center gap-1 text-sm font-semibold group/link underline-offset-4 hover:underline"
                   >
                     {t.projectsCaseStudy}
-                    <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:translate-x-1" aria-hidden />
                   </Link>
                 ) : null}
               </div>
@@ -565,12 +571,14 @@ export function AboutSection() {
         <div>
           <SectionHeader eyebrow={about.eyebrow} title={about.title} />
           <Reveal variant="imageReveal" className="mt-8 overflow-hidden rounded-2xl border border-border bg-card">
-            <img
-              src={getPortfolioImage(profile.avatarKey)}
-              alt={profile.name}
-              className="aspect-[4/5] w-full object-cover"
-              loading="lazy"
-            />
+            <Parallax amount={4}>
+              <img
+                src={getPortfolioImage(profile.avatarKey)}
+                alt={profile.name}
+                className="aspect-[4/5] w-full object-cover"
+                loading="lazy"
+              />
+            </Parallax>
           </Reveal>
           <Stagger as="dl" className="mt-6 space-y-3 text-sm">
             <StaggerItem>
@@ -721,10 +729,10 @@ function TestimonialCard({
         <Link
           to="/case-studies/$slug"
           params={{ slug: item.projectSlug }}
-          className="mt-4 inline-flex min-h-10 items-center gap-1.5 text-sm font-semibold text-foreground underline-offset-4 hover:underline"
+          className="mt-4 inline-flex min-h-10 items-center gap-1.5 text-sm font-semibold text-foreground group/link underline-offset-4 hover:underline"
         >
           {t.testimonialsViewProject}
-          <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+          <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:translate-x-1" aria-hidden />
         </Link>
       ) : null}
     </figure>
@@ -901,10 +909,10 @@ export function FinalCta() {
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             href="#contact"
-            className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-md bg-background px-5 text-sm font-semibold text-foreground transition-colors hover:bg-background/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="btn-shine group inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-md bg-background px-5 text-sm font-semibold text-foreground transition-colors [--shine-color:rgba(37,99,235,0.18)] hover:bg-background/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             {cta.primaryCta.replace(" →", "")}
-            <ArrowRight className="h-4 w-4" aria-hidden />
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
           </motion.a>
           </Magnetic>
           <motion.a
@@ -984,7 +992,7 @@ export function ContactSection() {
               {t.contactOrEmail}{" "}
               <a
                 href={`mailto:${email}`}
-                className="font-medium text-foreground underline-offset-4 hover:underline"
+                className="font-medium text-foreground group/link underline-offset-4 hover:underline"
               >
                 {email}
               </a>
@@ -1024,7 +1032,7 @@ export function ContactSection() {
               rows={5}
               value={form.project}
               onChange={(e) => setForm((s) => ({ ...s, project: e.target.value }))}
-              className="mt-2 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring"
+              className="mt-2 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none ring-offset-background transition-[border-color,box-shadow] duration-300 hover:border-foreground/25 focus-visible:border-primary/40 focus-visible:shadow-[0_0_0_4px_rgba(37,99,235,0.08)] focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
           <div className="grid gap-5 sm:grid-cols-2">
@@ -1067,10 +1075,10 @@ export function ContactSection() {
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.97 }}
             type="submit"
-            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-foreground px-5 text-sm font-semibold text-background transition-colors hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:w-auto"
+            className="btn-shine group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-foreground px-5 text-sm font-semibold text-background transition-colors hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:w-auto"
           >
             {copy.submitCta.replace(" →", "")}
-            <ArrowRight className="h-4 w-4" aria-hidden />
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
           </motion.button>
           <p className="text-sm text-muted-foreground">{copy.supporting}</p>
         </form>
@@ -1106,7 +1114,7 @@ function Field({
         required={required}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-2 min-h-11 w-full rounded-md border border-input bg-background px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="mt-2 min-h-11 w-full rounded-md border border-input bg-background px-3 text-sm outline-none transition-[border-color,box-shadow] duration-300 hover:border-foreground/25 focus-visible:border-primary/40 focus-visible:shadow-[0_0_0_4px_rgba(37,99,235,0.08)] focus-visible:ring-2 focus-visible:ring-ring"
       />
     </div>
   );
@@ -1119,8 +1127,8 @@ export function Footer() {
 
   return (
     <footer className="bg-foreground text-background">
-      <div className="container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="sm:col-span-2">
+      <Stagger stagger={0.1} className="container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+        <StaggerItem className="sm:col-span-2">
           <div className="text-lg font-semibold tracking-tight">{brand.name}</div>
           <div className="mt-1 text-sm text-background/70">{brand.tagline}</div>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-background/65">
@@ -1131,8 +1139,8 @@ export function Footer() {
             <br />
             {t.footerRemote}
           </p>
-        </div>
-        <div>
+        </StaggerItem>
+        <StaggerItem>
           <div className="text-xs font-semibold uppercase tracking-[0.14em] text-background/50">
             {t.footerLinks}
           </div>
@@ -1141,21 +1149,21 @@ export function Footer() {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="text-sm text-background/75 transition-colors hover:text-background"
+                  className="link-underline text-sm text-background/75 hover:text-background"
                 >
                   {item.label}
                 </a>
               </li>
             ))}
           </ul>
-        </div>
-        <div>
+        </StaggerItem>
+        <StaggerItem>
           <div className="text-xs font-semibold uppercase tracking-[0.14em] text-background/50">
             {t.footerContact}
           </div>
           <ul className="mt-4 space-y-2 text-sm text-background/75">
             <li>
-              <a href={`mailto:${contact.email}`} className="hover:text-background">
+              <a href={`mailto:${contact.email}`} className="link-underline hover:text-background">
                 Email
               </a>
             </li>
@@ -1165,7 +1173,7 @@ export function Footer() {
                   href={social.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-background"
+                  className="link-underline hover:text-background"
                 >
                   GitHub
                 </a>
@@ -1177,7 +1185,7 @@ export function Footer() {
                   href={social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-background"
+                  className="link-underline hover:text-background"
                 >
                   LinkedIn
                 </a>
@@ -1185,14 +1193,14 @@ export function Footer() {
             ) : null}
             {footer.legal.map((item) => (
               <li key={item.href}>
-                <a href={item.href} className="hover:text-background">
+                <a href={item.href} className="link-underline hover:text-background">
                   {item.label}
                 </a>
               </li>
             ))}
           </ul>
-        </div>
-      </div>
+        </StaggerItem>
+      </Stagger>
       <div className="border-t border-white/10">
         <div className="container-page flex flex-col gap-2 py-6 text-xs text-background/50 sm:flex-row sm:items-center sm:justify-between">
           <p>{footer.copyright.replace("2026", String(year))}</p>

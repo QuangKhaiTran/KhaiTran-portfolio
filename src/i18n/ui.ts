@@ -7,6 +7,7 @@ export type UiCopy = {
   openMenu: string;
   closeMenu: string;
   goHome: string;
+  backToTop: string;
   pageNotFound: string;
   pageNotFoundDesc: string;
   pageDidntLoad: string;
@@ -101,6 +102,7 @@ export const uiCopy: Record<Locale, UiCopy> = {
     openMenu: "Open menu",
     closeMenu: "Close menu",
     goHome: "Go home",
+    backToTop: "Back to top",
     pageNotFound: "Page not found",
     pageNotFoundDesc: "The page you're looking for doesn't exist or has been moved.",
     pageDidntLoad: "This page didn't load",
@@ -201,6 +203,7 @@ export const uiCopy: Record<Locale, UiCopy> = {
     openMenu: "Mở menu",
     closeMenu: "Đóng menu",
     goHome: "Về trang chủ",
+    backToTop: "Lên đầu trang",
     pageNotFound: "Không tìm thấy trang",
     pageNotFoundDesc: "Trang bạn đang tìm không tồn tại hoặc đã được di chuyển.",
     pageDidntLoad: "Trang chưa tải được",

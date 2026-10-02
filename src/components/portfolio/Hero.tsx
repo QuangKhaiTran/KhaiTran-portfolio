@@ -8,8 +8,8 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { useEffect, useRef, useState, type PointerEvent } from "react";
-import { Magnetic, riseDelay } from "@/components/motion";
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
+import { Magnetic, riseDelay, trackSpotlight } from "@/components/motion";
 import { getPortfolioImage } from "@/data/portfolio";
 import type { ImageKey } from "@/data/portfolio/types";
 import { useLocale } from "@/i18n/locale";
@@ -60,8 +60,17 @@ export function Hero() {
       id="home"
       className="relative overflow-hidden border-b border-border gradient-hero"
       aria-labelledby="hero-heading"
+      onPointerMove={reduceMotion ? undefined : trackSpotlight}
     >
       <div className="pointer-events-none absolute inset-0 grid-bg opacity-40" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 hero-glow" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+        <span className="orb-float absolute -right-24 -top-32 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
+        <span
+          className="orb-float absolute -left-32 bottom-0 h-80 w-80 rounded-full bg-brand-soft/15 blur-3xl"
+          style={{ "--orb-duration": "22s", "--orb-delay": "-8s" } as CSSProperties}
+        />
+      </div>
       <div className="container-page relative grid items-center gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-24">
         <motion.div style={reduceMotion ? undefined : { y: textY, opacity: textOpacity }}>
           <p className="rise-in text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
@@ -84,7 +93,7 @@ export function Hero() {
             <Magnetic className="flex">
             <a
               href="#contact"
-              className="group inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-md bg-foreground px-5 text-sm font-semibold text-background transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="btn-shine group inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-md bg-foreground px-5 text-sm font-semibold text-background transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               {hero.primaryCta.replace(" →", "")}
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
@@ -92,10 +101,10 @@ export function Hero() {
             </Magnetic>
             <a
               href="#work"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-border bg-background/80 px-5 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-border bg-background/80 px-5 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               {hero.secondaryCta.replace(" ↓", "")}
-              <ArrowDown className="h-4 w-4" aria-hidden />
+              <ArrowDown className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" aria-hidden />
             </a>
           </div>
 
