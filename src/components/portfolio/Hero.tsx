@@ -7,8 +7,16 @@ import {
   useScroll,
   useSpring,
   useTransform,
+  type PanInfo,
 } from "framer-motion";
-import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+  type PointerEvent,
+} from "react";
 import { Magnetic, riseDelay, trackSpotlight } from "@/components/motion";
 import { getPortfolioImage } from "@/data/portfolio";
 import type { ImageKey } from "@/data/portfolio/types";
@@ -31,6 +39,7 @@ const HERO_SHOTS: Array<{
 ];
 
 const CYCLE_MS = 3400;
+const SWIPE_THRESHOLD = 60;
 
 /** Visible depth poses — z stays below sticky header (z-50) */
 const STACK = [
@@ -191,6 +200,7 @@ function HeroCardStack() {
   const [order, setOrder] = useState(() => HERO_SHOTS.map((_, i) => i));
   const [paused, setPaused] = useState(false);
   const [compact, setCompact] = useState(false);
+  const draggedRef = useRef(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 639px)");
@@ -200,19 +210,34 @@ function HeroCardStack() {
     return () => mq.removeEventListener("change", sync);
   }, []);
 
+  const showNext = () => setOrder((prev) => [...prev.slice(1), prev[0]!]);
+  const showPrev = () => setOrder((prev) => [prev[prev.length - 1]!, ...prev.slice(0, -1)]);
+
   useEffect(() => {
     if (paused) return;
-    const id = window.setInterval(() => {
-      setOrder((prev) => [...prev.slice(1), prev[0]!]);
-    }, CYCLE_MS);
+    const id = window.setInterval(showNext, CYCLE_MS);
     return () => window.clearInterval(id);
-  }, [paused]);
+  }, [paused, order]);
 
   const bringToFront = (shotIndex: number) => {
     setOrder((prev) => {
       if (prev[0] === shotIndex) return prev;
       return [shotIndex, ...prev.filter((i) => i !== shotIndex)];
     });
+  };
+
+  const onSwipeEnd = (event: globalThis.PointerEvent | MouseEvent | TouchEvent, info: PanInfo) => {
+    const swipe = info.offset.x + info.velocity.x * 0.2;
+    if (swipe < -SWIPE_THRESHOLD) showNext();
+    else if (swipe > SWIPE_THRESHOLD) showPrev();
+    if (!("pointerType" in event) || event.pointerType !== "mouse") setPaused(false);
+  };
+
+  const onStackKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "ArrowRight") showNext();
+    else if (e.key === "ArrowLeft") showPrev();
+    else return;
+    e.preventDefault();
   };
 
   const front = HERO_SHOTS[order[0]!]!;
@@ -276,26 +301,12 @@ function HeroCardStack() {
             </motion.p>
           </AnimatePresence>
         </div>
-        <div className="flex flex-wrap justify-end gap-1.5" role="tablist" aria-label="Projects">
-          {HERO_SHOTS.map((shot, i) => (
-            <button
-              key={shot.key}
-              type="button"
-              role="tab"
-              aria-selected={order[0] === i}
-              aria-label={shot.label}
-              onClick={() => bringToFront(i)}
-              className={`h-2 w-2 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                order[0] === i ? "bg-foreground" : "bg-border hover:bg-muted-foreground/50"
-              }`}
-            />
-          ))}
-        </div>
       </div>
 
       <motion.div
         onPointerMove={onPointerMove}
         onPointerLeave={resetTilt}
+        onKeyDown={onStackKeyDown}
         style={
           tiltEnabled
             ? { rotateX, rotateY, transformPerspective: 1200, transformStyle: "preserve-3d" }
@@ -316,9 +327,25 @@ function HeroCardStack() {
               aria-label={`${t.heroViewProject} ${shot.label}`}
               aria-current={isFront ? "true" : undefined}
               tabIndex={inStack ? 0 : -1}
-              onClick={() => bringToFront(shotIndex)}
-              className="absolute inset-x-[3%] top-0 aspect-[16/10] overflow-hidden rounded-xl border border-border bg-card text-left shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:inset-x-[4%] sm:rounded-2xl"
+              onPointerDown={() => {
+                draggedRef.current = false;
+              }}
+              onClick={() => {
+                if (!draggedRef.current) bringToFront(shotIndex);
+              }}
+              className={`absolute inset-x-[3%] top-0 aspect-[16/10] overflow-hidden rounded-xl border border-border bg-card text-left shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:inset-x-[4%] sm:rounded-2xl ${
+                isFront ? "cursor-grab active:cursor-grabbing" : ""
+              }`}
               style={{ transformOrigin: "center center", pointerEvents: inStack ? "auto" : "none" }}
+              drag={isFront ? "x" : false}
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.7}
+              onDragStart={() => {
+                draggedRef.current = true;
+                setPaused(true);
+              }}
+              onDragEnd={onSwipeEnd}
+              whileDrag={{ scale: 1.03 }}
               initial={false}
               animate={{
                 x: pose.x * depthScale,
